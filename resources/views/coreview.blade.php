@@ -17,6 +17,7 @@
   <!-- CSS Files -->
   <link href="./assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="">
@@ -83,7 +84,7 @@
         </li>
       </ul>
       <!-- Collapse -->
-      <div class="collapse navbar-collapse mt-5 mb-5 pt-0" id="sidenav-collapse-main">
+      <div class="collapse navbar-collapse mt-4 mb-6 pt-0" id="sidenav-collapse-main">
         <!-- Collapse header -->
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
@@ -115,8 +116,8 @@
         <h5 class="navbar-heading text-success mb-0 pb-0">Dashboard</h5>
         <ul class="navbar-nav mb-0 mt-0">
           <li class="nav-item active ">
-            <a class="nav-link active " href="./index.html">
-              <i class="ni ni-tv-2 text-success"></i> Dashboard
+            <a class="nav-link active " href="./dashboard">
+              <i class="ni ni-tv-2 text-yellow"></i> Dashboard
             </a>
           </li>
         </ul>
@@ -126,13 +127,12 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item active ">
             <a class="nav-link  active " href="/dashboard">
-              
-              <i class="ni ni-tv-2 text-success"></i>Provinsi
+              <i class="fa-solid fa-map-location text-info"></i>Provinsi
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Kabupaten/Kota
+              <i class="fa-solid fa-map-location text-warning"></i>Kabupaten/Kota
             </a>
           </li>
         </ul>
@@ -142,17 +142,17 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Sub Holding
+              <i class="fa-solid fa-building" style="color: #FFB200"></i>Sub Holding
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>SBU
+              <i class="fa-solid fa-building text-red"></i>SBU
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Branch
+              <i class="fa-solid fa-code-branch" style="color: #5BB318"></i>Branch
             </a>
           </li>
         </ul>
@@ -162,7 +162,7 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Mom Detail
+              <i class="fa-solid fa-floppy-disk" style="color: #002B5B"></i>Mom Detail
             </a>
           </li>
         </ul>
@@ -172,7 +172,7 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Report
+              <i class="fa-solid fa-book text-warning"></i>Report
             </a>
           </li>
         </ul>
@@ -182,12 +182,18 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>User
+              <i class="fa-solid fa-person-chalkboard text-green"></i>User
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
-              <i class="ni ni-tv-2 text-success"></i>Group
+              <i class="fa-solid fa-address-card text-primary"></i>Group
+            </a>
+            <a href="/dashboard" class="nav-link active">
+              <i class="ni ni-collection  text-red"></i>Collection
+            </a>
+            <a href="/register" class="nav-link active">
+              <i class="ni ni-collection  text-red"></i>Test Register
             </a>
           </li>
         </ul>

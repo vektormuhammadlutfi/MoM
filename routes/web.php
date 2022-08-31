@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
+Route::get('/register', [DataController::class, 'register']);
