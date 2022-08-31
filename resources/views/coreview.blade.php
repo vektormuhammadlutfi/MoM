@@ -18,6 +18,7 @@
   <link href="./assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
 </head>
 
 <body class="">
@@ -146,7 +147,7 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a class="nav-link  active " href="/dashboard">
+            <a class="nav-link  active " href="/sbu">
               <i class="fa-solid fa-building text-red"></i>SBU
             </a>
           </li>

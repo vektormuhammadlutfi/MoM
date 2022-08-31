@@ -24,6 +24,10 @@ class DataController extends Controller
     {
         return view('register');
     }
+    public function sbu()
+    {
+        return view('sbu');
+    }
 
     /**
      * Show the form for creating a new resource.
