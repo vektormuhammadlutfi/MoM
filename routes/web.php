@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('/dashboard', [DataController::class, 'dashboard']);
 Route::get('/register', [DataController::class, 'register']);
 Route::get('/sbu', [DataController::class, 'sbu']);
+Route::get('/branch', [DataController::class, 'branch']);
