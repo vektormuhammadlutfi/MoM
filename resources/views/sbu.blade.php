@@ -72,7 +72,9 @@
     width: 95%
     ">
     <div class="card">
-      <div class="card-body"><p></p>
+      <div class="card-body"><p>
+        test
+      </p>
         <div class="d-flex justify-content-between">
           <h3 class="mb-0"><i class="fa-solid fa-list text-primary"></i> Data SBU</h3>
           <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
