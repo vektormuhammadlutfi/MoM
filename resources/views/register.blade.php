@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Section: Design Block -->
-<section class="text-center">
+<section>
   {{-- navbar --}}
   <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
@@ -63,7 +63,7 @@
     </div>
   </nav>
   <!-- Background image -->
-  <div class="header bg-gradient-success pb-8 pt-5 pt-md-8" style="height: 300px"></div>
+  <div class="header bg-gradient-success pb-8 pt-5 pt-md-7" style="height: 300px"></div>
   {{-- <div class="p-5 bg-image" style="
         background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
         height: 300px;
@@ -71,7 +71,7 @@
   <!-- Background image -->
 
   <div class="card shadow-lg bg-body" style="
-        margin: -150px auto 100px auto;
+        margin: -170px auto 100px auto;
         background: hsla(0, 0%, 100%, 0.8);
         backdrop-filter: blur(30px);
         max-width: 600px;
@@ -79,44 +79,37 @@
         ">
     <div class="card-body py-4" >
       <div class="row d-flex justify-content-center">
-        <div class="col-lg-11">
-          <h2 class="fw-bold mb-5">Sign up now</h2>
+        
+        <div class="col-lg-10">
+          <h2 class="fw-bold mb-4 text-center">Sign up now</h2>
           <form>
-            <!-- 2 column grid layout with text inputs for the first and last names -->
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
-                  <label class="form-label" for="form3Example1">First name</label>
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
-                  <label class="form-label" for="form3Example2">Last name</label>
-                </div>
-              </div>
+            <div class="form-outline mb-3">
+              <label for="form3Example3">First Name</label>
+              <input type="email" id="form3Example3" class="form-control" />
             </div>
-
+            <div class="form-outline mb-3"> 
+              <label class="text-align-left" for="form3Example3">Last Name</label>
+              <input type="email" id="form3Example3" class="form-control" />
+            </div>
             <!-- Email input -->
             <div class="form-outline mb-3">
+              <label for="form3Example3">Email address</label>
               <input type="email" id="form3Example3" class="form-control" />
-              <label class="form-label" for="form3Example3">Email address</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control" />
               <label class="form-label" for="form3Example4">Password</label>
+              <input type="password" id="form3Example4" class="form-control" />
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">
+            <button type="submit" class="btn btn-primary btn-block my-4">
               Sign up
             </button>
 
             <!-- Register buttons -->
-            <div class="text-center">
+            {{-- <div class="text-center">
               <p>or sign up with:</p>
               <button type="button" class="btn btn-link btn-floating mx-1">
                 <i class="fab fa-facebook-f"></i>
@@ -133,7 +126,7 @@
               <button type="button" class="btn btn-link btn-floating mx-1">
                 <i class="fab fa-github"></i>
               </button>
-            </div>
+            </div> --}}
           </form>
         </div>
       </div>
