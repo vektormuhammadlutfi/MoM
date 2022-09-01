@@ -7,7 +7,7 @@
   <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">SBU</a>
+      <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Brach Unit</a>
       <!-- Form -->
       {{-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
         <div class="form-group mb-0">
@@ -72,9 +72,9 @@
     width: 95%
     ">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body"><p></p>
         <div class="d-flex justify-content-between">
-          <h2 class="mb-0"><i class="fa-solid fa-list text-primary"></i> Data SBU</h2>
+          <h3 class="mb-0"><i class="fa-solid fa-list text-primary"></i> Data SBU</h3>
           <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
         </div>
         <hr class="mt-2 mb-4">
