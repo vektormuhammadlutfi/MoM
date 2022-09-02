@@ -156,8 +156,8 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a class="nav-link  active " href="/dashboard">
-              <i class="fa-solid fa-code-branch" style="color: #5BB318"></i>Branch
+            <a class="nav-link  active " href="/detailbranch">
+              <i class="fa fa-home" style="color: #5BB318"></i>Branch
             </a>
           </li>
         </ul>

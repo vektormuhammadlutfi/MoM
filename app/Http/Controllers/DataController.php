@@ -28,6 +28,14 @@ class DataController extends Controller
     {
         return view('sbu');
     }
+    public function detailBranch(){
+        return view('detailbranch');
+    }
+    // public function branch(){
+        // return view('branch');
+    // }
+
+
 
     /**
      * Show the form for creating a new resource.
