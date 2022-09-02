@@ -157,7 +157,7 @@
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/branch">
-              <i class="fa-solid fa-code-branch" style="color: #5BB318"></i>Branch
+              <i class="fa-sharp fa-solid fa-house-user" style="color: #5BB318"></i> Branch
             </a>
           </li>
         </ul>
@@ -208,8 +208,6 @@
   <div class="main-content">
     @yield('content')
   </div>
-
-  <p>test</p>
     <!--   Core   -->
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -30,8 +30,21 @@ class DataController extends Controller
     }
     public function branch()
     {
-        return view('branch');
+        return view('branch.branch');
     }
+    public function detailBranch()
+    {
+        return view('branch.detailbranch');
+    }
+    public function createBranch()
+    {
+        return view('branch.createbranch');
+    }
+    public function editBranch()
+    {
+        return view('branch.editbranch');
+    }
+
 
     /**
      * Show the form for creating a new resource.

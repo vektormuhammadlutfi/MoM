@@ -1,60 +1,19 @@
 @extends('layout.coreview')
 
 @section('content')
-<div class="main-content">
-  {{-- @include('nav') --}}
+{{-- navigasi atas(nama, search, user) --}}
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Nama Halaman/brand -->
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Brach Unit</a>
+    @include('navbar.navuser')
+  </div>
+</nav>
+ @include('navbar.navbg')
 
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-    <div class="container-fluid">
-      <!-- Brand -->
-      <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Brach Unit</a>
-      <!-- User -->
-      <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Admin</span>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  {{-- end nav --}}
 
-  <div class="header bg-gradient-success pb-8 pt-5 pt-md-8" ></div>
-  <div class="card shadow-lg bg-body" style="
+{{-- content utama dibawah ini yaa --}}
+<div class="card shadow-lg bg-body" style="
     margin: -150px auto 90px auto;
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(30px);
@@ -306,11 +265,24 @@
       </div>
     </div>
   </div>
-</div>    
+
+
+
+ {{-- footer gaess --}}
+  <div class="container-fluid mt--7">
+    <div class="row mt-5" style="min-height: 200px">
+    </div>
+    <!-- Footer -->
+    @include('layout.footer')
+  </div>
+
+
+
+
 @endsection
 
- {{-- content modal create data --}}
- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{{-- content modal create data --}}
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -345,7 +317,7 @@
 </div>
 {{-- end create --}}
 
-{{-- content modal create data --}}
+{{-- content modal edit data --}}
 <div class="modal fade" id="editBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
