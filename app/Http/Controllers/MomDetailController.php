@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Data;
+use App\Models\Detailmom;
 use Illuminate\Http\Request;
 
-class DataController extends Controller
+class MomDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,34 +14,8 @@ class DataController extends Controller
      */
     public function index()
     {
-        //
+        return view('momdetail.momdetail');
     }
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-    public function register()
-    {
-        return view('register');
-    }
-// cut sbu
-    public function branch()
-    {
-        return view('branch.branch');
-    }
-    public function detailBranch()
-    {
-        return view('branch.detailbranch');
-    }
-    public function createBranch()
-    {
-        return view('branch.createbranch');
-    }
-    public function editBranch()
-    {
-        return view('branch.editbranch');
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +24,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        //
+        return view('momdetail.createmomdetail');
     }
 
     /**
@@ -67,21 +41,21 @@ class DataController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(Detailmom $detailmom)
     {
-        //
+        return view('momdetail.editmomdetail');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $data)
+    public function edit(Detailmom $detailmom)
     {
         //
     }
@@ -90,10 +64,10 @@ class DataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $data)
+    public function update(Request $request, Detailmom $detailmom)
     {
         //
     }
@@ -101,11 +75,15 @@ class DataController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $data)
+    public function destroy(Detailmom $detailmom)
     {
         //
+    }
+    public function moreMomDetail()
+    {
+        return view('momdetail.moremomdetail');
     }
 }
