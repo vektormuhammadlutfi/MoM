@@ -1,4 +1,4 @@
-@extends('coreview')
+@extends('layout.coreview')
 
 @section('content')
 <!-- Section: Design Block -->

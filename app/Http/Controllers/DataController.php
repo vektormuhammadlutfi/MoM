@@ -28,13 +28,22 @@ class DataController extends Controller
     {
         return view('sbu');
     }
-    public function detailBranch(){
-        return view('detailbranch');
+    public function branch()
+    {
+        return view('branch.branch');
     }
-    // public function branch(){
-        // return view('branch');
-    // }
-
+    public function detailBranch()
+    {
+        return view('branch.detailbranch');
+    }
+    public function createBranch()
+    {
+        return view('branch.createbranch');
+    }
+    public function editBranch()
+    {
+        return view('branch.editbranch');
+    }
 
 
     /**

@@ -1,89 +1,31 @@
-@extends('coreview')
+@extends('layout.coreview')
 
 @section('content')
-<div class="main-content">
-  {{-- @include('nav') --}}
+{{-- navigasi atas(nama, search, user) --}}
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Nama Halaman/brand -->
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Brach Unit</a>
+    @include('navbar.navuser')
+  </div>
+</nav>
+ @include('navbar.navbg')
 
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-    <div class="container-fluid">
-      <!-- Brand -->
-      <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">SBU</a>
-      <!-- Form -->
-      {{-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-        <div class="form-group mb-0">
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text">
-          </div>
-        </div>
-      </form> --}}
-      <!-- User -->
-      <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Admin</span>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
-  {{-- end nav --}}
-  <div class="header bg-gradient-success pb-8 pt-5 pt-md-8" ></div>
-  <div class="card shadow-lg bg-body" style="
+{{-- content utama dibawah ini yaa --}}
+<div class="card shadow-lg bg-body" style="
     margin: -150px auto 90px auto;
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(30px);
-    width: 95%
-    ">
+    width: 95%">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <h2 class="mb-0"><i class="fa-solid fa-list text-primary"></i> Data SBU</h2>
+          <h3 class="mb-0"><i class="fa-solid fa-list text-red"></i> Data SBU</h3>
           <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
         </div>
         <hr class="mt-2 mb-4">
-        {{-- <h2 class="mb-0"><i class="fa-solid fa-list text-primary"></i> Data SBU</h2>
-        <hr class="my-2"> --}}
-        {{-- create and modal --}}
-        {{-- <div class="d-flex flex-row-reverse">
-          <button class="btn btn-info mb-2 py-2" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
-        </div> --}}
+        {{-- table --}}
         <div class="table-responsive">
           <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
             <thead >
@@ -92,7 +34,7 @@
                     <th style="font-size: 13px">Oid</th>
                     <th style="font-size: 13px">Nama SBU</th>
                     <th style="font-size: 13px">Nama Sub Holding</th>
-                    <th style="font-size: 13px">Axtion</th>
+                    <th style="font-size: 13px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -323,11 +265,24 @@
       </div>
     </div>
   </div>
-</div>    
+
+
+
+ {{-- footer gaess --}}
+  <div class="container-fluid mt--7">
+    <div class="row mt-5" style="min-height: 200px">
+    </div>
+    <!-- Footer -->
+    @include('layout.footer')
+  </div>
+
+
+
+
 @endsection
 
- {{-- content modal create data --}}
- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{{-- content modal create data --}}
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -362,7 +317,7 @@
 </div>
 {{-- end create --}}
 
-{{-- content modal create data --}}
+{{-- content modal edit data --}}
 <div class="modal fade" id="editBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
