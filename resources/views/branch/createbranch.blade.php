@@ -71,7 +71,7 @@
             <input type="text" class="form-control" placeholder="Input Description" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-primary">Create</button>
+            <button type="submit" class="btn py-1 btn-primary" >Create</button>
           </div>
       </form>
       </div>

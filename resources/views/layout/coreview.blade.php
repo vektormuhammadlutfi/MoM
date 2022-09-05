@@ -160,6 +160,11 @@
               <i class="fa-sharp fa-solid fa-house-user" style="color: #5BB318"></i> Branch
             </a>
           </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-solid fa-bars" style="color: #002B5B"></i>Jenis Mom
+            </a>
+          </li>
         </ul>
 
         <hr class="my-1 mt-1">
@@ -167,7 +172,17 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/momdetail">
-              <i class="fa-solid fa-floppy-disk" style="color: #002B5B"></i>Mom Detail
+              <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #5BB318"></i>Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-solid fa-list-check" style="color: #002B5B"></i>Mom Detail
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa fa-list-alt" aria-hidden="true" style="color: #002B5B"></i>Mom Description
             </a>
           </li>
         </ul>
@@ -175,9 +190,24 @@
         <hr class="my-1 mt-1">
         <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
         <ul class="navbar-nav mt-0 mb-0">
-          <li class="nav-item  active ">
+          <!-- <li class="nav-item  active ">
             <a class="nav-link  active " href="/dashboard">
               <i class="fa-solid fa-book text-warning"></i>Report
+            </a>
+          </li> -->
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-sharp fa-solid fa-file text-red" style="color: #002B5B"></i>Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-solid fa-floppy-disk" style="color: #002B5B"></i>Doc Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa fa-folder-open" aria-hidden="true" style="color: #002B5B"></i>Summary
             </a>
           </li>
         </ul>
@@ -194,12 +224,12 @@
             <a class="nav-link  active " href="/dashboard">
               <i class="fa-solid fa-address-card text-primary"></i>Group
             </a>
-            <a href="/dashboard" class="nav-link active">
-              <i class="ni ni-collection  text-red"></i>Collection
+            <!-- <a href="/dashboard" class="nav-link active">
+              <i class="fa-solid fa-rectangle-list text-red"></i>Collection
             </a>
             <a href="/register" class="nav-link active">
-              <i class="ni ni-collection  text-red"></i>Test Register
-            </a>
+              <i class="fa-solid fa-address-card text-red"></i>Test Register
+            </a> -->
           </li>
         </ul>
       </div>

@@ -21,5 +21,4 @@ class BranchController extends Controller
         // return dd('branch.detailbranch', compact('Branch'));
         return view('branch.detailbranch', compact('Branch'));
     }
-    
 }

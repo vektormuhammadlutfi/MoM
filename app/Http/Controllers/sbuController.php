@@ -14,7 +14,7 @@ class SbuController extends Controller
      */
     // public function index()
     // {
-        
+
     // }
     public function sbu()
     {
