@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sbu;
+use App\Models\Detailmom;
 use Illuminate\Http\Request;
 
-class SbuController extends Controller
+class MomDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-        
-    // }
-    public function sbu()
+    public function index()
     {
-        $dataSbu = Sbu::all();
-        return view('sbu', compact('dataSbu'));
+        return view('momdetail.momdetail');
     }
 
     /**
@@ -29,7 +24,7 @@ class SbuController extends Controller
      */
     public function create()
     {
-        //
+        return view('momdetail.createmomdetail');
     }
 
     /**
@@ -40,33 +35,27 @@ class SbuController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'namesbu' => 'required',
-            'namesubholding' => 'required'
-        ]);
-        $inputsbu = $request->all();
-        Sbu::create($inputsbu);
-        return redirect('/sbu');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sbu  $sbu
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function show(Sbu $sbu)
+    public function show(Detailmom $detailmom)
     {
-        //
+        return view('momdetail.editmomdetail');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sbu  $sbu
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sbu $sbu)
+    public function edit(Detailmom $detailmom)
     {
         //
     }
@@ -75,10 +64,10 @@ class SbuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sbu  $sbu
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sbu $sbu)
+    public function update(Request $request, Detailmom $detailmom)
     {
         //
     }
@@ -86,11 +75,15 @@ class SbuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sbu  $sbu
+     * @param  \App\Models\Detailmom  $detailmom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sbu $sbu)
+    public function destroy(Detailmom $detailmom)
     {
         //
+    }
+    public function moreMomDetail()
+    {
+        return view('momdetail.moremomdetail');
     }
 }

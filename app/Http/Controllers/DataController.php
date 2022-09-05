@@ -24,10 +24,7 @@ class DataController extends Controller
     {
         return view('register');
     }
-    public function sbu()
-    {
-        return view('sbu');
-    }
+// cut sbu
     public function branch()
     {
         return view('branch.branch');
