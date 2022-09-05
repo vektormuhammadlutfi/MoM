@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     use HasFactory;
-    protected $table = 'tb_mas_brances';
+    protected $table = 'tb_mas_branches';
 }

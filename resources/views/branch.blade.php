@@ -1,10 +1,18 @@
 @extends('layout.coreview')
 
 @section('content')
-<div class="main-content">
-  <!-- @include('navbar.nav') -->
-  <!-- @include('navbar.navbg') -->
+{{-- navigasi atas(nama, search, user) --}}
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Nama Halaman/brand -->
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Branch</a>
+    @include('navbar.navuser')
+  </div>
+</nav>
+ @include('navbar.navbg')
 
+
+  {{-- content utama dibawah ini yaa --}}
   <div class="card shadow-lg bg-body" style="
     margin: -150px auto 90px auto;
     background: hsla(0, 0%, 100%, 0.8);
@@ -42,7 +50,7 @@
                       <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>2</td>
                     <td>Garrett Winters</td>
                     <td>Accountant</td>
@@ -272,7 +280,7 @@
                     <a  href="/sbu" class="btn btn-success btn-sm py-2" ><i class="fa-solid fa-pen-to-square"></i></a>
                     <a  href="/sbu" class="btn btn-danger btn-sm py-2" ><i class="fa-solid fa-trash-can"></i></a>
                   </td>
-                </tr>
+                </tr> -->
                 {{-- hh --}}
             </tbody>
           </table>

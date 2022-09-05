@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use Illuminate\Routing\RouteRegistrar;
+use App\Http\Controllers\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,10 @@ Route::get('/', function () {
 Route::get('/dashboard', [DataController::class, 'dashboard']);
 Route::get('/register', [DataController::class, 'register']);
 Route::get('/sbu', [DataController::class, 'sbu']);
-Route::get('/branch', [DataController::class, 'branch']);
-Route::get('/detailbranch', [DataController::class, 'detailBranch']);
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
 Route::get('/createbranch', [DataController::class, 'createBranch']);
 Route::get('/editbranch', [DataController::class, 'editBranch']);
+
+//Branches
+

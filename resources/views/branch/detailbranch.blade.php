@@ -34,48 +34,71 @@
           <div class="container ">
             <div class="row">
               <h4 class="col-4">Id Branch</h4>
-              <p class="col-8">ExampleValue </p>
+              <p class="col-8">{{$Branch->id}} </p>
             </div>
             <hr class="mt-0">
           </div>
           <div class="container ">
             <div class="row">
-              <h4 class="col-4">Nama Branch</h4>
-              <p class="col-8">ExampleValue</p>
+              <h4 class="col-4">Branch Name</h4>
+              <p class="col-8">{{$Branch->branch_name}}</p>
             </div>
             <hr class="mt-0">
           </div>
-          
+
         </div>
 
         <div class="container mt-5">
           <div class="row">
-            <h4 class="col">Alamat</h4>
-            <p class="col">ExampleValue </p>
+            <h4 class="col">Holding</h4>
+            <p class="col">{{$Branch->holding}}</p>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div class="container ">
+          <div class="row">
+            <h4 class="col">Sub Holding</h4>
+            <p class="col">{{$Branch->subholding}}</p>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div class="container ">
+          <div class="row">
+            <h4 class="col">Sbu</h4>
+            <p class="col">{{$Branch->sbu_name}}</p>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div class="container ">
+          <div class="row">
+            <h4 class="col">Address</h4>
+            <p class="col">{{$Branch->address}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Email</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{$Branch->email}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Nomor Telpon</h4>
-            <p class="col">ExampleValue </p>
+            <h4 class="col">Phone</h4>
+            <p class="col">{{$Branch->phone}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Keterangan</h4>
-            <p class="col">ExampleValue </p>
+            <h4 class="col">Description</h4>
+            <p class="col">{{$Branch->ket}}</p>
           </div>
         </div>
-        <hr class="mt-0">
+      </div>
+
+
       </div>
       <!-- end detail -->
 
