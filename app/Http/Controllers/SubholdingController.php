@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Data;
+use App\Models\Subholding;
 use Illuminate\Http\Request;
 
-class DataController extends Controller
+class SubholdingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,33 +16,6 @@ class DataController extends Controller
     {
         //
     }
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-    public function register()
-    {
-        return view('register');
-    }
-// cut sbu
-    public function branch()
-    {
-        return view('branch.branch');
-    }
-    public function detailBranch()
-    {
-        return view('branch.detailbranch');
-    }
-    public function createBranch()
-    {
-        return view('branch.createbranch');
-    }
-    public function editBranch()
-    {
-        return view('branch.editbranch');
-    }
-    
-
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +24,8 @@ class DataController extends Controller
      */
     public function create()
     {
-        //
+        // $data = Subholding::all();
+        // return($data);
     }
 
     /**
@@ -68,10 +42,10 @@ class DataController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(Subholding $subholding)
     {
         //
     }
@@ -79,10 +53,10 @@ class DataController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $data)
+    public function edit(Subholding $subholding)
     {
         //
     }
@@ -91,10 +65,10 @@ class DataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $data)
+    public function update(Request $request, Subholding $subholding)
     {
         //
     }
@@ -102,10 +76,10 @@ class DataController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $data)
+    public function destroy(Subholding $subholding)
     {
         //
     }

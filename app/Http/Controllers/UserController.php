@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Data;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class DataController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,36 +15,12 @@ class DataController extends Controller
      */
     public function index()
     {
-        //
+        return view('login');
     }
-    public function dashboard()
+    public function login()
     {
-        return view('dashboard');
+        
     }
-    public function register()
-    {
-        return view('register');
-    }
-// cut sbu
-    public function branch()
-    {
-        return view('branch.branch');
-    }
-    public function detailBranch()
-    {
-        return view('branch.detailbranch');
-    }
-    public function createBranch()
-    {
-        return view('branch.createbranch');
-    }
-    public function editBranch()
-    {
-        return view('branch.editbranch');
-    }
-    
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -68,10 +45,10 @@ class DataController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(User $user)
     {
         //
     }
@@ -79,10 +56,10 @@ class DataController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $data)
+    public function edit(User $user)
     {
         //
     }
@@ -91,10 +68,10 @@ class DataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $data)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -102,10 +79,10 @@ class DataController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $data)
+    public function destroy(User $user)
     {
         //
     }

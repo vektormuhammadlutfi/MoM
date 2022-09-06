@@ -38,12 +38,13 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($dataSbu as $sbuitem)
+              <?php $no=1; ?>
+              @foreach ($sbu as $sbuitem)
                 <tr>
-                  <td>1</td>
+                  <td>{{ $no++ }}</td>
                   <td>{{ $sbuitem->oid_sbu }}</td>
                   <td>{{ $sbuitem->sbu_name }}</td>
-                  <td>Edinburgh</td>
+                  <td>{{ $sbuitem->subholding }}</td>
                   <td>
                     <button class="btn btn-success btn-sm py-2" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
                     <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
@@ -57,8 +58,6 @@
     </div>
   </div>
 
-
-
  {{-- footer gaess --}}
   <div class="container-fluid mt--7">
     <div class="row mt-5" style="min-height: 200px">
@@ -66,10 +65,6 @@
     <!-- Footer -->
     @include('layout.footer')
   </div>
-
-
-
-
 @endsection
 
 {{-- content modal create data --}}
@@ -83,25 +78,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="{{ url('/csbu') }}">
+          @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option class="dropdown-item">Pilihan Satu</option>
-              <option class="dropdown-item">Pilihan dua</option>
-              <option class="dropdown-item">Pilihan tiga</option>
-              <option class="dropdown-item">Pilihan empat</option>
-              <option class="dropdown-item">Pilihan lima</option>
+            <select class="form-control" name="subholding" id="exampleFormControlSelect1">
+              @foreach ($sbu as $sbuitem)
+              <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
+              @endforeach
+              
             </select>
-            <!-- <button type="submit" class="btn btn-primary">Create</button> -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create</button>
       </div>
     </div>
   </div>
@@ -120,18 +116,19 @@
       </div>
       <div class="modal-body">
         <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="namesbu" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" name="namesubholding" id="exampleFormControlSelect1">
-              <option class="dropdown-item">Pilihan Satu</option>
-              <option class="dropdown-item">Pilihan dua</option>
-              <option class="dropdown-item">Pilihan tiga</option>
-              <option class="dropdown-item">Pilihan empat</option>
-              <option class="dropdown-item">Pilihan lima</option>
-            </select>
+          @csrf
+          <div class="form-group">
+              <label for="exampleInputEmail1">Nama SBU</label>
+              <input type="text" name="namesbu" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <label for="exampleFormControlSelect1">Nama Sub Holding</label>
+          <select class="form-control" name="namesubholding" id="exampleFormControlSelect1">
+            <option class="dropdown-item">Pilihan Satu</option>
+            <option class="dropdown-item">Pilihan dua</option>
+            <option class="dropdown-item">Pilihan tiga</option>
+            <option class="dropdown-item">Pilihan empat</option>
+            <option class="dropdown-item">Pilihan lima</option>
+          </select>
             <!-- <button type="submit" class="btn btn-primary">Create</button> -->
         </form>
       </div>
