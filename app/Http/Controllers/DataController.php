@@ -20,10 +20,6 @@ class DataController extends Controller
     {
         return view('dashboard');
     }
-    public function register()
-    {
-        return view('register');
-    }
 // cut sbu
     public function branch()
     {

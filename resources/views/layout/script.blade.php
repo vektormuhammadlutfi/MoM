@@ -7,7 +7,7 @@
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.2"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
-  <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+  {{-- <script src="//code.jquery.com/jquery-3.5.1.js"></script> --}}
   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
   <script src="./assets/js/table.js"></script>

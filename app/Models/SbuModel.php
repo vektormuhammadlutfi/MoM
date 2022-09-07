@@ -10,17 +10,7 @@ class SbuModel extends Model
 {
     use HasFactory;
     protected $table = 'tb_mas_sbus';
-    protected $guarded = ['id'];
-    // protected $fillable = [''];
-    // protected $with=['subholding'];
-
-    // public function subHolding(){
-    //     $this->belongsTo(Subholding::class,'oid_subholding','oid_subholding');
-    // }
-    public function Sbu()
-    {
-        return DB::table('tb_mas_sbus')
-            ->leftJoin('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
-            ->get();
-    }
+    // protected $guarded = ['id'];
+    protected $fillable = ['id', 'sbu_name', 'oid_sbu', 'oid_subholding', 'crud', 'usercreate', 'userupdate', 'userdelete', 'created_at', 'updated_at',];
+    
 }

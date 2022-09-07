@@ -9,17 +9,20 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login', [
-            'name' => 'login'
-        ]);
+        return view('login.login');
     }
     public function authenticate(Request $request)
     {
-        $request->validate([
+        $credentianls = $request->validate([
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
 
-        dd('berhasil login');
+        if(Auth::attempt($credentianls))
+        {
+            $request->session()->regenerate();
+            require redirect()->intended('/dashboard');
+        }
+        return back()->with('loginError', 'Login filed!');
     }
 }

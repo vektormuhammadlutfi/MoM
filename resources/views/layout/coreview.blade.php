@@ -203,7 +203,7 @@
             <a href="/register" class="nav-link active">
               <i class="ni ni-collection  text-red"></i>Test Register
             </a>
-            <a href="/Login" class="nav-link active">
+            <a href="/login" class="nav-link active">
               <i class="ni ni-collection  text-red"></i>Test Login
             </a>
           </li>
@@ -216,5 +216,6 @@
   </div>
     <!--   Core   -->
   @include('layout.script')
+  @stack('addon-script')
 </body>
 </html>
