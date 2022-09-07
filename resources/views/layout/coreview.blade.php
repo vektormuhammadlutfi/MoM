@@ -124,7 +124,7 @@
         <h5 class="navbar-heading text-success mb-0 pb-0">Master</h5>
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
-            <a class="nav-link  active " href="/dashboard">
+            <a class="nav-link  active " href="/subholding">
               <i class="fa-solid fa-building" style="color: #FFB200"></i>Sub Holding
             </a>
           </li>

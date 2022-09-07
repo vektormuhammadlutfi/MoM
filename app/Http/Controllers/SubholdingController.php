@@ -16,7 +16,15 @@ class SubholdingController extends Controller
     {
         //
     }
-
+    public function subholding()
+    {
+        $this->Subholding = new Subholding();
+        // $dataSbu = Sbu::all();
+        $dataSubHolding = [
+            'subholding' => $this->Subholding->subholding(),
+        ];
+        return view('subholding', $dataSubHolding);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +44,35 @@ class SubholdingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->SubHolding = new Subholding();
+        $num = '0';
+        if (count($this->SubHolding->subholding()) >= 9) {
+            $num = '';
+        }
+
+        $this->SubHolding->insert(
+            [
+                'oid_subholding' => 'SH-' . $num . (count($this->SubHolding->subholding()) + 1),
+                'subholding' => $request->subholding,
+                'oid_holding' => $request->oid_holding
+            ]
+        );
+        // $request->validate([
+        //     'nama_subholding' => 'required',
+        //     'holding' => 'required'
+        // ]);
+
+        // $data = [
+        //     'oid_subholding' => 'SH-' . $num . (count($this->SubHolding->subholding()) + 1),
+        //     'subholding' => $request->nama_subholding,
+        //     'oid_holding' => $request->oid_holding,
+        //     'holding' => $request->holding,
+        //     'created_ad' =>
+        // ]
+
+        // Subholding::create($request->all());
+
+        return redirect('/subholding');
     }
 
     /**
@@ -47,7 +83,6 @@ class SubholdingController extends Controller
      */
     public function show(Subholding $subholding)
     {
-        //
     }
 
     /**
@@ -79,8 +114,14 @@ class SubholdingController extends Controller
      * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subholding $subholding)
+    public function destroy($id)
     {
-        //
+        $this->SubHolding = new Subholding();
+        $this->SubHolding->drop($id);
+
+        return redirect('/subholding');
     }
+    // public function destroy(Subholding $subholding)
+    // {
+    // }
 }

@@ -35,6 +35,11 @@ Route::get('/sbu', [SbuController::class, 'sbu']);
 Route::post('/csbu', [SbuController::class, 'store']);
 Route::post('/sbu/update', [SbuController::class, 'update']);
 
+//Sub Holding
+Route::get('/subholding', [SubholdingController::class, 'subholding']);
+Route::post('/tambahsubholding', [SubholdingController::class, 'store']);
+Route::get('/deletesubholding/{id}', [SubholdingController::class, 'destroy']);
+
 //Momdetail
 Route::get('/momdetail', [MomDetailController::class, 'index']);
 Route::get('/createmomdetail', [MomDetailController::class, 'create']);
@@ -48,8 +53,8 @@ Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 // register
-Route::get('/register', [RegisterController::class, 'index'] );
-Route::post('/register', [RegisterController::class, 'store'] );
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 // testing modal for holding
 Route::resource('holding', HoldingController::class);
