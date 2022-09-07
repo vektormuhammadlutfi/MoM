@@ -121,7 +121,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ url('/updatesbu') }}" id="editform">
+        <form method="POST" action="/sbu/update" id="editform">
           {{-- @method('PUT') --}}
           @csrf
             <div class="form-group">
@@ -168,7 +168,7 @@
         $('#sbu_name').val(data[2]);
         $('#subholding').val(data[3]);
 
-        $('#editform').attr('action', '/sbu/'+data[0]);
+        $('#editform').attr('action', '/sbu/update');
         $('#editModal').modal('show');
       });
     });

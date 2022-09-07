@@ -33,7 +33,7 @@ Route::get('/editbranch', [DataController::class, 'editBranch']);
 // SBU
 Route::get('/sbu', [SbuController::class, 'sbu']);
 Route::post('/csbu', [SbuController::class, 'store']);
-Route::post('/updatesbu', [SbuController::class, 'update']);
+Route::post('/sbu/update', [SbuController::class, 'update']);
 
 //Momdetail
 Route::get('/momdetail', [MomDetailController::class, 'index']);

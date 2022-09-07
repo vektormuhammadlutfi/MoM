@@ -26,14 +26,14 @@ class SbuController extends Controller
     public function sbu()
     {
         $dataSbu = DB::table('tb_mas_sbus')
-            ->leftJoin('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
+            ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
             ->get();
         
         $datasubholding = DB::table('tb_mas_sub_holdings')
             ->get();
 
-        return view('sbu', compact('dataSbu', 'datasubholding'));
-        // return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
+        // return view('sbu', compact('dataSbu', 'datasubholding'));
+        return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
     }
    
 
@@ -113,7 +113,7 @@ class SbuController extends Controller
             'sbu_name' => 'required',
             'subholding' => 'required',
         ]);
-        $count = $sbu::all()->count();;
+        $count = SbuModel::all()->count();;
         $oid_sbu = 'SBU'.'-'.$count+1;
         
         $inputsbu = array(
