@@ -1,11 +1,9 @@
-<?php
+?php
 
 namespace App\Http\Controllers;
 
-use App\Models\SbuModel;
-use App\Models\Subholding;
+use App\Models\Sbu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
 {
@@ -14,6 +12,7 @@ class SbuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function index()
     {
         $dataSbu = DB::table('tb_mas_sbus')
@@ -42,6 +41,17 @@ class SbuController extends Controller
     //     return view('sbu', ['dataSbu' => $dataSbu, 'datasubholding' => $datasubholding]);
     // }
 
+=======
+    // public function index()
+    // {
+
+    // }
+    public function sbu()
+    {
+        $dataSbu = Sbu::all();
+        return view('sbu', compact('dataSbu'));
+    }
+>>>>>>> a50066e8be0fb42c33730c96491eabc7d86ebf62
 
     /**
      * Show the form for creating a new resource.
@@ -61,10 +71,11 @@ class SbuController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'sbu_name' => 'required',
-            'subholding' => 'required',
+        $request->validate([
+            'namesbu' => 'required',
+            'namesubholding' => 'required'
         ]);
+<<<<<<< HEAD
         $count = SbuModel::all()->count();;
         $oid_sbu = 'SBU' . '-' . $count + 1;
 
@@ -81,6 +92,10 @@ class SbuController extends Controller
         );
         // return dd($inputsbu);
         SbuModel::create($inputsbu);
+=======
+        $inputsbu = $request->all();
+        Sbu::create($inputsbu);
+>>>>>>> a50066e8be0fb42c33730c96491eabc7d86ebf62
         return redirect('/sbu');
     }
 
@@ -90,7 +105,7 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function show(SbuModel $sbu)
+    public function show(Sbu $sbu)
     {
         //
     }
@@ -101,8 +116,12 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function edit(SbuModel $sbu)
+    public function edit(Sbu $sbu)
     {
+<<<<<<< HEAD
+=======
+        //
+>>>>>>> a50066e8be0fb42c33730c96491eabc7d86ebf62
     }
 
     /**
@@ -112,8 +131,9 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SbuModel $sbu)
+    public function update(Request $request, Sbu $sbu)
     {
+<<<<<<< HEAD
         $validatedData = $request->validate([
             'sbu_name' => 'required',
             'subholding' => 'required',
@@ -130,6 +150,9 @@ class SbuController extends Controller
         SbuModel::where('oid_sbu', $sbu->oid_sbu)
             ->update($inputsbu);
         return redirect('/sbu');
+=======
+        //
+>>>>>>> a50066e8be0fb42c33730c96491eabc7d86ebf62
     }
 
     /**
@@ -138,7 +161,7 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SbuModel $sbu)
+    public function destroy(Sbu $sbu)
     {
         $inputsbu = array(
             'crud' => 'D',

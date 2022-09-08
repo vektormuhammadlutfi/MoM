@@ -9,6 +9,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
+use App\Http\Controllers\BranchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +27,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
+Route::get('/register', [DataController::class, 'register']);
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+
+//Branches
+Route::get('/createbranch', [BranchController::class, 'createBranch']);
+Route::post('/storedata',[BranchController::class,'storedata']);
+Route::get('/editbranch', [BranchController::class, 'editBranch']);
 Route::get('/branch', [DataController::class, 'branch']);
-Route::get('/detailbranch', [DataController::class, 'detailBranch']);
-Route::get('/createbranch', [DataController::class, 'createBranch']);
-Route::get('/editbranch', [DataController::class, 'editBranch']);
 
 // SBU
 // Route::get('/sbu', [SbuController::class, 'sbu']);

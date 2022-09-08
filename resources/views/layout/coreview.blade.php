@@ -182,6 +182,21 @@
             <a class="nav-link  active " href="/momdetail">
               <i class="fa fa-folder-open" aria-hidden="true" style="color: #fffb00"></i>Summary
             </a>
+          </li> -->
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-sharp fa-solid fa-file text-red" style="color: #002B5B"></i>Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-solid fa-floppy-disk" style="color: #002B5B"></i>Doc Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa fa-folder-open" aria-hidden="true" style="color: #002B5B"></i>Summary
+            </a>
           </li>
         </ul>
 
