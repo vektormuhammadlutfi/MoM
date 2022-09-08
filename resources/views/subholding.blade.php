@@ -58,13 +58,22 @@
       </div>
     </div>
   </div>
-
+    {{-- @error('subholding')
+      <div class="invalid-feedback">{{ $message }}</div>
+    @enderror --}}
  {{-- footer gaess --}}
   <div class="container-fluid mt--7">
     <div class="row mt-5" style="min-height: 200px">
     </div>
     <!-- Footer -->
     @include('layout.footer')
+    {{-- <script>
+      function submit(){
+        if(document.getElementById('inputsubholding').value == ''){
+          alert("Input")
+        }
+      }
+    </script> --}}
   </div>
 @endsection
 
@@ -83,9 +92,9 @@
           @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama Sub Holding</label>
-                <input type="text" name="subholding" class="form-control @error('name') is-invalid @enderror"
+                <input type="text" id="inputsubholding" name="subholding" class="form-control @error('subholding') is-invalid @enderror"
                  placeholder="Masukkan nama sub holding" id="inputsubholding" aria-describedby="emailHelp">
-                @error('name')
+                @error('subholding')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

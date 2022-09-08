@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subholding;
+use App\Models\SubholdingModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubholdingController extends Controller
 {
@@ -18,12 +19,15 @@ class SubholdingController extends Controller
     }
     public function subholding()
     {
-        $this->Subholding = new Subholding();
-        // $dataSbu = Sbu::all();
-        $dataSubHolding = [
-            'subholding' => $this->Subholding->subholding(),
-        ];
-        return view('subholding', $dataSubHolding);
+        // $this->Subholding = new Subholding();
+        // $dataSubHolding = [
+        //     'subholding' => $this->Subholding->subholding(),
+        // ];
+        $subholding =
+            DB::table('tb_mas_sub_holdings')
+            ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
+            ->get();
+        return view('subholding', compact('subholding'));
     }
     /**
      * Show the form for creating a new resource.
@@ -44,33 +48,35 @@ class SubholdingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->SubHolding = new Subholding();
         $num = '0';
-        if (count($this->SubHolding->subholding()) >= 9) {
+        if (count(SubholdingModel::all()) >= 9) {
             $num = '';
         }
+        $request->validate([
+            'subholding' => 'required',
+            'oid_holding' => 'required'
+        ]);
 
-        $this->SubHolding->insert(
-            [
-                'oid_subholding' => 'SH-' . $num . (count($this->SubHolding->subholding()) + 1),
-                'subholding' => $request->subholding,
-                'oid_holding' => $request->oid_holding
-            ]
-        );
-        // $request->validate([
-        //     'nama_subholding' => 'required',
-        //     'holding' => 'required'
-        // ]);
-
-        // $data = [
-        //     'oid_subholding' => 'SH-' . $num . (count($this->SubHolding->subholding()) + 1),
-        //     'subholding' => $request->nama_subholding,
-        //     'oid_holding' => $request->oid_holding,
-        //     'holding' => $request->holding,
-        //     'created_ad' =>
-        // ]
-
-        // Subholding::create($request->all());
+        SubholdingModel::create([
+            'oid_subholding' => 'SH-' . $num . (count(SubholdingModel::all()) + 1),
+            'subholding' => $request->subholding,
+            'oid_holding' => $request->oid_holding,
+            'crud' => 'C',
+            'usercreate' => 'ADZ',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        // $this->SubHolding->insert(
+        //     [
+        //         'oid_subholding' => 'SH-' . $num . (count(SubholdingModel::all()) + 1),
+        //         'subholding' => $request->subholding,
+        //         'oid_holding' => $request->oid_holding,
+        //         'crud' => 'C',
+        //         'usercreate' => 'ADZ',
+        //         'created_at' => date('Y-m-d H:i:s'),
+        //         'updated_at' => date('Y-m-d H:i:s'),
+        //     ]
+        // );
 
         return redirect('/subholding');
     }
@@ -81,7 +87,7 @@ class SubholdingController extends Controller
      * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function show(Subholding $subholding)
+    public function show(SubholdingModel $subholding)
     {
     }
 
@@ -91,7 +97,7 @@ class SubholdingController extends Controller
      * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subholding $subholding)
+    public function edit(SubholdingModel $subholding)
     {
         //
     }
@@ -103,7 +109,7 @@ class SubholdingController extends Controller
      * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subholding $subholding)
+    public function update(Request $request, SubholdingModel $subholding)
     {
         //
     }
@@ -116,7 +122,7 @@ class SubholdingController extends Controller
      */
     public function destroy($id)
     {
-        $this->SubHolding = new Subholding();
+        $this->SubHolding = new SubholdingModel();
         $this->SubHolding->drop($id);
 
         return redirect('/subholding');

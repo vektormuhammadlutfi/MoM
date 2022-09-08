@@ -11,8 +11,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0 pb-0" href="./index.html">
-        <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <a class="p-0 text-center mt-3" href="./index.html">
+        <img src="./logo.png" width="170" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">

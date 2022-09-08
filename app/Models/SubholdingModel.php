@@ -6,23 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Subholding extends Model
+class SubholdingModel extends Model
 {
     use HasFactory;
     protected $table = 'tb_mas_sub_holdings';
-    protected $primaryKey = ['id'];
+    protected $guarded = ['id'];
     // protected $fillable = [
     //     'id', 'nama',
     // ];
     // public function sbus(){
     //     $this->hasMany(Sbu::class, 'oid_subholding','oid_subholding');
     // }
-    public function subholding()
-    {
-        return DB::table('tb_mas_sub_holdings')
-            ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
-            ->get();
-    }
+    // public function subholding()
+    // {
+    //     return DB::table('tb_mas_sub_holdings')
+    //         ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
+    //         ->get();
+    // }
     public function index()
     {
         return DB::table('tb_mas_sub_holdings')
