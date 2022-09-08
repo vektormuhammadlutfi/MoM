@@ -29,56 +29,53 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="{{url('/createbranch')}}" method="POST">
-            @csrf
-
-            {{method_field('POST')}}
+        <form action="/store" method="post">
+          @csrf
           <div class="form-group">
-            <label for="exampleInputEmail1">Holding</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp" disable value="{{ $holding->holding }}">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Sub Holding</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                @foreach($SubHolding as $item)
-                    <option class="dropdown-item" value="{{$item->oid_subholding}}">{{$item->subholding}}</option>
-                @endforeach
-              <!-- <option class="dropdown-item">Pilihan Satu</option>
-              <option class="dropdown-item">Pilihan dua</option>
-              <option class="dropdown-item">Pilihan tiga</option> -->
+            <label for="SBU">SBU Name</label>
+            <select class="form-control @error('sbu_name') is-invalid @enderror" name="sbu_name" id="SBU">
+              @foreach ($dataSbu as $item)
+                <option class="dropdown-item" value="{{ $item->oid_sbu }}">{{ $item->sbu_name }}</option>
+              @endforeach
             </select>
+            @error('sbu_name')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">SBU</label>
-            <select name='oid_sbu' class="form-control" id="exampleFormControlSelect1">
-                @foreach( $Sbu as $itemsbu)
-                    <option class="dropdown-item" value="{{ $itemsbu->oid_sbu }}" selected>{{ $itemsbu->sbu_name}}</option>
-                 @endforeach
-            </select>
+            <label for="branchname">Branch Name</label>
+            <input type="text" value="{{ old('branch_name') }}" name="branch_name" class="form-control @error('branch_name') is-invalid @enderror" placeholder="Input Branch Name" id="branchname">
+            @error('branch_name')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Branch Name</label>
-            <input name='branch' type="text"
-             class="form-control" placeholder="Input Branch Name" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('branch_name')}}">
+            <label for="addressbranch">Address</label>
+            <input type="text" value="{{ old('address') }}" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Input Address" id="addressbranch">
+            @error('address')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Address</label>
-            <input name="address" type="text" class="form-control" placeholder="Input Address" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('address')}}">
-
+            <label for="emailbranch">Email</label>
+            <input type="email" value="{{ old('email') }}" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Input Email" id="emailbranch" aria-describedby="emailHelp">
+            @error('email')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input name='email' type="text" class="form-control " placeholder="Input Email" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('email')}}>
+            <label for="hp">Phone Number</label>
+            <input type="text" value="{{ old('phone') }}" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Input Phone Number" id="hp">
+            @error('phone')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Phone</label>
-            <input name='phone' type="text" class="form-control " placeholder="Input Phone Number" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('phone')}}>
-
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Description</label>
-            <input name='ket' type="text" class=" form-control " placeholder="Input Description" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('ket')}}>
-
+            <label for="desc">Description</label>
+            <input type="text" value="{{ old('ket') }}" name="ket" class="form-control @error('ket') is-invalid @enderror" placeholder="Input Description" id="desc">
+            @error('ket')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn py-1 btn-primary" >Create</button>

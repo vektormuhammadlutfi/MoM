@@ -42,25 +42,23 @@
               </tr>
           </thead>
           <tbody>
+            @foreach ($Branches as $branch)
+            <tr>
+              <td>{{ $loop->iteration}}</td>
+              <td>{{ $branch->oid_branch}}</td>
+              <td>{{ $branch->branch_name}}</td>
+              <td>{{ $branch->address}}</td>
+              <td>{{ $branch->phone}}</td>
 
-              @foreach ($Branches as $branch)
-                <tr>
-                  <td>{{ $loop->iteration}}</td>
-                  <td>{{ $branch->oid_branch}}</td>
-                  <td>{{ $branch->branch_name}}</td>
-                  <td>{{ $branch->address}}</td>
-                  <td>{{ $branch->phone}}</td>
+              <td>
+                <a  href="{{url("/detailbranch/{$branch->id}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
 
-                  <td>
-                    <a  href="/detailbranch/{{$branch->id}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
+                <a href="/editbranch" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                    <a href="/editbranch" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
-
-                    <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
-                  </td>
-              </tr>
-              @endforeach
-              {{-- hh --}}
+                <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

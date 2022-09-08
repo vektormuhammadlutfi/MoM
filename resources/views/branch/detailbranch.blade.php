@@ -22,6 +22,7 @@
   width: 95%">
   <div class="card">
     <div class="card-body">
+        
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Detail Branch</h3>
         <a href="/branch" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
@@ -35,7 +36,7 @@
           <div class="container ">
             <div class="row">
               <h4 class="col-4">Branch ID</h4>
-              <p class="col-8">{{$datas->oid_branch}}</p>
+              <p class="col-8">{{$DataBranch->oid_branch}}</p>
             </div>
             <hr class="mt-0">
           </div>
@@ -43,7 +44,7 @@
           <div class="container ">
             <div class="row">
               <h4 class="col-4">Branch Name</h4>
-              <p class="col-8">{{$datas->branch_name}}</p>
+              <p class="col-8">{{$DataBranch->branch_name}}</p>
             </div>
             <hr class="mt-0">
           </div> 
@@ -52,55 +53,54 @@
         <div class="container mt-5">
           <div class="row">
             <h4 class="col">Holding</h4>
-            <p class="col">{{$datas->holding}} </p>
+            <p class="col">{{$DataBranch->holding}} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Sub Holding</h4>
-            <p class="col">{{$datas->subholding}}</p>
+            <p class="col">{{$DataBranch->subholding}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">SBU</h4>
-            <p class="col">{{$datas->sbu_name}}</p>
+            <p class="col">{{$DataBranch->sbu_name}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Address</h4>
-            <p class="col">{{$datas->address}}</p>
+            <p class="col">{{$DataBranch->address}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Email</h4>
-            <p class="col">{{$datas->email}}</p>
+            <p class="col">{{$DataBranch->email}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Phone Number</h4>
-            <p class="col">{{$datas->phone}}</p>
+            <p class="col">{{$DataBranch->phone}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Description</h4>
-            <p class="col">{{$datas->ket}}</p>
+            <p class="col">{{$DataBranch->ket}}</p>
           </div>
         </div>
         <hr class="mt-0">
       </div>
       <!-- end detail -->
-
     </div>
   </div>
 </div>

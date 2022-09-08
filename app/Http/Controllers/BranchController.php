@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BranchModel;
 use Illuminate\Http\Request;
-use App\Models\Branch;
-use View;
 use Illuminate\Support\Facades\DB;
 
 class BranchController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $Branches = Branch::all();
-        // return dd($Branches);
+        $Branches = BranchModel::all();
         return view('branch.branch', compact('Branches'));
-        // return view('branch.branch', ['Data' => $Branches]);
     }
-    public function detailBranch(Branch $Branch)
+
+    public function detailBranch(BranchModel $Branch)
     {
-        $Sbu = DB::table('tb_mas_branches')
+        $DataBranch = DB::table('tb_mas_branches')
             ->where('tb_mas_branches.id', '=', $Branch->id)
             ->rightJoin('tb_mas_sbus', 'tb_mas_sbus.oid_sbu', '=', 'tb_mas_branches.oid_sbu')
             ->rightJoin('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
@@ -43,59 +46,107 @@ class BranchController extends Controller
                 'tb_mas_holdings.holding'
             )
             ->first();
-        return view('branch.detailbranch', ['datas' => $Sbu]);
+        // return dd($Sbu);
+        return view('branch.detailbranch', compact('DataBranch'));
     }
-    //create
-    public function createbranch()
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createBranch()
     {
-        $dataSubHolding = DB::table('tb_mas_sub_holdings')
-            ->get();
         $dataSbu = DB::table('tb_mas_sbus')
             ->get();
-        $holding = DB::table('tb_mas_holdings')
-            ->select('holding')
-            ->first();
 
-        // return dd($holding);
-        return view('branch.createbranch', [
-            'SubHolding' => $dataSubHolding,
-            'Sbu' => $dataSbu,
-            'holding' => $holding,
-        ]);
+        // return dd($dataSubHolding);
+        return view('branch.createbranch', compact('dataSbu'));
     }
 
-    public function storedata(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'branch' => 'required',
+        $request->validate([
+            'sbu_name' => 'required',
+            'branch_name' => 'required',
             'address' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'phone' => 'required',
-            'ket' => 'required',
-            'oid_sbu' => 'required'
+            'ket' => 'required'
         ]);
+        $num = 0;
+        if (BranchModel::all()->count() >= 9) {
+            $num = '';
+        }
+        $count = BranchModel::all()->count();
+        $inputbranch = array(
+            'oid_branch' => 'BR-' . $num . $count + 1,
+            'branch_name' => $request->branch_name,
+            'oid_sbu' => $request->sbu_name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'ket' => $request->ket,
+            'crud' => 'C',
+            'usercreate' => 'ADZ',
+            'userupdate' => 'null',
+            'userdelete' => 'null',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($inputsbu);
+        BranchModel::create($inputbranch);
+        return redirect('/branch');
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\BranchModel  $branchModel
+     * @return \Illuminate\Http\Response
+     */
+    public function show(BranchModel $branchModel)
+    {
+        //
+    }
 
-        return redirect()->route('branch.branch');
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\BranchModel  $branchModel
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(BranchModel $branchModel)
+    {
+        //
+    }
 
-        //     UserData
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\BranchModel  $branchModel
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, BranchModel $branchModel)
+    {
+        //
+    }
 
-        //    $this->BranchModel = new Branch;
-        //    $this->BranchModel->insert([
-        //         'branch_name' => $validatedData->branch_name,
-        //         'address' => $validatedData->address,
-        //         'email' => $validatedData->email,
-        //         'phone' => $validatedData->phone,
-        //         'ket' => $validatedData->ket,
-        //         'oid_sbu'=>$validatedData->oid_sbu,
-
-        //    ]);
-
-
-        // Branch::create($validatedData);
-        // post::createBranch($validatedData);
-        // return redirect('/branch.branch');
-
-        // return dd($validatedData);
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\BranchModel  $branchModel
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(BranchModel $branchModel)
+    {
+        //
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\HoldingController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
-use App\Http\Controllers\BranchController;
 use App\Http\Controllers\JenisMomController;
 
 /*
@@ -27,22 +27,21 @@ use App\Http\Controllers\JenisMomController;
 //     return view('welcome');
 // });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
-Route::get('/register', [DataController::class, 'register']);
-Route::get('/branch', [BranchController::class, 'index']);
-
-
-//Branches
-Route::get('/createbranch', [BranchController::class, 'createBranch']);
-Route::post('/storedata', [BranchController::class, 'storedata']);
-Route::get('/editbranch', [BranchController::class, 'editBranch']);
-Route::get('/branch', [BranchController::class, 'index']);
-Route::get('/detailbranch', [BranchController::class, 'detailBranch']);
-Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
-
 // SBU
-Route::get('/sbu', [SbuController::class, 'sbu']);
-Route::post('/csbu', [SbuController::class, 'store']);
-Route::post('/sbu/update', [SbuController::class, 'update']);
+// Route::get('/sbu', [SbuController::class, 'sbu']);
+// Route::post('/sbu/create', [SbuController::class, 'store']);
+// Route::put('/sbu/update/{sbu}', [SbuController::class, 'update']);
+
+Route::resource('/sbu', SbuController::class);
+
+//Branch
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+Route::get('/createbranch', [BranchController::class, 'createBranch']);
+Route::post('/store', [BranchController::class, 'store']);
+Route::get('/editbranch', [DataController::class, 'editBranch']);
+
+
 
 //Sub Holding
 

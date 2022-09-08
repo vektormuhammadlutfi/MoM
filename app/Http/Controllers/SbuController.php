@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\SbuModel;
 use App\Models\Subholding;
-use App\Models\SubholdingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 
 class SbuController extends Controller
 {
@@ -16,22 +14,34 @@ class SbuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-
-    // }
-    public function sbu()
+    public function index()
     {
-        // $dataSbu = SbuModel::all();
         $dataSbu = DB::table('tb_mas_sbus')
-            ->leftJoin('tb_mas_sub_holdings', 'tb_mas_sbus.oid_subholding', '=', 'tb_mas_sub_holdings.oid_subholding')
+            ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
+            ->where('tb_mas_sbus.crud', '=', 'C')
+            ->orWhere('tb_mas_sbus.crud', '=', 'U')
             ->get();
-        // $dataSbu = DB::table('tb_mas_sub_holdings')
-        //     ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
-        //     ->get();
-        $dataSubholding = SubholdingModel::all();
-        return view('sbu', compact('dataSbu', 'dataSubholding'));
+
+        $datasubholding = DB::table('tb_mas_sub_holdings')
+            ->get();
+
+        return view('sbu', compact('dataSbu', 'datasubholding'));
+        // return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
     }
+
+    // public function sbu()
+    // {
+    //     $dataSbu = DB::table('tb_mas_sbus')
+    //         ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
+    //         ->get();
+
+    //     $datasubholding = DB::table('tb_mas_sub_holdings')
+    //         ->get();
+
+    //     // return view('sbu', compact('dataSbu', 'datasubholding'));
+    //     return view('sbu', ['dataSbu' => $dataSbu, 'datasubholding' => $datasubholding]);
+    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,30 +61,29 @@ class SbuController extends Controller
      */
     public function store(Request $request)
     {
-        //memvalidasi request yang diterima
-        $request->validate([
+        $validatedData = $request->validate([
             'sbu_name' => 'required',
-            'oid_subholding' => 'required'
+            'subholding' => 'required',
         ]);
-
-        //men-generate angka pada oid
-        $num = '0';
-        if (count(SbuModel::all()) >= 9) {
+        $num = 0;
+        if (SbuModel::all()->count() >= 9) {
             $num = '';
         }
+        $count = SbuModel::all()->count();
 
-        //membuat data baru ke database
-        SbuModel::create([
-            'oid_sbu' => 'SBU-' . $num . (count(SbuModel::all()) + 1),
-            'sbu_name' => $request->sbu_name,
-            'oid_subholding' => $request->oid_subholding,
+        $inputsbu = array(
+            'oid_sbu' => 'SBU' . '-' . $num . $count + 1,
+            'oid_subholding' => $validatedData['subholding'],
+            'sbu_name' => $validatedData['sbu_name'],
             'crud' => 'C',
             'usercreate' => 'ADZ',
+            'userupdate' => 'null',
+            'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
-        ]);
-
-        //mengembalikan halaman ke /sbu
+        );
+        // return dd($inputsbu);
+        SbuModel::create($inputsbu);
         return redirect('/sbu');
     }
 
@@ -97,7 +106,6 @@ class SbuController extends Controller
      */
     public function edit(SbuModel $sbu)
     {
-        //
     }
 
     /**
@@ -109,14 +117,22 @@ class SbuController extends Controller
      */
     public function update(Request $request, SbuModel $sbu)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'sbu_name' => 'required',
-            'subholding' => 'subholding'
+            'subholding' => 'required',
         ]);
 
-        SbuModel::where('id', $sbu->id)->update($request);
-
-        return redirect('sbu');
+        $inputsbu = array(
+            'sbu_name' => $validatedData['sbu_name'],
+            'oid_subholding' => $validatedData['subholding'],
+            'crud' => 'U',
+            'userupdate' => 'Update-02',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($inputsbu);
+        SbuModel::where('oid_sbu', $sbu->oid_sbu)
+            ->update($inputsbu);
+        return redirect('/sbu');
     }
 
     /**
@@ -127,6 +143,14 @@ class SbuController extends Controller
      */
     public function destroy(SbuModel $sbu)
     {
-        //
+        $inputsbu = array(
+            'crud' => 'D',
+            'userdelete' => 'delete-02',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($inputsbu);
+        SbuModel::where('oid_sbu', $sbu->oid_sbu)
+            ->update($inputsbu);
+        return redirect('/sbu');
     }
 }

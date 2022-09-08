@@ -27,7 +27,7 @@
         <hr class="mt-2 mb-4">
         {{-- table --}}
         <div class="table-responsive">
-          <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+          <table id="example" class="mt-5 table-striped table-bordered table-data">
             <thead >
                 <tr>
                     <th style="font-size: 13px">No</th>
@@ -42,14 +42,14 @@
               {{-- @foreach ($sbu as $sbuitem) --}}
               @foreach ($dataSbu as $sbuitem)
                 <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $sbuitem->oid_sbu }}</td>
-                  <td>{{ $sbuitem->sbu_name }}</td>
-                  <td>{{ $sbuitem->subholding }}</td>
-                  <td>
+                  <td >{{ $no++ }}</td>
+                  <td class="width-min07">{{ $sbuitem->oid_sbu }}</td>
+                  <td class="width-min1">{{ $sbuitem->sbu_name }}</td>
+                  <td class="width-min1">{{ $sbuitem->subholding }}</td>
+                  <td class="width-min07">
                     <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
                     {{-- <button class="btn btn-success btn-sm py-2 edit" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button> --}}
-                    <a  href="#" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+                    <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a>
                   </td>
                 </tr>
               @endforeach
@@ -78,10 +78,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form method="POST" action="{{ url('/csbu') }}">
-          @method('post')
-          @csrf
+      <form method="POST" action="{{ url('/sbu') }}">
+        @method('post')
+        @csrf
+        <div class="modal-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
                 <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="exampleInputEmail1">
@@ -95,15 +95,13 @@
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
               @endforeach
             </select>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form>
-      </div>
-      {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary">Close</button>
-        <button type="button" class="btn btn-primary">Create</button>
-      </div> --}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+      </form>
+      
     </div>
   </div>
 </div>
@@ -119,10 +117,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form method="POST" action="/sbu/update" id="editform">
-          {{-- @method('PUT') --}}
+      
+        <form method="POST" action="/sbu" id="editform">
+          @method('put')
           @csrf
+          <div class="modal-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
                 <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
@@ -132,20 +131,16 @@
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
             <select class="form-control" name="subholding" id="subholding">
-              {{-- <option class="dropdown-item"id="subholding" selected disabled ></option> --}}
-              @foreach ($dataSubholding as $sbuitem)
+              @foreach ($datasubholding as $sbuitem)
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
               @endforeach
             </select>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Create</button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
         </form>
-      </div>
-      {{-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Create</button>
-      </div> --}}
     </div>
   </div>
 </div>
@@ -170,9 +165,23 @@
         $('#sbu_name').val(data[2]);
         $('#subholding').val(data[3]);
 
-        $('#editform').attr('action', '/sbu/update');
+        $('#editform').attr('action', '/sbu/'+data[1]);
         $('#editModal').modal('show');
       });
+
+      table.on('click', '.delete', function(){
+
+        $tr = $(this).closest('tr');
+        if($($tr).hasClass('child')) {
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        // console.log(data);
+
+        $('#deleteform').attr('action', '/sbu/'+data[1]);
+        $('#deleteModal').modal('show');
+      });
+
     });
 </script>
 

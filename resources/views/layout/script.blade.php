@@ -1,16 +1,16 @@
-<script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{URL::asset('/assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
   <!--   Optional JS   -->
-  <script src="./assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-  <script src="./assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+  <script src="{{URL::asset('/assets/js/plugins/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{URL::asset('/assets/js/plugins/chart.js/dist/Chart.extension.js')}}"></script>
   <!--   Argon JS   -->
-  <script src="./assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+  <script src="{{URL::asset('/assets/js/argon-dashboard.min.js?v=1.1.2')}}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
   {{-- <script src="//code.jquery.com/jquery-3.5.1.js"></script> --}}
   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-  <script src="./assets/js/table.js"></script>
+  <script src="{{URL::asset('/assets/js/table.js')}}"></script>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
