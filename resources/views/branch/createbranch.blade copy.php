@@ -29,10 +29,9 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="{{url('/createbranch')}}" method="POST">
-            @csrf
-
-            {{method_field('POST')}}
+        <form method="post" action="{{route('createbranch')}}">
+        @method('POST')
+        @csrf
           <div class="form-group">
             <label for="exampleInputEmail1">Holding</label>
             <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp" disable value="{{ $holding->holding }}">
@@ -50,7 +49,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">SBU</label>
-            <select name='oid_sbu' class="form-control" id="exampleFormControlSelect1">
+            <select class="form-control" id="exampleFormControlSelect1">
                 @foreach( $Sbu as $itemsbu)
                     <option class="dropdown-item" value="{{ $itemsbu->oid_sbu }}" selected>{{ $itemsbu->sbu_name}}</option>
                  @endforeach
@@ -58,32 +57,54 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Branch Name</label>
-            <input name='branch' type="text"
-             class="form-control" placeholder="Input Branch Name" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('branch_name')}}">
+            <input name='branch name' type="text" 
+             class="form-control @error('branch_name') is-invalid @enderror" placeholder="Input Branch Name" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('branch_name')}}">
+             @error
+             <div class="invalid-feedback">
+              {{ $massage }}
+             </div>
+             @enderror
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Address</label>
-            <input name="address" type="text" class="form-control" placeholder="Input Address" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('address')}}">
-
+            <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Input Address" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value="{{ old('address')}}">
+            @error(address)
+             <div class="invalid-feedback">
+              {{ $massage }}
+             </div>
+             @enderror
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input name='email' type="text" class="form-control " placeholder="Input Email" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('email')}}>
+            <input name='email' type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Input Email" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('email')}}>
+            @error(email)
+             <div class="invalid-feedback">
+              {{ $massage }}
+             </div>
+             @enderror
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Phone</label>
-            <input name='phone' type="text" class="form-control " placeholder="Input Phone Number" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('phone')}}>
-
+            <input name='phone' type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="Input Phone Number" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('phone')}}>
+            @error(phone)
+             <div class="invalid-feedback">
+              {{ $massage }}
+             </div>
+             @enderror
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Description</label>
-            <input name='ket' type="text" class=" form-control " placeholder="Input Description" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('ket')}}>
-
+            <input name='description' type="text" class=" form-control @error ('address') is-invalid @enderror " placeholder="Input Description" id="exampleInputEmail1" aria-describedby="emailHelp" required autofocus value={{ old('ket')}}>
+            @error(ket)
+             <div class="invalid-feedback">
+              {{ $massage }}
+             </div>
+             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn py-1 btn-primary" >Create</button>
           </div>
-        </form>
+      </form>
       </div>
       <!-- end detail -->
 

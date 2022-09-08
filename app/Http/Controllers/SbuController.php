@@ -1,11 +1,9 @@
-<?php
+?php
 
 namespace App\Http\Controllers;
 
-use App\Models\SbuModel;
-use App\Models\Subholding;
+use App\Models\Sbu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
 {
@@ -14,28 +12,15 @@ class SbuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        // $data = Sbu::where('id', 1)->value('oid_subholding');
-        // // $data = $data->oid_subholding;
-        // $cek = Subholding::firstWhere('oid_subholding', $data);
-        // $data = Sbu::all();
-        // return $data->subholding->subholding;
-    }
-    
+    // public function index()
+    // {
+
+    // }
     public function sbu()
     {
-        $dataSbu = DB::table('tb_mas_sbus')
-            ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
-            ->get();
-        
-        $datasubholding = DB::table('tb_mas_sub_holdings')
-            ->get();
-
-        // return view('sbu', compact('dataSbu', 'datasubholding'));
-        return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
+        $dataSbu = Sbu::all();
+        return view('sbu', compact('dataSbu'));
     }
-   
 
     /**
      * Show the form for creating a new resource.
@@ -55,26 +40,12 @@ class SbuController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'sbu_name' => 'required',
-            'subholding' => 'required',
+        $request->validate([
+            'namesbu' => 'required',
+            'namesubholding' => 'required'
         ]);
-        $count = SbuModel::all()->count();;
-        $oid_sbu = 'SBU'.'-'.$count+1;
-        
-        $inputsbu = array(
-            'oid_sbu' => $oid_sbu,
-            'oid_subholding' => $validatedData['subholding'],
-            'sbu_name' => $validatedData['sbu_name'],
-            'crud' => 'C',
-            'usercreate' => 'ADZ',
-            'userupdate' => 'null',
-            'userdelete' => 'null',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        );
-        // return dd($inputsbu);
-        SbuModel::create($inputsbu);
+        $inputsbu = $request->all();
+        Sbu::create($inputsbu);
         return redirect('/sbu');
     }
 
@@ -84,7 +55,7 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function show(SbuModel $sbu)
+    public function show(Sbu $sbu)
     {
         //
     }
@@ -95,9 +66,9 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function edit(SbuModel $sbu)
+    public function edit(Sbu $sbu)
     {
-        // return view('/sbu');
+        //
     }
 
     /**
@@ -107,30 +78,9 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SbuModel $sbu)
+    public function update(Request $request, Sbu $sbu)
     {
-        $validatedData = $request->validate([
-            'sbu_name' => 'required',
-            'subholding' => 'required',
-        ]);
-        $count = SbuModel::all()->count();;
-        $oid_sbu = 'SBU'.'-'.$count+1;
-        
-        $inputsbu = array(
-            'oid_sbu' => $oid_sbu,
-            'sbu_name' => $validatedData['sbu_name'],
-            'oid_subholding' => $validatedData['subholding'],
-            'crud' => 'C',
-            'usercreate' => 'ADZ',
-            'userupdate' => 'null',
-            'userdelete' => 'null',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        );
-        return dd($inputsbu);
-        // SbuModel::create($inputsbu);
-        // return redirect('/sbu');
-
+        //
     }
 
     /**
@@ -139,7 +89,7 @@ class SbuController extends Controller
      * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SbuModel $sbu)
+    public function destroy(Sbu $sbu)
     {
         //
     }
