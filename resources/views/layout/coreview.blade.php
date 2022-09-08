@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Argon Dashboard
-  </title>
-
-  <!-- Favicon -->
-  <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <!-- Icons -->
-  <link href="./assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-  <link href="./assets/js/plugins/@fornawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="{{URL::asset('/assets/css/argon-dashboard.css?v=1.1.2')}}">
-  <!-- <link href="./assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" /> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-</head>
+@include('layout.head')
 
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -146,7 +124,7 @@
         <h5 class="navbar-heading text-success mb-0 pb-0">Master</h5>
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
-            <a class="nav-link  active " href="/dashboard">
+            <a class="nav-link  active " href="/subholding">
               <i class="fa-solid fa-building" style="color: #FFB200"></i>Sub Holding
             </a>
           </li>
@@ -162,7 +140,7 @@
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/momdetail">
-              <i class="fa-solid fa-bars" style="color: #002B5B"></i>Jenis Mom
+              <i class="fa-sharp fa-solid fa-window-restore" style="color: #e018b5"></i>Jenis Mom
             </a>
           </li>
         </ul>
@@ -172,17 +150,17 @@
         <ul class="navbar-nav mt-0 mb-0">
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/momdetail">
-              <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #5BB318"></i>Mom
+              <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/momdetail">
-              <i class="fa-solid fa-list-check" style="color: #002B5B"></i>Mom Detail
+              <i class="fa-solid fa-list-check" style="color: #a37643"></i>Mom Detail
             </a>
           </li>
           <li class="nav-item  active ">
             <a class="nav-link  active " href="/momdetail">
-              <i class="fa fa-list-alt" aria-hidden="true" style="color: #002B5B"></i>Mom Description
+              <i class="fa fa-list-alt" aria-hidden="true" style="color: #bb0000"></i>Mom Description
             </a>
           </li>
         </ul>
@@ -190,9 +168,19 @@
         <hr class="my-1 mt-1">
         <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
         <ul class="navbar-nav mt-0 mb-0">
-          <!-- <li class="nav-item  active ">
-            <a class="nav-link  active " href="/dashboard">
-              <i class="fa-solid fa-book text-warning"></i>Report
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-sharp fa-solid fa-file text-red" ></i>Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa-solid fa-floppy-disk" style="color: #005b40"></i>Doc Mom
+            </a>
+          </li>
+          <li class="nav-item  active ">
+            <a class="nav-link  active " href="/momdetail">
+              <i class="fa fa-folder-open" aria-hidden="true" style="color: #fffb00"></i>Summary
             </a>
           </li> -->
           <li class="nav-item  active ">
@@ -224,12 +212,15 @@
             <a class="nav-link  active " href="/dashboard">
               <i class="fa-solid fa-address-card text-primary"></i>Group
             </a>
-            <!-- <a href="/dashboard" class="nav-link active">
-              <i class="fa-solid fa-rectangle-list text-red"></i>Collection
-            </a>
+            {{-- <a href="/dashboard" class="nav-link active">
+              <i class="ni ni-collection  text-red"></i>Collection
+            </a> --}}
             <a href="/register" class="nav-link active">
-              <i class="fa-solid fa-address-card text-red"></i>Test Register
-            </a> -->
+              <i class="ni ni-collection  text-red"></i>Test Register
+            </a>
+            <a href="/login" class="nav-link active">
+              <i class="ni ni-collection  text-red"></i>Test Login
+            </a>
           </li>
         </ul>
       </div>
@@ -239,27 +230,7 @@
     @yield('content')
   </div>
     <!--   Core   -->
-  <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!--   Optional JS   -->
-  <script src="./assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-  <script src="./assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-  <!--   Argon JS   -->
-  <script src="./assets/js/argon-dashboard.min.js?v=1.1.2"></script>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-
-  <script src="//code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-  <script src="./assets/js/table.js"></script>
-
-  <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
-  </script>
-
+  @include('layout.script')
+  @stack('addon-script')
 </body>
-</body>
+</html>

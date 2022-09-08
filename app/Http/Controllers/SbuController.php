@@ -1,44 +1,26 @@
-<?php
+?php
 
 namespace App\Http\Controllers;
 
-use App\Models\Data;
+use App\Models\Sbu;
 use Illuminate\Http\Request;
 
-class DataController extends Controller
+class SbuController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-// cut sbu
-    public function branch()
-    {
-        return view('branch.branch');
-    }
-    public function detailBranch()
-    {
-        return view('branch.detailbranch');
-    }
-    public function createBranch()
-    {
-        return view('branch.createbranch');
-    }
-    public function editBranch()
-    {
-        return view('branch.editbranch');
-    }
-    
+    // public function index()
+    // {
 
+    // }
+    public function sbu()
+    {
+        $dataSbu = Sbu::all();
+        return view('sbu', compact('dataSbu'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -58,16 +40,22 @@ class DataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'namesbu' => 'required',
+            'namesubholding' => 'required'
+        ]);
+        $inputsbu = $request->all();
+        Sbu::create($inputsbu);
+        return redirect('/sbu');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function show(Data $data)
+    public function show(Sbu $sbu)
     {
         //
     }
@@ -75,10 +63,10 @@ class DataController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Data $data)
+    public function edit(Sbu $sbu)
     {
         //
     }
@@ -87,10 +75,10 @@ class DataController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Data $data)
+    public function update(Request $request, Sbu $sbu)
     {
         //
     }
@@ -98,10 +86,10 @@ class DataController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Data  $data
+     * @param  \App\Models\Sbu  $sbu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Data $data)
+    public function destroy(Sbu $sbu)
     {
         //
     }

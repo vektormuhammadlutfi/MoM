@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sbu extends Model
+class HoldingModel extends Model
 {
     use HasFactory;
-    protected $table = 'tb_mas_sbus';
+    protected $table = 'tb_mas_holdings';
     protected $guarded = ['id'];
-    // protected $fillable = [''];
 }

@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\HoldingController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MomDetailController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SbuController;
+use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\BranchController;
 
@@ -31,12 +35,33 @@ Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
 Route::get('/createbranch', [BranchController::class, 'createBranch']);
 Route::post('/storedata',[BranchController::class,'storedata']);
 Route::get('/editbranch', [BranchController::class, 'editBranch']);
+Route::get('/branch', [DataController::class, 'branch']);
 
 // SBU
 Route::get('/sbu', [SbuController::class, 'sbu']);
+Route::post('/csbu', [SbuController::class, 'store']);
+Route::post('/sbu/update', [SbuController::class, 'update']);
+
+//Sub Holding
+Route::get('/subholding', [SubholdingController::class, 'subholding']);
+Route::post('/tambahsubholding', [SubholdingController::class, 'store']);
+Route::get('/deletesubholding/{id}', [SubholdingController::class, 'destroy']);
+
 //Momdetail
 Route::get('/momdetail', [MomDetailController::class, 'index']);
 Route::get('/createmomdetail', [MomDetailController::class, 'create']);
 Route::get('/editmomdetail', [MomDetailController::class, 'show']);
 Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
-//create branch
+
+// tes sub holding
+// Route::get('/subs', [SubholdingController::class, 'create']);
+
+// login
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+// register
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+// testing modal for holding
+Route::resource('holding', HoldingController::class);

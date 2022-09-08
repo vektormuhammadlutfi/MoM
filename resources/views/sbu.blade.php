@@ -38,15 +38,18 @@
                 </tr>
             </thead>
             <tbody>
+              <?php $no=1; ?>
+              {{-- @foreach ($sbu as $sbuitem) --}}
               @foreach ($dataSbu as $sbuitem)
                 <tr>
-                  <td>1</td>
+                  <td>{{ $no++ }}</td>
                   <td>{{ $sbuitem->oid_sbu }}</td>
                   <td>{{ $sbuitem->sbu_name }}</td>
-                  <td>Edinburgh</td>
+                  <td>{{ $sbuitem->subholding }}</td>
                   <td>
-                    <button class="btn btn-success btn-sm py-2" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
+                    {{-- <button class="btn btn-success btn-sm py-2 edit" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button> --}}
+                    <a  href="#" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
                   </td>
                 </tr>
               @endforeach
@@ -57,8 +60,6 @@
     </div>
   </div>
 
-
-
  {{-- footer gaess --}}
   <div class="container-fluid mt--7">
     <div class="row mt-5" style="min-height: 200px">
@@ -66,10 +67,6 @@
     <!-- Footer -->
     @include('layout.footer')
   </div>
-
-
-
-
 @endsection
 
 {{-- content modal create data --}}
@@ -83,33 +80,38 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="{{ url('/csbu') }}">
+          @method('post')
+          @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="exampleInputEmail1">
+                @error('sbu_name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option class="dropdown-item">Pilihan Satu</option>
-              <option class="dropdown-item">Pilihan dua</option>
-              <option class="dropdown-item">Pilihan tiga</option>
-              <option class="dropdown-item">Pilihan empat</option>
-              <option class="dropdown-item">Pilihan lima</option>
+            <select class="form-control" name="subholding" id="exampleFormControlSelect1">
+              @foreach ($datasubholding as $sbuitem)
+              <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
+              @endforeach
             </select>
-            <!-- <button type="submit" class="btn btn-primary">Create</button> -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Close</button>
         <button type="button" class="btn btn-primary">Create</button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
 {{-- end create --}}
 
 {{-- content modal edit data --}}
-<div class="modal fade" id="editBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -119,27 +121,57 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="/sbu/update" id="editform">
+          {{-- @method('PUT') --}}
+          @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="namesbu" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
+                @error('sbu_name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" name="namesubholding" id="exampleFormControlSelect1">
-              <option class="dropdown-item">Pilihan Satu</option>
-              <option class="dropdown-item">Pilihan dua</option>
-              <option class="dropdown-item">Pilihan tiga</option>
-              <option class="dropdown-item">Pilihan empat</option>
-              <option class="dropdown-item">Pilihan lima</option>
+            <select class="form-control" name="subholding" id="subholding">
+              {{-- <option class="dropdown-item"id="subholding" selected disabled ></option> --}}
+              @foreach ($datasubholding as $sbuitem)
+              <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
+              @endforeach
             </select>
-            <!-- <button type="submit" class="btn btn-primary">Create</button> -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
         </form>
       </div>
-      <div class="modal-footer">
+      {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success">Create</button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
 {{-- end create --}}
+
+@push('addon-script')
+<script type="text/javascript">
+  $(document).ready(function () {
+    var table = $('#example').DataTable();
+    table.on('click', '.edit', function(){
+
+        $tr = $(this).closest('tr');
+        if($($tr).hasClass('child')) {
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        console.log(data);
+
+        $('#sbu_name').val(data[2]);
+        $('#subholding').val(data[3]);
+
+        $('#editform').attr('action', '/sbu/update');
+        $('#editModal').modal('show');
+      });
+    });
+</script>
+
+@endpush
