@@ -49,7 +49,7 @@
                   <td>
                     <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
                     {{-- <button class="btn btn-success btn-sm py-2 edit" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button> --}}
-                    <a  href="#" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+                    <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a>
                   </td>
                 </tr>
               @endforeach
@@ -80,7 +80,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{{ url('/csbu') }}">
+        <form method="POST" action="{{ url('/sbu') }}">
           @method('post')
           @csrf
             <div class="form-group">
@@ -121,26 +121,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="/sbu/update" id="editform">
-          {{-- @method('PUT') --}}
+        <form method="POST" action="/sbu" id="editform">
+          @method('put')
           @csrf
-            <div class="form-group">
-                <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
-                @error('sbu_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" name="subholding" id="subholding">
-              {{-- <option class="dropdown-item"id="subholding" selected disabled ></option> --}}
-              @foreach ($datasubholding as $sbuitem)
-              <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
-              @endforeach
-            </select>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Create</button>
-            </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Nama SBU</label>
+              <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
+              @error('sbu_name')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+          </div>
+          <label for="exampleFormControlSelect1">Nama Sub Holding</label>
+          <select class="form-control" name="subholding" id="subholding">
+            {{-- <option class="dropdown-item"id="subholding" selected disabled ></option> --}}
+            @foreach ($datasubholding as $sbuitem)
+            <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
+            @endforeach
+          </select>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
         </form>
       </div>
       {{-- <div class="modal-footer">
@@ -150,7 +150,39 @@
     </div>
   </div>
 </div>
-{{-- end create --}}
+{{-- end edit --}}
+
+{{-- content modal delete data --}}
+<div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="staticBackdropLabel">Delete Data</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/sbu" id="deleteform">
+          @method('DELETE')
+          @csrf
+
+          <div class="modal-footer text-left">
+            {{-- <input type="hidden" name="_method" value="DELETE"> --}}
+            <p class="mx-auto">Are You Sure You Want to Delete This Data?</p>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success">Delete</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{{-- end delete --}}
 
 @push('addon-script')
 <script type="text/javascript">
@@ -163,14 +195,28 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        console.log(data);
+        // console.log(data);
 
         $('#sbu_name').val(data[2]);
         $('#subholding').val(data[3]);
 
-        $('#editform').attr('action', '/sbu/update');
+        $('#editform').attr('action', '/sbu/'+data[1]);
         $('#editModal').modal('show');
       });
+
+      table.on('click', '.delete', function(){
+
+        $tr = $(this).closest('tr');
+        if($($tr).hasClass('child')) {
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        // console.log(data);
+
+        $('#deleteform').attr('action', '/sbu/'+data[1]);
+        $('#deleteModal').modal('show');
+      });
+
     });
 </script>
 

@@ -31,9 +31,11 @@ Route::get('/createbranch', [DataController::class, 'createBranch']);
 Route::get('/editbranch', [DataController::class, 'editBranch']);
 
 // SBU
-Route::get('/sbu', [SbuController::class, 'sbu']);
-Route::post('/csbu', [SbuController::class, 'store']);
-Route::post('/sbu/update', [SbuController::class, 'update']);
+// Route::get('/sbu', [SbuController::class, 'sbu']);
+// Route::post('/sbu/create', [SbuController::class, 'store']);
+// Route::put('/sbu/update/{sbu}', [SbuController::class, 'update']);
+
+Route::resource('/sbu', SbuController::class);
 
 //Sub Holding
 Route::get('/subholding', [SubholdingController::class, 'subholding']);
