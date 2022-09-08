@@ -29,19 +29,6 @@ class SbuController extends Controller
         // return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
     }
 
-    // public function sbu()
-    // {
-    //     $dataSbu = DB::table('tb_mas_sbus')
-    //         ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
-    //         ->get();
-
-    //     $datasubholding = DB::table('tb_mas_sub_holdings')
-    //         ->get();
-
-    //     // return view('sbu', compact('dataSbu', 'datasubholding'));
-    //     return view('sbu', ['dataSbu' => $dataSbu, 'datasubholding' => $datasubholding]);
-    // }
-
 
     /**
      * Show the form for creating a new resource.

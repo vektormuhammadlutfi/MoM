@@ -30,7 +30,7 @@
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
-        <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
           <thead >
               <tr>
                   <th style="font-size: 13px">No</th>
@@ -45,12 +45,12 @@
             @foreach ($Branches as $branch)
             <tr>
               <td>{{ $loop->iteration}}</td>
-              <td>{{ $branch->oid_branch}}</td>
-              <td>{{ $branch->branch_name}}</td>
-              <td>{{ $branch->address}}</td>
-              <td>{{ $branch->phone}}</td>
+              <td class="width-min07">{{ $branch->oid_branch}}</td>
+              <td class="width-min1">{{ $branch->branch_name}}</td>
+              <td class="width-min1">{{ $branch->address}}</td>
+              <td class="width-min1">{{ $branch->phone}}</td>
 
-              <td>
+              <td style="min-width: 125px">
                 <a  href="{{url("/detailbranch/{$branch->id}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
 
                 <a href="/editbranch" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>

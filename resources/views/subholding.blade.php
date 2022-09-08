@@ -27,7 +27,7 @@
         <hr class="mt-2 mb-4">
         {{-- table --}}
         <div class="table-responsive">
-          <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+          <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
             <thead >
                 <tr>
                     <th style="font-size: 13px">No</th>
@@ -42,11 +42,11 @@
               
               @foreach ($subholding as $item)
                 <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $item->oid_subholding }}</td>
-                  <td>{{ $item->subholding }}</td>
-                  <td>{{$item->holding}}</td>
-                  <td>
+                  <td >{{ $no++ }}</td>
+                  <td class="width-min1">{{ $item->oid_subholding }}</td>
+                  <td class="width-min1">{{ $item->subholding }}</td>
+                  <td class="width-min07">{{$item->holding}}</td>
+                  <td class="width-min07">
                     <button class="btn btn-success btn-sm py-2" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
                     <a  href="/deletesubholding/{{$item->id}}" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
                   </td>
@@ -143,4 +143,40 @@
 {{-- end create --}}
 @endsection
 
+@push('addon-script')
+<script type="text/javascript">
+  $(document).ready(function () {
+    var table = $('#example').DataTable();
+    table.on('click', '.edit', function(){
 
+        $tr = $(this).closest('tr');
+        if($($tr).hasClass('child')) {
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        console.log(data);
+
+        $('#sbu_name').val(data[2]);
+        $('#subholding').val(data[3]);
+
+        $('#editform').attr('action', '/sbu/'+data[1]);
+        $('#editModal').modal('show');
+      });
+
+      table.on('click', '.delete', function(){
+
+        $tr = $(this).closest('tr');
+        if($($tr).hasClass('child')) {
+            $tr = $tr.prev('.parent');
+        }
+        var data = table.row($tr).data();
+        // console.log(data);
+
+        $('#deleteform').attr('action', '/sbu/'+data[1]);
+        $('#deleteModal').modal('show');
+      });
+
+    });
+</script>
+
+@endpush

@@ -12,13 +12,17 @@
   <!-- Icons -->
   <link href="{{URL::asset('assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
   <link href="{{URL::asset('/assets/js/plugins/@fornawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
-  <!-- CSS Files -->
+  <!-- CSS Files Bootstrap-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-
+  {{-- CDN FontAwesome --}}
   <link href="{{URL::asset('/assets/css/argon-dashboard.css?v=1.1.2')}}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+  {{-- CDN CSS Aos Animation --}}
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  {{-- CSS Local --}}
+  <link rel="stylesheet" href="{{URL::asset('/assets/css/style.css')}}">
 </head>

@@ -23,15 +23,9 @@ use App\Http\Controllers\JenisMomController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
-// SBU
-// Route::get('/sbu', [SbuController::class, 'sbu']);
-// Route::post('/sbu/create', [SbuController::class, 'store']);
-// Route::put('/sbu/update/{sbu}', [SbuController::class, 'update']);
 
+// SBU
 Route::resource('/sbu', SbuController::class);
 
 //Branch
@@ -44,7 +38,6 @@ Route::get('/editbranch', [DataController::class, 'editBranch']);
 
 
 //Sub Holding
-
 Route::resource('/subholding', SubholdingController::class);
 // Route::get('/subholding', [SubholdingController::class, 'subholding']);
 // Route::post('/tambahsubholding', [SubholdingController::class, 'store']);

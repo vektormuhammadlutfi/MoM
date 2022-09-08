@@ -12,7 +12,7 @@
       </button>
       <!-- Brand -->
       <a class="p-0 text-center mt-3" href="./index.html">
-        <img src="./logo.png" width="170" alt="...">
+        <img src="{{URL::asset('./logo.png')}}" width="170" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">

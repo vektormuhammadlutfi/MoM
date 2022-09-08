@@ -5,7 +5,7 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
   <div class="container-fluid">
     <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Brach Unit</a>
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Sub Bisnis Unit</a>
     @include('navbar.navuser')
   </div>
 </nav>
@@ -91,7 +91,7 @@
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
             <select class="form-control" name="oid_subholding" id="exampleFormControlSelect1">
-              @foreach ($dataSubholding as $sbuitem)
+              @foreach ($datasubholding as $sbuitem)
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
               @endforeach
             </select>
