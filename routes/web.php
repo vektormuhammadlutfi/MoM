@@ -7,6 +7,7 @@ use App\Http\Controllers\SbuController;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\BranchController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,8 +28,9 @@ Route::get('/branch', [BranchController::class, 'index']);
 Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
 
 //Branches
-Route::get('/createbranch', [DataController::class, 'createBranch']);
-Route::get('/editbranch', [DataController::class, 'editBranch']);
+Route::get('/createbranch', [BranchController::class, 'createBranch']);
+Route::post('/storedata',[BranchController::class,'storedata']);
+Route::get('/editbranch', [BranchController::class, 'editBranch']);
 
 // SBU
 Route::get('/sbu', [SbuController::class, 'sbu']);
@@ -37,3 +39,4 @@ Route::get('/momdetail', [MomDetailController::class, 'index']);
 Route::get('/createmomdetail', [MomDetailController::class, 'create']);
 Route::get('/editmomdetail', [MomDetailController::class, 'show']);
 Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
+//create branch

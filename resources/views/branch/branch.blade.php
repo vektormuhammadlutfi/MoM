@@ -45,7 +45,7 @@
 
               @foreach ($Branches as $branch)
                 <tr>
-                  <td>{{$loop->iteration}}</td>
+                  <td>{{ $loop->iteration}}</td>
                   <td>{{ $branch->oid_branch}}</td>
                   <td>{{ $branch->branch_name}}</td>
                   <td>{{ $branch->address}}</td>
