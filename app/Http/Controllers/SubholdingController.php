@@ -30,8 +30,6 @@ class SubholdingController extends Controller
      */
     public function create()
     {
-        // $data = Subholding::all();
-        // return($data);
     }
 
     /**

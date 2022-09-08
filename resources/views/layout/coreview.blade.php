@@ -173,7 +173,7 @@
           </ul>
         </div>
         <hr class="my-1 mt-1">
-        <div data-aos="fade-right" data-aos-delay="250">
+        <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item  active ">
@@ -194,7 +194,7 @@
           </ul>
         </div>
         <hr class="my-1 mt-1">
-        <div data-aos="fade-right">
+        <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Settings</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item  active ">
