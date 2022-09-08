@@ -13,7 +13,7 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body" style="
+<div data-aos="fade-up" class="card shadow-lg bg-body" style="
     margin: -150px auto 90px auto;
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(30px);
@@ -67,9 +67,8 @@
     <!-- Footer -->
     @include('layout.footer')
   </div>
-@endsection
 
-{{-- content modal create data --}}
+  {{-- content modal create data --}}
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -91,8 +90,8 @@
                 @enderror
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
-            <select class="form-control" name="subholding" id="exampleFormControlSelect1">
-              @foreach ($datasubholding as $sbuitem)
+            <select class="form-control" name="oid_subholding" id="exampleFormControlSelect1">
+              @foreach ($dataSubholding as $sbuitem)
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
               @endforeach
             </select>
@@ -134,7 +133,7 @@
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
             <select class="form-control" name="subholding" id="subholding">
               {{-- <option class="dropdown-item"id="subholding" selected disabled ></option> --}}
-              @foreach ($datasubholding as $sbuitem)
+              @foreach ($dataSubholding as $sbuitem)
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
               @endforeach
             </select>
@@ -150,7 +149,10 @@
     </div>
   </div>
 </div>
-{{-- end create --}}
+{{-- end edit --}}
+@endsection
+
+
 
 @push('addon-script')
 <script type="text/javascript">

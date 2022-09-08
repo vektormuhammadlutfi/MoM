@@ -15,7 +15,7 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body" style="
+<div data-aos="fade-up" class="card shadow-lg bg-body" style="
   margin: -150px auto 90px auto;
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: blur(30px);
@@ -52,7 +52,7 @@
                   <td>{{ $branch->phone}}</td>
 
                   <td>
-                    <a  href="{{url("/detailbranch/{$branch->id}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
+                    <a  href="/detailbranch/{{$branch->id}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
 
                     <a href="/editbranch" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
 

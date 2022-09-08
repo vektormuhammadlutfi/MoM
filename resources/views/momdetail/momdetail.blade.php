@@ -15,7 +15,7 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body" style="
+<div data-aos="fade-up" class="card shadow-lg bg-body" style="
   margin: -150px auto 90px auto;
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: blur(30px);

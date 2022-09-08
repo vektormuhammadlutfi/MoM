@@ -12,6 +12,10 @@
   <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
   <script src="./assets/js/table.js"></script>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init();
+</script>
   <script>
     window.TrackJS &&
       TrackJS.install({
