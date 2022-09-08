@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\HoldingController;
@@ -25,15 +26,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
-Route::get('/branch', [DataController::class, 'branch']);
-Route::get('/detailbranch', [DataController::class, 'detailBranch']);
-Route::get('/createbranch', [DataController::class, 'createBranch']);
-Route::get('/editbranch', [DataController::class, 'editBranch']);
-
 // SBU
 Route::get('/sbu', [SbuController::class, 'sbu']);
 Route::post('/csbu', [SbuController::class, 'store']);
 Route::post('/sbu/update', [SbuController::class, 'update']);
+
+//Branch
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+Route::get('/createbranch', [BranchController::class, 'createBranch']);
+Route::post('/store', [BranchController::class, 'store']);
+Route::get('/editbranch', [DataController::class, 'editBranch']);
+
+
 
 //Sub Holding
 Route::get('/subholding', [SubholdingController::class, 'subholding']);

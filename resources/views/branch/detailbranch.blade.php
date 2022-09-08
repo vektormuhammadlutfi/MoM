@@ -33,15 +33,15 @@
         <div class="d-flex justify-content-between">
           <div class="container ">
             <div class="row">
-              <h4 class="col-4">Branch ID</h4>
-              <p class="col-8">ExampleValue </p>
+              <h4 class="col-4">Oid Branch</h4>
+              <p class="col-8">{{ $DataBranch->oid_branch }} </p>
             </div>
             <hr class="mt-0">
           </div>
           <div class="container ">
             <div class="row">
               <h4 class="col-4">Branch Name</h4>
-              <p class="col-8">ExampleValue</p>
+              <p class="col-8">{{ $DataBranch->branch_name }}</p>
             </div>
             <hr class="mt-0">
           </div>
@@ -51,49 +51,49 @@
         <div class="container mt-5">
           <div class="row">
             <h4 class="col">Holding</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->holding }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Sub Holding</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->subholding }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">SBU</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->sbu_name }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Address</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->address }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Email</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->email }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Phone Number</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->phone }} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
             <h4 class="col">Description</h4>
-            <p class="col">ExampleValue </p>
+            <p class="col">{{ $DataBranch->ket }} </p>
           </div>
         </div>
         <hr class="mt-0">
