@@ -129,7 +129,7 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a class="nav-link  active " href="{{url('/sbu')}}">
+            <a class="nav-link  active " href="/sbu">
               <i class="fa-solid fa-building text-red"></i>SBU
             </a>
           </li>

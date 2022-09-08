@@ -27,7 +27,7 @@
         <hr class="mt-2 mb-4">
         {{-- table --}}
         <div class="table-responsive">
-          <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+          <table id="example" class="mt-5 table-striped table-bordered table-data">
             <thead >
                 <tr>
                     <th style="font-size: 13px">No</th>
@@ -42,11 +42,11 @@
               {{-- @foreach ($sbu as $sbuitem) --}}
               @foreach ($dataSbu as $sbuitem)
                 <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $sbuitem->oid_sbu }}</td>
-                  <td>{{ $sbuitem->sbu_name }}</td>
-                  <td>{{ $sbuitem->subholding }}</td>
-                  <td>
+                  <td >{{ $no++ }}</td>
+                  <td class="width-min07">{{ $sbuitem->oid_sbu }}</td>
+                  <td class="width-min1">{{ $sbuitem->sbu_name }}</td>
+                  <td class="width-min1">{{ $sbuitem->subholding }}</td>
+                  <td class="width-min07">
                     <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
                     {{-- <button class="btn btn-success btn-sm py-2 edit" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button> --}}
                     <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a>
@@ -188,7 +188,7 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        // console.log(data);
+        console.log(data);
 
         $('#sbu_name').val(data[2]);
         $('#subholding').val(data[3]);
