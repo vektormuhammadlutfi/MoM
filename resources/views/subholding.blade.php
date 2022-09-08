@@ -13,7 +13,7 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body" style="
+<div data-aos="fade-up" class="card shadow-lg bg-body" style="
     margin: -150px auto 90px auto;
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(30px);
@@ -58,26 +58,14 @@
       </div>
     </div>
   </div>
-    {{-- @error('subholding')
-      <div class="invalid-feedback">{{ $message }}</div>
-    @enderror --}}
  {{-- footer gaess --}}
   <div class="container-fluid mt--7">
     <div class="row mt-5" style="min-height: 200px">
     </div>
     <!-- Footer -->
     @include('layout.footer')
-    {{-- <script>
-      function submit(){
-        if(document.getElementById('inputsubholding').value == ''){
-          alert("Input")
-        }
-      }
-    </script> --}}
   </div>
-@endsection
-
-{{-- content modal create data --}}
+  {{-- content modal create data --}}
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -87,9 +75,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form method="POST" action="/tambahsubholding">
-          @csrf
+
+
+      <form method="POST" action="/subholding">
+        @method('post')
+        @csrf
+        <div class="modal-body">
+          
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama Sub Holding</label>
                 <input type="text" id="inputsubholding" name="subholding" class="form-control @error('subholding') is-invalid @enderror"
@@ -102,11 +94,12 @@
             <select class="form-control" name="oid_holding" id="exampleFormControlSelect1">
             <option class="dropdown-item" value="H-001">HADJI KALLA(Kalla Group)</option>
           </select>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-        </form>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
@@ -148,3 +141,6 @@
   </div>
 </div>
 {{-- end create --}}
+@endsection
+
+

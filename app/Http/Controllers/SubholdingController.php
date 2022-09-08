@@ -15,16 +15,10 @@ class SubholdingController extends Controller
      */
     public function index()
     {
-        //
-    }
-    public function subholding()
-    {
-        // $this->Subholding = new Subholding();
-        // $dataSubHolding = [
-        //     'subholding' => $this->Subholding->subholding(),
-        // ];
         $subholding =
             DB::table('tb_mas_sub_holdings')
+            ->where('tb_mas_sub_holdings.crud', 'C')
+            ->orWhere('tb_mas_sub_holdings.crud', 'U')
             ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
             ->get();
         return view('subholding', compact('subholding'));
@@ -48,36 +42,33 @@ class SubholdingController extends Controller
      */
     public function store(Request $request)
     {
-        $num = '0';
-        if (count(SubholdingModel::all()) >= 9) {
-            $num = '';
-        }
+
+        //memvalidasi request yang diterima
         $request->validate([
             'subholding' => 'required',
             'oid_holding' => 'required'
         ]);
 
+        //men-generate angka pada oid
+        $num = '0';
+        if (count(SubholdingModel::all()) >= 9) {
+            $num = '';
+        }
+
+        //membuat data baru ke database
         SubholdingModel::create([
             'oid_subholding' => 'SH-' . $num . (count(SubholdingModel::all()) + 1),
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',
             'usercreate' => 'ADZ',
+            'userupdate' => null,
+            'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        // $this->SubHolding->insert(
-        //     [
-        //         'oid_subholding' => 'SH-' . $num . (count(SubholdingModel::all()) + 1),
-        //         'subholding' => $request->subholding,
-        //         'oid_holding' => $request->oid_holding,
-        //         'crud' => 'C',
-        //         'usercreate' => 'ADZ',
-        //         'created_at' => date('Y-m-d H:i:s'),
-        //         'updated_at' => date('Y-m-d H:i:s'),
-        //     ]
-        // );
 
+        //mengembalikan halaman ke /subholding
         return redirect('/subholding');
     }
 
@@ -120,14 +111,7 @@ class SubholdingController extends Controller
      * @param  \App\Models\Subholding  $subholding
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SubholdingModel $subholding)
     {
-        $this->SubHolding = new SubholdingModel();
-        $this->SubHolding->drop($id);
-
-        return redirect('/subholding');
     }
-    // public function destroy(Subholding $subholding)
-    // {
-    // }
 }

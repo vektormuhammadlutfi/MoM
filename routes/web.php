@@ -10,7 +10,7 @@ use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\BranchController;
-
+use App\Http\Controllers\JenisMomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,19 +23,21 @@ use App\Http\Controllers\BranchController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
 Route::get('/register', [DataController::class, 'register']);
 Route::get('/branch', [BranchController::class, 'index']);
-Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+
 
 //Branches
 Route::get('/createbranch', [BranchController::class, 'createBranch']);
-Route::post('/storedata',[BranchController::class,'storedata']);
+Route::post('/storedata', [BranchController::class, 'storedata']);
 Route::get('/editbranch', [BranchController::class, 'editBranch']);
-Route::get('/branch', [DataController::class, 'branch']);
+Route::get('/branch', [BranchController::class, 'index']);
+Route::get('/detailbranch', [BranchController::class, 'detailBranch']);
+Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
 
 // SBU
 Route::get('/sbu', [SbuController::class, 'sbu']);
@@ -43,18 +45,20 @@ Route::post('/csbu', [SbuController::class, 'store']);
 Route::post('/sbu/update', [SbuController::class, 'update']);
 
 //Sub Holding
-Route::get('/subholding', [SubholdingController::class, 'subholding']);
-Route::post('/tambahsubholding', [SubholdingController::class, 'store']);
-Route::get('/deletesubholding/{id}', [SubholdingController::class, 'destroy']);
+
+Route::resource('/subholding', SubholdingController::class);
+// Route::get('/subholding', [SubholdingController::class, 'subholding']);
+// Route::post('/tambahsubholding', [SubholdingController::class, 'store']);
+// Route::get('/deletesubholding/{id}', [SubholdingController::class, 'destroy']);
+
+//Jenis MOM
+Route::get('/jenismom', [JenisMomController::class, 'jenismom']);
 
 //Momdetail
 Route::get('/momdetail', [MomDetailController::class, 'index']);
 Route::get('/createmomdetail', [MomDetailController::class, 'create']);
 Route::get('/editmomdetail', [MomDetailController::class, 'show']);
 Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
-
-// tes sub holding
-// Route::get('/subs', [SubholdingController::class, 'create']);
 
 // login
 Route::get('/login', [LoginController::class, 'index']);
