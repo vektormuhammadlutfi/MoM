@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use App\Models\SbuModel;
-use App\Models\Subholding;;
-
+use App\Models\Subholding;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
@@ -64,8 +62,8 @@ class SbuController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'namesbu' => 'required',
-            'namesubholding' => 'required'
+            'sbu_name' => 'required',
+            'subholding' => 'required',
         ]);
         $count = SbuModel::all()->count();;
         $oid_sbu = 'SBU' . '-' . $count + 1;
@@ -105,7 +103,6 @@ class SbuController extends Controller
      */
     public function edit(SbuModel $sbu)
     {
-        //
     }
 
     /**
