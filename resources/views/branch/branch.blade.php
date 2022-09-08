@@ -35,9 +35,9 @@
               <tr>
                   <th style="font-size: 13px">No</th>
                   <th style="font-size: 13px">Oid Branch</th>
-                  <th style="font-size: 13px">Nama Branch</th>
-                  <th style="font-size: 13px">Alamat</th>
-                  <th style="font-size: 13px">HP</th>
+                  <th style="font-size: 13px">Branch Name</th>
+                  <th style="font-size: 13px">Address</th>
+                  <th style="font-size: 13px">Phone</th>
                   <th style="font-size: 13px">Action</th>
               </tr>
           </thead>

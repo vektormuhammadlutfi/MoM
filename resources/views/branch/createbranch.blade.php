@@ -78,9 +78,9 @@
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-primary">Create</button>
+            <button type="submit" class="btn py-1 btn-primary" >Create</button>
           </div>
-      </form>
+        </form>
       </div>
       <!-- end detail -->
 

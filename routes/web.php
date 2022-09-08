@@ -11,6 +11,7 @@ use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,11 @@ Route::get('/', function () {
 });
 Route::get('/dashboard', [DataController::class, 'dashboard']);
 // SBU
-Route::get('/sbu', [SbuController::class, 'sbu']);
-Route::post('/csbu', [SbuController::class, 'store']);
-Route::post('/sbu/update', [SbuController::class, 'update']);
+// Route::get('/sbu', [SbuController::class, 'sbu']);
+// Route::post('/sbu/create', [SbuController::class, 'store']);
+// Route::put('/sbu/update/{sbu}', [SbuController::class, 'update']);
+
+Route::resource('/sbu', SbuController::class);
 
 //Branch
 Route::get('/branch', [BranchController::class, 'index']);

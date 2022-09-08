@@ -31,20 +31,20 @@
       <div class="col-lg-12 mx-auto">
         <form>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1">Branch Name</label>
+            <input type="text" class="form-control" placeholder="Enter Branch Name" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1">Address</label>
+            <input type="text" class="form-control" placeholder="Enter Address" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1">Phone</label>
+            <input type="text" class="form-control" placeholder="Enter Phone" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" class="form-control" placeholder="Enter Email" id="exampleInputEmail1" aria-describedby="emailHelp">
           </div>
           <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn py-1 btn-success">Edit</button>
