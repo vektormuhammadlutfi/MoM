@@ -48,7 +48,6 @@
                   <td class="width-min1">{{ $sbuitem->subholding }}</td>
                   <td class="width-min07">
                     <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
-                    {{-- <button class="btn btn-success btn-sm py-2 edit" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button> --}}
                     <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a>
                   </td>
                 </tr>
@@ -131,8 +130,8 @@
             </div>
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
             <select class="form-control" name="subholding" id="subholding">
-              @foreach ($datasubholding as $sbuitem)
-              <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ old('subholding', $sbuitem->subholding) }}</option>
+              @foreach ($datasubholding as $subholding)
+                <option class="dropdown-item" value="{{ $subholding->oid_subholding }}">{{ old('subholding', $subholding->subholding) }}</option>
               @endforeach
             </select>
           </div>
@@ -160,7 +159,7 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        console.log(data);
+        // console.log(data);
 
         $('#sbu_name').val(data[2]);
         $('#subholding').val(data[3]);

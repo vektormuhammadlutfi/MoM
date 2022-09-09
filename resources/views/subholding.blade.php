@@ -46,9 +46,17 @@
                   <td class="width-min1">{{ $item->oid_subholding }}</td>
                   <td class="width-min1">{{ $item->subholding }}</td>
                   <td class="width-min07">{{$item->holding}}</td>
-                  <td class="width-min07">
-                    <button class="btn btn-success btn-sm py-2" type="button" data-toggle="modal" data-target="#editBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <a  href="/deletesubholding/{{$item->id}}" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+                  <td class="width-min07" style="height:100%">
+                    <div class="d-flex">
+                      <a href="#" class="btn btn-success btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a> 
+                      <form action="/subholding/{{$item->oid_subholding}}"  id="delete-post-form" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button href="#" class="btn btn-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus Subholding ?')">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               @endforeach
@@ -92,7 +100,9 @@
             </div>
             <label for="exampleFormControlSelect1">Nama Holding</label>
             <select class="form-control" name="oid_holding" id="exampleFormControlSelect1">
-            <option class="dropdown-item" value="H-001">HADJI KALLA(Kalla Group)</option>
+              @foreach ($holdings as $holding)
+                <option class="dropdown-item" value="{{$holding->oid_holding}}">{{$holding->holding}}</option>
+              @endforeach
           </select>
         </div>
         <div class="modal-footer">
@@ -106,7 +116,7 @@
 {{-- end create --}}
 
 {{-- content modal edit data --}}
-<div class="modal fade" id="editBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -115,28 +125,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form>
-          @csrf
+      <form method="POST" action="/subholding" id="editform">
+        @method('put')
+        @csrf
+        <div class="modal-body">
           <div class="form-group">
               <label for="exampleInputEmail1">Nama Sub Holding</label>
-              <input type="text" name="namesbu" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="text" name="subholding" class="form-control" placeholder="Masukkan nama Sub Holding" id="subholding" aria-describedby="emailHelp">
           </div>
           <label for="exampleFormControlSelect1">Nama Holding</label>
-          <select class="form-control" name="namesubholding" id="exampleFormControlSelect1">
-            <option class="dropdown-item">Pilihan Satu</option>
-            <option class="dropdown-item">Pilihan dua</option>
-            <option class="dropdown-item">Pilihan tiga</option>
-            <option class="dropdown-item">Pilihan empat</option>
-            <option class="dropdown-item">Pilihan lima</option>
+          <select class="form-control" name="oid_holding" id="holding">
+            @foreach ($holdings as $holding)
+              <option class="dropdown-item" value="{{$holding->oid_holding}}">{{$holding->holding}}</option>
+            @endforeach
           </select>
-            <!-- <button type="submit" class="btn btn-primary">Create</button> -->
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Create</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+      
     </div>
   </div>
 </div>
@@ -145,25 +154,10 @@
 
 @push('addon-script')
 <script type="text/javascript">
+  
   $(document).ready(function () {
     var table = $('#example').DataTable();
-    table.on('click', '.edit', function(){
-
-        $tr = $(this).closest('tr');
-        if($($tr).hasClass('child')) {
-            $tr = $tr.prev('.parent');
-        }
-        var data = table.row($tr).data();
-        console.log(data);
-
-        $('#sbu_name').val(data[2]);
-        $('#subholding').val(data[3]);
-
-        $('#editform').attr('action', '/sbu/'+data[1]);
-        $('#editModal').modal('show');
-      });
-
-      table.on('click', '.delete', function(){
+    table.on('click', '#edit', function(){
 
         $tr = $(this).closest('tr');
         if($($tr).hasClass('child')) {
@@ -172,11 +166,50 @@
         var data = table.row($tr).data();
         // console.log(data);
 
-        $('#deleteform').attr('action', '/sbu/'+data[1]);
-        $('#deleteModal').modal('show');
+        $('#subholding').val(data[2]);
+        // $('#holding').val(data[3]);
+
+        $('#editform').attr('action', '/subholding/'+data[1]);
+        $('#editModal').modal('show');
+      });
+
+      // table.on('click', '#delete', function(e){
+      //   e.preventDefault();
+      //   let id = $(this).data('id');
+      //   var test= 'test'
+      //   Swal.fire({
+      //       title: 'Warning',
+      //       text: "Yakin Ingin Menghapus ?",
+      //       icon: 'warning',
+      //       showCancelButton: true,
+      //       confirmButtonText: 'Ya, Hapus',
+      //       cancelButtonText: 'Batalkan'
+      //   }).then((result) => {
+      //       if (result.isConfirmed) {
+      //           $('#delete-post-form').submit();
+      //       }
+      //   })
+        // Swal.fire({
+        //   icon:'warning',
+        //   title:'Apakah Anda Yakni Ingin menghapus ?',
+        //   text:'Sub Holding',
+        //   showCancelButton:true,
+        //   confirmButtonText:'Hapus',
+        // })
+        // .then(result=>{
+        //   $tr = $(this).closest('tr');
+        //   if($($tr).hasClass('child')) {
+        //       $tr = $tr.prev('.parent');
+        //   }
+        //   var data = table.row($tr).data();
+        //   console.log(data);
+        //   if(result.value){
+        //   }
+        // })
       });
 
     });
+
 </script>
 
 @endpush

@@ -9,10 +9,8 @@ use App\Http\Controllers\MomDetailController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
-use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\JenisMomController;
-use App\Models\Branch;
-
+use App\Http\Controllers\MomController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +24,9 @@ use App\Models\Branch;
 
 Route::get('/dashboard', [DataController::class, 'dashboard']);
 
+//Sub Holding
+Route::resource('/subholding', SubholdingController::class);
+
 // SBU
 Route::resource('/sbu', SbuController::class);
 
@@ -35,20 +36,23 @@ Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
 Route::get('/editbranch/{Branch}', [BranchController::class, 'edit']);
 Route::get('/createbranch', [BranchController::class, 'createBranch']);
 Route::post('/store', [BranchController::class, 'store']);
-Route::put('/update/{Branch}',[BranchController::class, 'update']);
-Route::put('/deletebranch/{Branch}',[BranchController::class, 'destroy']);
+Route::put('/update/{Branch}', [BranchController::class, 'update']);
+Route::put('/deletebranch/{Branch}', [BranchController::class, 'destroy']);
 
 
 //Sub Holding
 Route::resource('/subholding', SubholdingController::class);
 
 //Jenis MOM
-Route::get('/jenismom', [JenisMomController::class, 'jenismom']);
+Route::get('/jenismom', [JenisMomController::class, 'index']);
+
+//MOM
+Route::resource('/mom', MomController::class);
 
 //Momdetail
 Route::get('/momdetail', [MomDetailController::class, 'index']);
 Route::get('/createmomdetail', [MomDetailController::class, 'create']);
-Route::get('/editmomdetail', [MomDetailController::class, 'show']);
+// Route::get('/editmomdetail', [MomDetailController::class, 'show']);
 Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
 
 // login

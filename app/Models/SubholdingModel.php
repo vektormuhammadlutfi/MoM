@@ -12,6 +12,10 @@ class SubholdingModel extends Model
     protected $table = 'tb_mas_sub_holdings';
     protected $guarded = ['id'];
 
+    public function getRouteKeyName()
+    {
+        return 'oid_subholding';
+    }
     /* Function dibawah merupakan cara lain mengambil data ke database
 
         public function sbus(){
