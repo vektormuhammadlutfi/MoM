@@ -11,11 +11,13 @@
   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
   <script src="{{URL::asset('/assets/js/table.js')}}"></script>
-
+  {{-- SweetAlert --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {{-- Aos Animation --}}
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-  AOS.init();
-</script>
+    AOS.init();
+  </script>
   <script>
     window.TrackJS &&
       TrackJS.install({

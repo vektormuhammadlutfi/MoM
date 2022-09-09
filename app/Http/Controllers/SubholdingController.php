@@ -21,7 +21,8 @@ class SubholdingController extends Controller
             ->orWhere('tb_mas_sub_holdings.crud', 'U')
             ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
             ->get();
-        return view('subholding', compact('subholding'));
+        $holdings = DB::table('tb_mas_holdings')->get();
+        return view('subholding', compact('subholding', 'holdings'));
     }
     /**
      * Show the form for creating a new resource.
@@ -100,7 +101,23 @@ class SubholdingController extends Controller
      */
     public function update(Request $request, SubholdingModel $subholding)
     {
-        //
+        $validatedData = $request->validate([
+            'subholding' => 'required',
+            'oid_holding' => 'required',
+        ]);
+
+        $inputSubholding = array(
+            'subholding' => $validatedData['subholding'],
+            'oid_holding' => $validatedData['oid_holding'],
+            'crud' => 'U',
+            'userupdate' => 'Update-02',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($inputSubholding);
+        SubholdingModel::where('oid_subholding', $subholding->oid_subholding)
+            ->update($inputSubholding);
+        return redirect('/subholding');
+        // return dd($inputSubholding);
     }
 
     /**
@@ -111,5 +128,14 @@ class SubholdingController extends Controller
      */
     public function destroy(SubholdingModel $subholding)
     {
+        $newSubholding = array(
+            'crud' => 'D',
+            'userupdate' => 'Update-02',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($subholding);
+        SubholdingModel::where('oid_subholding', $subholding->oid_subholding)
+            ->update($newSubholding);
+        return redirect('/subholding');
     }
 }
