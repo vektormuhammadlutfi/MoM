@@ -46,16 +46,20 @@
             <tr>
               <td>{{ $loop->iteration}}</td>
               <td class="width-min07">{{ $branch->oid_branch}}</td>
-              <td class="width-min1">{{ $branch->branch_name}}</td>
+              <td class="width-min1 width-max2">{{ $branch->branch_name}}</td>
               <td class="width-min1">{{ $branch->address}}</td>
               <td class="width-min1">{{ $branch->phone}}</td>
 
               <td style="min-width: 125px">
-                <a  href="{{url("/detailbranch/{$branch->id}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
+                <a  href="{{url("/detailbranch/{$branch->oid_branch}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
 
-                <a href="/editbranch" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ url("/editbranch/{$branch->oid_branch}") }}" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
+                <form action="{{ url("/deletebranch/{$branch->oid_branch}") }}" method="post" class="py-2 d-inline">
+                  @method('delete')
+                  @csrf
+                  <button   onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
               </td>
             </tr>
             @endforeach
