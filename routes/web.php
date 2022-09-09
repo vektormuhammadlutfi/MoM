@@ -41,9 +41,6 @@ Route::put('/deletebranch/{Branch}',[BranchController::class, 'destroy']);
 
 //Sub Holding
 Route::resource('/subholding', SubholdingController::class);
-// Route::get('/subholding', [SubholdingController::class, 'subholding']);
-// Route::post('/tambahsubholding', [SubholdingController::class, 'store']);
-// Route::get('/deletesubholding/{id}', [SubholdingController::class, 'destroy']);
 
 //Jenis MOM
 Route::get('/jenismom', [JenisMomController::class, 'jenismom']);
