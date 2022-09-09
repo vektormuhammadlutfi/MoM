@@ -1,6 +1,9 @@
 .width-max2 {
     max-width: 200px;
 }
+.width-max3 {
+    max-width: 300px;
+}
 
 .width-min1 {
     min-width: 100px;

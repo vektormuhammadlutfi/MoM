@@ -35,7 +35,7 @@
 
           <div class="container ">
             <div class="row">
-              <h4 class="col-4">Branch ID</h4>
+              <h4 class="col-4">Oid Branch</h4>
               <p class="col-8">{{$DataBranch->oid_branch}}</p>
             </div>
             <hr class="mt-0">

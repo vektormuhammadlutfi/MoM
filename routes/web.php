@@ -11,6 +11,7 @@ use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\JenisMomController;
+use App\Models\Branch;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,11 @@ Route::resource('/sbu', SbuController::class);
 //Branch
 Route::get('/branch', [BranchController::class, 'index']);
 Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+Route::get('/editbranch/{Branch}', [BranchController::class, 'edit']);
 Route::get('/createbranch', [BranchController::class, 'createBranch']);
 Route::post('/store', [BranchController::class, 'store']);
-Route::get('/editbranch', [DataController::class, 'editBranch']);
-
+Route::put('/update/{Branch}',[BranchController::class, 'update']);
+Route::put('/deletebranch/{Branch}',[BranchController::class, 'destroy']);
 
 
 //Sub Holding
