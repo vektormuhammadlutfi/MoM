@@ -170,7 +170,7 @@
         var data = table.row($tr).data();
         // console.log(data);
 
-        $('#sbu_name').val(data[2]);
+        $('#sbu_name').val(data[2].replace('&amp;','&'));
         $('#subholding').val(data[3]);
 
         $('#editform').attr('action', '/sbu/'+data[1]);
