@@ -24,41 +24,62 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Mom</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i>Mom</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
         <a href="/createmomdetail" class="btn btn-info py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
-        <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
           <thead >
               <tr>
-                  <th style="font-size: 13px">No</th>
+                <th style="font-size: 13px">No</th>
+                  <th style="font-size: 13px">Action</th>
                   <th style="font-size: 13px">OID</th>
                   <th style="font-size: 13px">Nama SBU</th>
                   <th style="font-size: 13px">Jenis MOM</th>
                   <th style="font-size: 13px">Agenda</th>
                   <th style="font-size: 13px">Waktu</th>
-                  <th style="font-size: 13px">Action</th>
+                  <th style="font-size: 13px">Status</th>
               </tr>
           </thead>
           <tbody>
               @foreach ($moms as $mom)
                 <tr>
-                  <td>{{$loop->iteration}}</td>
-                  <td>{{$mom->oid_mom}}</td>
+                  <td class="text-center">{{$loop->iteration}}</td>
+                  <td style="max-width: 30px;" class="px-0 text-center">
+                    <div class="dropdown" style="background-color: transparent">
+                      <a  class="btn px-3 action-table" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <iconify-icon icon="akar-icons:more-horizontal"></iconify-icon>
+                      </a>
+                      <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-item">
+                          <a  href="/moremomdetail" class="text-decoration-none" >
+                            <i class="fa-regular fa-eye"></i> Detail 
+                          </a>
+                        </div>
+                        {{-- <hr style="margin: 8px 0"> --}}
+                        <div class="dropdown-item">
+                          <a href="/editmomdetail" class="text-decoration-none text-success">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                          </a>
+                        </div>
+                        {{-- <hr style="margin: 8px 0"> --}}
+                        <div class="dropdown-item">
+                          <a  href="/sbu" class="text-decoration-none text-danger">
+                            <i class="fa-solid fa-trash-can"></i> Hapus
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="width-min07">{{$mom->oid_mom}}</td>
                   <td>{{$mom->sbu_name}}</td>
                   <td>{{$mom->jenis_mom}}</td>
                   <td>{{$mom->agenda}}</td>
                   <td>{{$mom->hari}},{{$mom->tgl_mom}}</td>
+                  <td>(ini Status)</td>
                   {{-- <td>{{$mom->sts_issue}}</td> --}}
-                  <td>
-                    <a  href="/moremomdetail" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
-
-                    <a href="/editmomdetail" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                    
-                    <a  href="/sbu" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></a>
-                  </td>
                 </tr>
               @endforeach
               {{-- hh --}}

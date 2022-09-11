@@ -161,6 +161,11 @@
               </a>
             </li>
             <li class="nav-item  active ">
+              <a class="nav-link  active " href="/mom">
+                <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom Detail
+              </a>
+            </li>
+            <li class="nav-item  active ">
               <a class="nav-link  active " href="/momdetail">
                 <i class="fa fa-list-alt" aria-hidden="true" style="color: #bb0000"></i>Mom Description
               </a>

@@ -1,6 +1,7 @@
 .width-max2 {
     max-width: 200px;
 }
+
 .width-max3 {
     max-width: 300px;
 }
@@ -31,9 +32,14 @@
     text-transform: uppercase;
 }
 
-/* 
-@media screen and (max-width: 720px) {
-    .width-min02 {
-        width: 20px !important;
-    }
-} */
+.show:hover {
+    box-shadow: none !important;
+}
+
+.dropdown-item:active {
+    background-color: #f6f9fcd5;
+}
+
+.dropdown .action-table:hover {
+    box-shadow: none;
+}
