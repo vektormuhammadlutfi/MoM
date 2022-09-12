@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detailmom;
+use App\Models\Documentation;
 use App\Models\JenisMom;
 use App\Models\Mom;
 use App\Models\SbuModel;
@@ -97,6 +99,7 @@ class MomController extends Controller
                 $day = 'Sabtu';
                 break;
         }
+
         //membuat data baru ke database
         Mom::create([
             'oid_mom' => 'MOM-' . $num . (count(Mom::all()) + 1),
@@ -259,6 +262,66 @@ class MomController extends Controller
     }
     public function storeDetail(Request $request, Mom $mom)
     {
-        return dd($request);
+        $request->validate([
+            'tanggalmulai' => 'required',
+            'highlight_issues' => 'required',
+            'due_date_info' => 'required',
+            'pic' => 'required',
+            'informasi' => 'required',
+            'dokumen' => 'required',
+        ]);
+        //update mom
+        $updatemom = [
+            'tgl_mulai' => $request->tanggalmulai,
+            'crud' => 'U',
+            'userupdate' => null,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        //update di trans moms
+        DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updatemom);
+
+        //create detail mom
+        //men-generate angka pada oid
+        $detailMom = Detailmom::all(); //data di database detail moms
+        $num = '0';
+        if (count($detailMom) >= 9) {
+            $num = '';
+        }
+        //kirim data
+        Detailmom::create([
+            'oid_high_issues' => 'MD-' . $num . (count($detailMom) + 1),
+            'oid_mom' => $mom->oid_mom,
+            'highlight_issues' => $request->highlight_issues,
+            'due_date_info' => $request->due_date_info,
+            'pic' => $request->pic,
+            'informasi' => $request->informasi,
+            'crud' => 'C',
+            'usercreate' => 'ADZ',
+            'userupdate' => null,
+            'userdelete' => null,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        //create documentation
+        //men-generate oid documentation
+        $countDoc = count(Documentation::all());
+        $numDoc = '0';
+        if ($countDoc >= 9) {
+            $numDoc = '';
+        }
+        //kirim data
+        Documentation::create([
+            'oid_document' => 'DOC-' . $numDoc . ($countDoc + 1),
+            'oid_mom' => $mom->oid_mom,
+            'crud' => 'C',
+            'usercreate' => 'user1',
+            'userupdate' => null,
+            'userdelete' => null,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect('/mom');
     }
 }
