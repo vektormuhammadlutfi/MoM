@@ -16,12 +16,13 @@ class BranchController extends Controller
     public function index()
     {
         $Branches = DB::table('tb_mas_branches')
-            ->where('tb_mas_branches.crud','Ç')
-            ->orWhere('tb_mas_branches.crud','U')
+            ->where('tb_mas_branches.crud', 'Ç')
+            ->orWhere('tb_mas_branches.crud', 'U')
             ->get();
         // return dd($Branches);
         // $Branches = BranchModel::all();
-        return view('branch.branch', compact('Branches'));
+        $title = 'Branch';
+        return view('branch.branch', compact('title', 'Branches'));
     }
 
     public function detailBranch(BranchModel $Branch)
@@ -53,7 +54,8 @@ class BranchController extends Controller
             )
             ->first();
         // return dd($DataBranch);
-        return view('branch.detailbranch', compact('DataBranch'));
+        $title = 'Branch';
+        return view('branch.detailbranch', compact('title', 'DataBranch'));
     }
 
     /**
@@ -131,28 +133,29 @@ class BranchController extends Controller
     public function edit(BranchModel $Branch)
     {
         $DataBranchEdit = DB::table('tb_mas_branches')
-        ->where('tb_mas_branches.oid_branch', '=', $Branch->oid_branch)
-        ->rightJoin('tb_mas_sbus', 'tb_mas_sbus.oid_sbu', '=', 'tb_mas_branches.oid_sbu')
-        ->select(
-            'tb_mas_branches.id',
-            'tb_mas_branches.oid_branch', 
-            'tb_mas_branches.branch_name',
-            'tb_mas_branches.usercreate',
-            'tb_mas_branches.userupdate',
-            'tb_mas_branches.userdelete',
-            'tb_mas_branches.created_at',
-            'tb_mas_branches.updated_at',
-            'tb_mas_branches.address',
-            'tb_mas_branches.email',
-            'tb_mas_branches.phone',
-            'tb_mas_branches.ket',
-            'tb_mas_branches.crud',
-            'tb_mas_sbus.oid_sbu',
-            'tb_mas_sbus.sbu_name',
-        )->first();
+            ->where('tb_mas_branches.oid_branch', '=', $Branch->oid_branch)
+            ->rightJoin('tb_mas_sbus', 'tb_mas_sbus.oid_sbu', '=', 'tb_mas_branches.oid_sbu')
+            ->select(
+                'tb_mas_branches.id',
+                'tb_mas_branches.oid_branch',
+                'tb_mas_branches.branch_name',
+                'tb_mas_branches.usercreate',
+                'tb_mas_branches.userupdate',
+                'tb_mas_branches.userdelete',
+                'tb_mas_branches.created_at',
+                'tb_mas_branches.updated_at',
+                'tb_mas_branches.address',
+                'tb_mas_branches.email',
+                'tb_mas_branches.phone',
+                'tb_mas_branches.ket',
+                'tb_mas_branches.crud',
+                'tb_mas_sbus.oid_sbu',
+                'tb_mas_sbus.sbu_name',
+            )->first();
         $SbuData = DB::table('tb_mas_sbus')->get();
         // return dd($SbuData);
-        return view('branch.editbranch', compact('DataBranchEdit', 'SbuData'));
+        $title = 'Branch';
+        return view('branch.editbranch', compact('title', 'DataBranchEdit', 'SbuData'));
     }
 
     /**
@@ -183,7 +186,7 @@ class BranchController extends Controller
             'userupdate' => 'null',
             'updated_at' => date('Y-m-d H:i:s')
         );
-        DB::table('tb_mas_branches')->where('oid_branch',$Branch ->oid_branch)->update($updatebranch);
+        DB::table('tb_mas_branches')->where('oid_branch', $Branch->oid_branch)->update($updatebranch);
         return redirect('/branch');
     }
 
@@ -201,7 +204,7 @@ class BranchController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         );
         BranchModel::where('oid_branch', $Branch->oid_branch)
-        ->update($inputdelete);
+            ->update($inputdelete);
         return redirect('/branch');
     }
 }

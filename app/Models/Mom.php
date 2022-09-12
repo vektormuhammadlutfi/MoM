@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Mom extends Model
 {
     use HasFactory;
+    protected $table = 'tb_trans_moms';
+    protected $guarded = ['id'];
+
+    public function getRouteKeyName()
+    {
+        return 'oid_mom';
+    }
 }

@@ -26,7 +26,7 @@
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i>Mom</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/createmomdetail" class="btn btn-info py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
+        <a href="/createmom" class="btn btn-info py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -54,30 +54,45 @@
                       </a>
                       <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
                         <div class="dropdown-item">
-                          <a  href="/moremomdetail" class="text-decoration-none" >
+                          <a  href="{{url("/mom/{$mom->oid_mom}")}}" class="text-decoration-none" >
                             <i class="fa-regular fa-eye"></i> Detail 
                           </a>
                         </div>
                         {{-- <hr style="margin: 8px 0"> --}}
                         <div class="dropdown-item">
-                          <a href="/editmomdetail" class="text-decoration-none text-success">
-                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                          <a href="{{url("/editmom/{$mom->oid_mom}")}}" class="text-decoration-none text-success">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit 
                           </a>
                         </div>
                         {{-- <hr style="margin: 8px 0"> --}}
                         <div class="dropdown-item">
-                          <a  href="/sbu" class="text-decoration-none text-danger">
-                            <i class="fa-solid fa-trash-can"></i> Hapus
-                          </a>
+                          <form action="{{url("/deletemom/{$mom->oid_mom}")}}" method="POST">
+                            @method('put')
+                            @csrf
+                            <button type="submit"  class="c-btn text-decoration-none text-danger" 
+                            onClick="return confirm('Yakin Ingin Menghapus MoM ?')">
+                              <i class="fa-solid fa-trash-can"></i> Hapus
+                            </button>
+                          </form>
                         </div>
                       </div>
                     </div>
                   </td>
+                  <?php $split = array_reverse(explode('-',$mom->tgl_mom));
+                        $tanggal = '';
+                        for($i = 0; $i<count($split); $i++){
+                          if($i==0){
+                            $tanggal .= $split[$i];
+                          }else{
+                            $tanggal .= '/' . $split[$i];
+                          }
+                        }
+                  ?>
                   <td class="width-min07">{{$mom->oid_mom}}</td>
                   <td>{{$mom->sbu_name}}</td>
                   <td>{{$mom->jenis_mom}}</td>
                   <td>{{$mom->agenda}}</td>
-                  <td>{{$mom->hari}},{{$mom->tgl_mom}}</td>
+                  <td>{{$mom->hari}}, {{$tanggal}}</td>
                   <td>(ini Status)</td>
                   {{-- <td>{{$mom->sts_issue}}</td> --}}
                 </tr>

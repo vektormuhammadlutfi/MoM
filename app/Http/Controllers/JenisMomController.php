@@ -16,6 +16,7 @@ class JenisMomController extends Controller
             ->get();
 
         return view('jenismom', [
+            'title' => 'Jenis Mom',
             'jenismom' => $jenismom
         ]);
     }

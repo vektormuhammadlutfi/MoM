@@ -149,7 +149,7 @@
     </div>
   </div>
 </div>
-{{-- end create --}}
+{{-- end edit --}}
 @endsection
 
 @push('addon-script')

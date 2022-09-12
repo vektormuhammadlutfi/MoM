@@ -17,4 +17,12 @@ class SbuModel extends Model
     {
         return 'oid_sbu';
     }
+    public static function getAll()
+    {
+        $sbuData = DB::table('tb_mas_sbus')
+            ->where('tb_mas_sbus.crud', 'C')
+            ->orWhere('tb_mas_sbus.crud', 'U')
+            ->get();
+        return $sbuData;
+    }
 }

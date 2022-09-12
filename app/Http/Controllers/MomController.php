@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisMom;
 use App\Models\Mom;
+use App\Models\SbuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,10 +18,13 @@ class MomController extends Controller
     public function index()
     {
         $moms = DB::table('tb_trans_moms')
+            ->where('tb_trans_moms.crud', 'U')
+            ->orWhere('tb_trans_moms.crud', 'C')
             ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
             ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
             ->get();
-        return view('mom', [
+        return view('mom.mom', [
+            'title' => 'Mom',
             'moms' => $moms
         ]);
         // return dd($moms);
@@ -33,7 +38,13 @@ class MomController extends Controller
      */
     public function create()
     {
-        //
+        $sbu = SbuModel::getAll();
+        $jenisMom  = JenisMom::getAll();
+        return view('mom.createmom', [
+            'title' => 'Mom',
+            'dataSbu' => $sbu,
+            'dataJenisMom' => $jenisMom
+        ]);
     }
 
     /**
@@ -44,6 +55,70 @@ class MomController extends Controller
      */
     public function store(Request $request)
     {
+        //memvalidasi request yang diterima
+        $request->validate([
+            'oid_sbu' => 'required',
+            'oid_jen_mom' => 'required',
+            'tanggal' => 'required',
+            'tempat' => 'required',
+            'notulen' => 'required',
+            'attendees' => 'required',
+        ]);
+
+        //men-generate angka pada oid
+        $num = '0';
+        if (count(Mom::all()) >= 9) {
+            $num = '';
+        }
+        //hari
+        $timestamp = strtotime($request->tanggal);
+        $dayNum = date('w', $timestamp);
+        $day = '';
+        switch ($dayNum) {
+            case 0:
+                $day = 'Minggu';
+                break;
+            case 1:
+                $day = 'Senin';
+                break;
+            case 2:
+                $day = 'Selasa';
+                break;
+            case 3:
+                $day = 'Rabu';
+                break;
+            case 4:
+                $day = 'Kamis';
+                break;
+            case 5:
+                $day = 'Jumat';
+                break;
+            case 6:
+                $day = 'Sabtu';
+                break;
+        }
+        //membuat data baru ke database
+        Mom::create([
+            'oid_mom' => 'MOM-' . $num . (count(Mom::all()) + 1),
+            'oid_sbu' => $request->oid_sbu,
+            'oid_jen_mom' => $request->oid_jen_mom,
+            'agenda' => $request->agenda,
+            'hari' => $day,
+            'tgl_mom' => $request->tanggal,
+            'tempat' => $request->tempat,
+            'notulen' => $request->notulen,
+            'attendees' => $request->attendees,
+            'crud' => 'C',
+            'usercreate' => 'ADZ',
+            'userupdate' => null,
+            'userdelete' => null,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        //mengembalikan halaman ke /subholding
+        return redirect('/mom');
+        // return dd($request->oid_sbu);
     }
 
     /**
@@ -54,7 +129,16 @@ class MomController extends Controller
      */
     public function show(Mom $mom)
     {
-        //
+        $mom = DB::table('tb_trans_moms')
+            ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
+            ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->get()->first();
+        // return dd($mom);
+        return view('mom.detailmom', [
+            'title' => 'Mom',
+            'mom' => $mom
+        ]);
     }
 
     /**
@@ -65,6 +149,33 @@ class MomController extends Controller
      */
     public function edit(Mom $mom)
     {
+        $momdata
+            = DB::table('tb_trans_moms')
+            ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
+            ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->select(
+                'tb_trans_moms.id',
+                'tb_trans_moms.oid_mom',
+                'tb_trans_moms.oid_sbu',
+                'tb_trans_moms.oid_jen_mom',
+                'tb_trans_moms.agenda',
+                'tb_trans_moms.tgl_mom',
+                'tb_trans_moms.crud',
+                'tb_mas_sbus.sbu_name',
+                'tb_mas_mom_jenis.jenis_mom',
+            )
+            ->first();
+
+        $sbuData = SbuModel::getAll();
+        $jenisMom = JenisMom::getAll();
+        return view('mom.editmom', [
+            'title' => 'Mom',
+            'dataMomEdit' => $momdata,
+            'sbuData' => $sbuData,
+            'jenisMom' => $jenisMom
+        ]);
+        // return dd($momdata);
     }
 
     /**
@@ -76,6 +187,47 @@ class MomController extends Controller
      */
     public function update(Request $request, Mom $mom)
     {
+        //generator hari
+        $timestamp = strtotime($request->tgl_mom);
+        $dayNum = date(
+            'w',
+            $timestamp
+        );
+        $day = '';
+        switch ($dayNum) {
+            case 0:
+                $day = 'Minggu';
+                break;
+            case 1:
+                $day = 'Senin';
+                break;
+            case 2:
+                $day = 'Selasa';
+                break;
+            case 3:
+                $day = 'Rabu';
+                break;
+            case 4:
+                $day = 'Kamis';
+                break;
+            case 5:
+                $day = 'Jumat';
+                break;
+            case 6:
+                $day = 'Sabtu';
+                break;
+        }
+        $updateMom = [
+            'oid_sbu' => $request->oid_sbu,
+            'oid_jen_mom' => $request->oid_jen_mom,
+            'agenda' => $request->agenda,
+            'hari' => $day,
+            'tgl_mom' => $request->tgl_mom,
+            'crud' => 'U'
+        ];
+        // return dd($mom);
+        DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updateMom);
+        return redirect('/mom');
     }
 
     /**
@@ -86,5 +238,27 @@ class MomController extends Controller
      */
     public function destroy(Mom $mom)
     {
+        $newMom = array(
+            'crud' => 'D',
+            'userupdate' => 'Update-02',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+        // return dd($mom);
+        Mom::where('oid_mom', $mom->oid_mom)
+            ->update($newMom);
+        return redirect('/mom');
+    }
+
+    public function addDetail(Mom $mom)
+    {
+        // return dd($mom);
+        return view('mom.addDetail', [
+            'title' => 'mom',
+            'mom' => $mom
+        ]);
+    }
+    public function storeDetail(Request $request, Mom $mom)
+    {
+        return dd($request);
     }
 }
