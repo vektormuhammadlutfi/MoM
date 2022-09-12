@@ -39,12 +39,8 @@ Route::post('/store', [BranchController::class, 'store']);
 Route::put('/update/{Branch}', [BranchController::class, 'update']);
 Route::put('/deletebranch/{Branch}', [BranchController::class, 'destroy']);
 
-
-//Sub Holding
-Route::resource('/subholding', SubholdingController::class);
-
 //Jenis MOM
-Route::get('/jenismom', [JenisMomController::class, 'index']);
+Route::resource('/jenismom', JenisMomController::class);
 
 //MOM
 Route::resource('/mom', MomController::class);

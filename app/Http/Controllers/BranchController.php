@@ -41,7 +41,7 @@ class BranchController extends Controller
                 'tb_mas_branches.address',
                 'tb_mas_branches.email',
                 'tb_mas_branches.phone',
-                'tb_mas_branches.branch_name',
+                'tb_mas_branches.branch_name', 
                 'tb_mas_branches.oid_branch',
                 'tb_mas_branches.ket',
                 'tb_mas_sub_holdings.oid_subholding',
