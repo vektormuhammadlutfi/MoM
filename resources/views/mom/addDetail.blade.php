@@ -29,7 +29,8 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="/storemom" method="post">
+        <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post">
+          @method('Post')
           @csrf
           <div class="form-group">
             <label for="tanggalmulai">Tanggal Mulai</label>
@@ -39,16 +40,16 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="highlightissues">Highlight Issues</label>
-            <input type="text" name="highlightissues" class="form-control @error('highlightissues') is-invalid @enderror" placeholder="Input Highlight Issues" id="highlightissues">
-            @error('highlightissues')
+            <label for="highlight_issues">Highlight Issues</label>
+            <input type="text" name="highlight_issues" class="form-control @error('highlight_issues') is-invalid @enderror" placeholder="Input Highlight Issues" id="highlight_issues">
+            @error('highlight_issues')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="form-group">
-            <label for="duedateinfo">Due Date Info</label>
-            <input type="text" name="duedateinfo" class="form-control @error('duedateinfo') is-invalid @enderror" placeholder="Input Due Date Info" id="duedateinfo">
-            @error('duedateinfo')
+            <label for="due_date_info">Due Date Info</label>
+            <input type="text" name="due_date_info" class="form-control @error('due_date_info') is-invalid @enderror" placeholder="Input Due Date Info" id="due_date_info">
+            @error('due_date_info')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
@@ -74,11 +75,7 @@
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
-            <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post">
-                @method('post')
-                @csrf
-                <button type="submit" class="btn py-1 btn-info" >Tambah Detail</button>
-            </form>
+            <button type="submit" class="btn py-1 btn-info" >Tambah Detail</button>
           </div>
         </form>
       </div>
