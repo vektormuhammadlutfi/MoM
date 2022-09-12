@@ -24,8 +24,8 @@ class SbuController extends Controller
 
         $datasubholding = DB::table('tb_mas_sub_holdings')
             ->get();
-
-        return view('sbu', compact('dataSbu', 'datasubholding'));
+        $title = 'SBU';
+        return view('sbu', compact('title', 'dataSbu', 'datasubholding'));
         // return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
     }
 

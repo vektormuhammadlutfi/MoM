@@ -15,8 +15,10 @@ class JenisMomController extends Controller
             ->orWhere('tb_mas_mom_jenis.crud', 'U')
             ->get();
 
-        // return view('jenismom');
-        return view('jenismom.jenismom', compact('jenismom'));
+        return view('jenismom', [
+            'title' => 'Jenis Mom',
+            'jenismom' => $jenismom
+        ]);
     }
 
     public function create()

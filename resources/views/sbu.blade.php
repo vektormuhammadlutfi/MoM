@@ -47,8 +47,17 @@
                   <td class="width-min1">{{ $sbuitem->sbu_name }}</td>
                   <td class="width-min1">{{ $sbuitem->subholding }}</td>
                   <td class="width-min07">
-                    <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
-                    <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a>
+                    <div class="d-flex">
+                      <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
+                    {{-- <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a> --}}
+                      <form action="/sbu/{{$sbuitem->oid_sbu}}"  id="delete-post-form" method="POST">
+                          @method('delete')
+                          @csrf
+                          <button href="#" class="btn btn-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus SBU ?')">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               @endforeach
@@ -161,7 +170,7 @@
         var data = table.row($tr).data();
         // console.log(data);
 
-        $('#sbu_name').val(data[2]);
+        $('#sbu_name').val(data[2].replace('&amp;','&'));
         $('#subholding').val(data[3]);
 
         $('#editform').attr('action', '/sbu/'+data[1]);

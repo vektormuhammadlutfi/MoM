@@ -99,8 +99,8 @@
         <div data-aos="fade-right" data-aos-delay="50">
           <h5 class="navbar-heading text-success mb-0 pb-0">Dashboard</h5>
           <ul class="navbar-nav mb-0 mt-0">
-            <li class="nav-item active ">
-              <a class="nav-link active " href="./dashboard">
+            <li class="nav-item ">
+              <a class="nav-link {{$title === 'Dashboard'? 'menu-active':''}}" href="./dashboard">
                 <i class="ni ni-tv-2 text-yellow"></i> Dashboard
               </a>
             </li>
@@ -111,13 +111,13 @@
         <div data-aos="fade-right" data-aos-delay="100">
           <h5 class="navbar-heading text-success m-0 p-0">Common</h5>
           <ul class="navbar-nav mt-0 mb-0">
-            <li class="nav-item active ">
-              <a class="nav-link  active " href="/dashboard">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Provinsi'? 'menu-active':''}}" href="/dashboard">
                 <i class="fa-solid fa-map-location text-info"></i>Provinsi
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/dashboard">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Kabupaten/Kota'? 'menu-active':''}}" href="/dashboard">
                 <i class="fa-solid fa-map-location text-warning"></i>Kabupaten/Kota
               </a>
             </li>
@@ -127,23 +127,23 @@
         <div data-aos="fade-right" data-aos-delay="150">
           <h5 class="navbar-heading text-success mb-0 pb-0">Master</h5>
           <ul class="navbar-nav mt-0 mb-0">
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/subholding">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Sub Holding'? 'menu-active':''}}" href="/subholding">
                 <i class="fa-solid fa-building" style="color: #FFB200"></i>Sub Holding
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/sbu">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'SBU'? 'menu-active':''}}" href="/sbu">
                 <i class="fa-solid fa-building text-red"></i>SBU
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/branch">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Branch'? 'menu-active':''}}" href="/branch">
                 <i class="fa-sharp fa-solid fa-house-user" style="color: #5BB318"></i> Branch
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/jenismom">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Jenis Mom'? 'menu-active':''}}" href="/jenismom">
                 <i class="fa-sharp fa-solid fa-window-restore" style="color: #e018b5"></i>Jenis Mom
               </a>
             </li>
@@ -155,13 +155,18 @@
         <div data-aos="fade-right" data-aos-delay="200">
           <h5 class="navbar-heading text-success mb-0 pb-0">Transaksi</h5>
           <ul class="navbar-nav mt-0 mb-0">
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/mom">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Mom'? 'menu-active':''}}" href="/mom">
                 <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/momdetail">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Mom Detail'? 'menu-active':''}}" href="/mom">
+                <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom Detail
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Mom Description'? 'menu-active':''}}" href="/momdetail">
                 <i class="fa fa-list-alt" aria-hidden="true" style="color: #bb0000"></i>Mom Description
               </a>
             </li>
@@ -171,18 +176,18 @@
         <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
           <ul class="navbar-nav mt-0 mb-0">
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/momdetail">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momdetail">
                 <i class="fa-sharp fa-solid fa-file text-red" ></i>Mom
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/momdetail">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Doc Mom'? 'menu-active':''}}" href="/momdetail">
                 <i class="fa-solid fa-floppy-disk" style="color: #005b40"></i>Doc Mom
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/momdetail">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/momdetail">
                 <i class="fa fa-folder-open" aria-hidden="true" style="color: #fffb00"></i>Summary
               </a>
             </li>
@@ -192,19 +197,19 @@
         <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Settings</h5>
           <ul class="navbar-nav mt-0 mb-0">
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/dashboard">
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'User'? 'menu-active':''}}" href="/dashboard">
                 <i class="fa-solid fa-person-chalkboard text-green"></i>User
               </a>
             </li>
-            <li class="nav-item  active ">
-              <a class="nav-link  active " href="/dashboard">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">
                 <i class="fa-solid fa-address-card text-primary"></i>Group
               </a>
-              <a href="/register" class="nav-link active">
+              <a href="/register" class="nav-link {{$title === 'register'? 'menu-active':''}}">
                 <i class="ni ni-collection  text-red"></i>Test Register
               </a>
-              <a href="/login" class="nav-link active">
+              <a href="/login" class="nav-link {{$title === 'login'? 'menu-active':''}}">
                 <i class="ni ni-collection  text-red"></i>Test Login
               </a>
             </li>

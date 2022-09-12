@@ -149,7 +149,7 @@
     </div>
   </div>
 </div>
-{{-- end create --}}
+{{-- end edit --}}
 @endsection
 
 @push('addon-script')
@@ -164,11 +164,9 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        // console.log(data);
 
-        $('#subholding').val(data[2]);
+        $('#subholding').val(data[2].replace('&amp;','&'));
         // $('#holding').val(data[3]);
-
         $('#editform').attr('action', '/subholding/'+data[1]);
         $('#editModal').modal('show');
       });
@@ -206,7 +204,7 @@
         //   if(result.value){
         //   }
         // })
-      });
+      // });
 
     });
 

@@ -22,7 +22,8 @@ class SubholdingController extends Controller
             ->leftJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
             ->get();
         $holdings = DB::table('tb_mas_holdings')->get();
-        return view('subholding', compact('subholding', 'holdings'));
+        $title = "Sub Holding";
+        return view('subholding', compact('title', 'subholding', 'holdings'));
     }
     /**
      * Show the form for creating a new resource.
