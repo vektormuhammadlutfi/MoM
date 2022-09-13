@@ -71,7 +71,8 @@
             <button type="submit" class="btn btn-primary btn-block my-4">
               Sign up
             </button>
-            <small class="d-block text-center mt-3" style="font-size: 15px">Already have an account? <a href="/login">Login Now!</a></small>
+            {{-- <small class="d-block text-center mt-3" style="font-size: 15px">Already have an account? <a href="/login">Login Now!</a></small> --}}
+            <small class="d-block text-center mt-3" style="font-size: 15px"><a href="/dashboard">Kembali ke dashboard ?</a></small>
           </form>
         </div>
       </div>
