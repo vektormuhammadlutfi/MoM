@@ -56,35 +56,35 @@
           
           <div class="form-group">
             <label for="agendamom">Agenda</label>
-            <input type="text" name="agenda" class="form-control @error('agenda') is-invalid @enderror" placeholder="Masukkan Agenda" id="agendamom">
+            <input type="text" name="agenda" value="{{ old('agenda') }}" class="form-control @error('agenda') is-invalid @enderror" placeholder="Masukkan Agenda" id="agendamom">
             @error('agenda')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="form-group">
             <label for="tempat">Tempat</label>
-            <input type="text" name="tempat" class="form-control @error('tempat') is-invalid @enderror" placeholder="Masukkan Tempat" id="tempat">
+            <input type="text" name="tempat" value="{{ old('tempat') }}" class="form-control @error('tempat') is-invalid @enderror" placeholder="Masukkan Tempat" id="tempat">
             @error('tempat')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="form-group">
             <label for="notulen">Notulen</label>
-            <input type="text" name="notulen" class="form-control @error('notulen') is-invalid @enderror" placeholder="Masukkan Notulen" id="notulen">
+            <input type="text" name="notulen" value="{{ old('notulen') }}" class="form-control @error('notulen') is-invalid @enderror" placeholder="Masukkan Notulen" id="notulen">
             @error('notulen')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="form-group">
             <label for="attendees">Attendees</label>
-            <input type="text" name="attendees" class="form-control @error('attendees') is-invalid @enderror" placeholder="Masukkan Attendees" id="attendees">
+            <input type="text" name="attendees" value="{{ old('attendees') }}" class="form-control @error('attendees') is-invalid @enderror" placeholder="Masukkan Attendees" id="attendees">
             @error('attendees')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="form-group">
             <label for="emailbranch">Tanggal</label>
-            <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror"  id="tanggal">
+            <input type="date" name="tanggal" value="{{ old('tanggal') }}" class="form-control @error('tanggal') is-invalid @enderror"  id="tanggal">
             @error('tanggal')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror

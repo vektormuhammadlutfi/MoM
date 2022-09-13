@@ -5,7 +5,7 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
   <div class="container-fluid">
     <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">MOM | Detail MOM</a>
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/mom">MOM | Detail MOM</a>
     @include('navbar.navuser')
   </div>
 </nav>
@@ -86,7 +86,7 @@
         </div>
         <hr class="mt-0">
         <div class="d-flex justify-content-end">
-            <a href="/tambahdetail/{{$mom->oid_mom}}" class="btn btn-info ">
+            <a href="/tambahdetail/{{$mom->oid_mom}}" class="btn btn-info py-1 px-3">
                 <i class="fa-solid fa-plus"></i> Tambah Detail
             </a>
         </div>
