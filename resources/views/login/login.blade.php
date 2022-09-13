@@ -13,24 +13,34 @@
         max-width: 600px;
         width: 95%
         ">
-    <div class="card-body py-4" >
+    <div class="card-body py-4">
       <div class="row d-flex justify-content-center">
+        
         {{-- @if (session()->has('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>            
         @endif --}}
-
-        @if (session()->has('loginError'))
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>            
-        @endif
-
         <div class="col-lg-10">
-          <h2 class="fw-bold mb-5 mt-3 text-center">Login</h2>
+          @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('success') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+          @endif
+          @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('loginError') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+          @endif
+
+          <h2 class="fw-bold my-4 text-center">Login</h2>
           <form action="/login" method="post">
             @csrf
             <div class="form-outline mb-3">
