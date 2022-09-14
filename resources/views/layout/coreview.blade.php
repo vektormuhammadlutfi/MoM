@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="p-0 text-center mt-3" href="./index.html">
+      <a class="p-0 text-center mt-3" href="/dashboard">
         <img src="{{URL::asset('./logo.png')}}" width="170" alt="...">
       </a>
       <!-- User -->

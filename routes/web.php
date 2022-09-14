@@ -71,3 +71,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // testing modal for holding
 Route::resource('holding', HoldingController::class);
+
+Route::get('/login_', function () {
+    return view('login.login_', ['title' => 'Login']);
+});

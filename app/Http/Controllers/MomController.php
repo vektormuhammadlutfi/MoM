@@ -132,15 +132,37 @@ class MomController extends Controller
      */
     public function show(Mom $mom)
     {
-        $mom = DB::table('tb_trans_moms')
+        $momData = DB::table('tb_trans_moms')
             ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
             ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
             ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->rightJoin('tb_trans_mom_details', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->rightJoin('tb_trans_documentations', 'tb_trans_documentations.oid_mom', '=', 'tb_trans_moms.oid_mom')
             ->get()->first();
-        // return dd($mom);
+        if ($momData === null) {
+            $momData = DB::table('tb_trans_moms')
+                ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
+                ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
+                ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+                ->get()->first();
+
+            //memberikan default data ketika table mom belum memiliki relasi ke table detail mom
+            $momData->oid_high_issues = '-';
+            $momData->highlight_issues = '-';
+            $momData->due_date_info = '-';
+            $momData->issue_user = '-';
+            $momData->pic = '-';
+            $momData->informasi = '-';
+            $momData->progres_minggu_lalu = '-';
+            $momData->rencana_minggu_ini = '-';
+            $momData->sts_issue = '-';
+            $momData->ket = '-';
+            $momData->gambar = '-';
+        }
+        // dd($momData);
         return view('mom.detailmom', [
             'title' => 'Mom',
-            'mom' => $mom
+            'mom' => $momData
         ]);
     }
 
@@ -226,7 +248,10 @@ class MomController extends Controller
             'agenda' => $request->agenda,
             'hari' => $day,
             'tgl_mom' => $request->tgl_mom,
-            'crud' => 'U'
+            'crud' => 'U',
+            'userupdate' => null,
+            'userdelete' => null,
+            'updated_at' => date('Y-m-d H:i:s'),
         ];
         // return dd($mom);
         DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updateMom);
@@ -270,6 +295,8 @@ class MomController extends Controller
             'informasi' => 'required',
             'dokumen' => 'required',
         ]);
+        // dd($request);
+        // return $request->file('dokumen')->store('dok-image');
         //update mom
         $updatemom = [
             'tgl_mulai' => $request->tanggalmulai,
@@ -296,11 +323,13 @@ class MomController extends Controller
             'pic' => $request->pic,
             'informasi' => $request->informasi,
             'crud' => 'C',
+            'sts_issue' => 'Open',
+            'ket' => '-',
             'usercreate' => 'ADZ',
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         //create documentation
@@ -311,15 +340,23 @@ class MomController extends Controller
             $numDoc = '';
         }
         //kirim data
+        $nameDoc = str_replace('dok-image/', '', $request->file('dokumen')->store('dok-image'));
+        // dd($dataDokumen);
+        // $dataDokument = '';
+        // if ($request->file('dokumen')) {
+        //     $dataDokument = $request->file('dokumen')->store('dok-image');
+        // }
+
         Documentation::create([
             'oid_document' => 'DOC-' . $numDoc . ($countDoc + 1),
             'oid_mom' => $mom->oid_mom,
+            'gambar' => $nameDoc,
             'crud' => 'C',
             'usercreate' => 'user1',
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         return redirect('/mom');

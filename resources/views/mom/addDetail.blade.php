@@ -29,7 +29,7 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post">
+        <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post" enctype="multipart/form-data">
           @method('Post')
           @csrf
           <div class="form-group">
@@ -68,14 +68,14 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="dokumen">Dokumen</label>
-            <input type="file" name="dokumen" class="form-control @error('dokumen') is-invalid @enderror" placeholder="Input Dokumen" id="dokumen">
+            <label class="form-label" for="dokumen">Dokumen</label>
+            <input type="file" name="dokumen" class="form-control @error('dokumen') is-invalid @enderror" id="dokumen">
             @error('dokumen')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-info" >Tambah Detail</button>
+            <button type="submit" class="btn py-1 btn-info"> Tambah Detail</button>
           </div>
         </form>
       </div>
