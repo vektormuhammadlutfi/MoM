@@ -29,16 +29,17 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+// Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 // logout
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::middleware([auth::class])->group(function () {
     Route::get('/register', [RegisterController::class, 'index']);
 
     Route::get('/dashboard', [DataController::class, 'dashboard']);
-    Route::get('/', [DataController::class, 'dashboard']);
+    // Route::get('/', [DataController::class, 'dashboard']);
 
     //Sub Holding
     Route::resource('/subholding', SubholdingController::class);

@@ -32,10 +32,13 @@
         <span>Support</span>
       </a>
       <div class="dropdown-divider"></div>
-      <a href="{{ url('/logout') }}" class="dropdown-item">
-        <i class="ni ni-user-run"></i>
-        <span>Logout</span>
-      </a>
+      <form action="{{ url('/logout') }}" method="post">
+        @csrf
+        <button class="dropdown-item">
+          <i class="ni ni-user-run"></i>
+          <span>Logout</span>
+        </button>
+      </form>
     </div>
   </li>
 </ul>
