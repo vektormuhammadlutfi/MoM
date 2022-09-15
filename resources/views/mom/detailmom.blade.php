@@ -5,7 +5,7 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
   <div class="container-fluid">
     <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">MOM | Detail MOM</a>
+    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/mom">MOM | Detail MOM</a>
     @include('navbar.navuser')
   </div>
 </nav>

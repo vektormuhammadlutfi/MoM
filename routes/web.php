@@ -22,56 +22,56 @@ use App\Http\Controllers\MomController;
 |
 */
 
-Route::get('/dashboard', [DataController::class, 'dashboard']);
 
-//Sub Holding
-Route::resource('/subholding', SubholdingController::class);
-
-// SBU
-Route::resource('/sbu', SbuController::class);
-
-//Branch
-Route::get('/branch', [BranchController::class, 'index']);
-Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
-Route::get('/editbranch/{Branch}', [BranchController::class, 'edit']);
-Route::get('/createbranch', [BranchController::class, 'createBranch']);
-Route::post('/store', [BranchController::class, 'store']);
-Route::put('/update/{Branch}', [BranchController::class, 'update']);
-Route::put('/deletebranch/{Branch}', [BranchController::class, 'destroy']);
-
-//Sub Holding
-Route::resource('/subholding', SubholdingController::class);
-
-//Jenis MOM
-Route::get('/jenismom', [JenisMomController::class, 'index']);
-
-//MOM
-Route::get('/mom', [MomController::class, 'index']);
-Route::get('/mom/{mom}', [MomController::class, 'show']);
-Route::get('/createmom', [MomController::class, 'create']);
-Route::post('/storemom', [MomController::class, 'store']);
-Route::get('/editmom/{mom}', [MomController::class, 'edit']);
-Route::put('/updatemom/{mom}', [MomController::class, 'update']);
-Route::put('/deletemom/{mom}', [MomController::class, 'destroy']);
-Route::get('/tambahdetail/{mom}', [MomController::class, 'addDetail']);
-Route::post('/storedetail/{mom}', [MomController::class, 'storeDetail']);
-
-//Momdetail
-Route::get('/momdetail', [MomDetailController::class, 'index']);
-Route::get('/createmomdetail', [MomDetailController::class, 'create']);
-// Route::get('/editmomdetail', [MomDetailController::class, 'show']);
-Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
-
-// login
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
 // register
-Route::get('/register', [RegisterController::class, 'index']);
+// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// testing modal for holding
-Route::resource('holding', HoldingController::class);
+// login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/login_', function () {
-    return view('login.login_', ['title' => 'Login']);
+// logout
+Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::middleware([auth::class])->group(function () {
+    Route::get('/register', [RegisterController::class, 'index']);
+
+    Route::get('/dashboard', [DataController::class, 'dashboard']);
+    Route::get('/', [DataController::class, 'dashboard']);
+
+    //Sub Holding
+    Route::resource('/subholding', SubholdingController::class);
+
+    // SBU
+    Route::resource('/sbu', SbuController::class);
+
+    //Branch
+    Route::get('/branch', [BranchController::class, 'index']);
+    Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
+    Route::get('/editbranch/{Branch}', [BranchController::class, 'edit']);
+    Route::get('/createbranch', [BranchController::class, 'createBranch']);
+    Route::post('/store', [BranchController::class, 'store']);
+    Route::put('/update/{Branch}', [BranchController::class, 'update']);
+    Route::put('/deletebranch/{Branch}', [BranchController::class, 'destroy']);
+
+    //Jenis MOM
+    Route::resource('/jenismom', JenisMomController::class);
+
+    //MOM
+    Route::get('/mom', [MomController::class, 'index']);
+    Route::get('/mom/{mom}', [MomController::class, 'show']);
+    Route::get('/createmom', [MomController::class, 'create']);
+    Route::post('/storemom', [MomController::class, 'store']);
+    Route::get('/editmom/{mom}', [MomController::class, 'edit']);
+    Route::put('/updatemom/{mom}', [MomController::class, 'update']);
+    Route::put('/deletemom/{mom}', [MomController::class, 'destroy']);
+    Route::get('/tambahdetail/{mom}', [MomController::class, 'addDetail']);
+    Route::post('/storedetail/{mom}', [MomController::class, 'storeDetail']);
+
+    //Momdetail
+    Route::get('/momdetail', [MomDetailController::class, 'index']);
+    Route::get('/createmomdetail', [MomDetailController::class, 'create']);
+    // Route::get('/editmomdetail', [MomDetailController::class, 'show']);
+    Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
 });

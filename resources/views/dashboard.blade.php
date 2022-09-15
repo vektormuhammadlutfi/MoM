@@ -6,7 +6,6 @@
   <div class="container-fluid">
     <!-- Nama Halaman/brand -->
     <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
-    @include('navbar.navsearch')
     @include('navbar.navuser')
     
   </div>
