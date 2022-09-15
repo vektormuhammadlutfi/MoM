@@ -48,30 +48,76 @@ class SbuController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        // return dd($request);
+
+        $request->validate([
             'sbu_name' => 'required',
-            'subholding' => 'required',
+            'oid_subholding' => 'required',
         ]);
-        $num = 0;
-        if (SbuModel::all()->count() >= 9) {
+        $num = '0';
+        $countSbu = count(SbuModel::all());
+        if ($countSbu >= 9) {
             $num = '';
         }
-        $count = SbuModel::all()->count();
 
-        $inputsbu = array(
-            'oid_sbu' => 'SBU' . '-' . $num . $count + 1,
-            'oid_subholding' => $validatedData['subholding'],
-            'sbu_name' => $validatedData['sbu_name'],
+        // $inputsbu = array(
+        //     'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
+        //     'oid_subholding' => $validatedData['subholding'],
+        //     'sbu_name' => $validatedData['sbu_name'],
+        //     'crud' => 'C',
+        //     'usercreate' => 'ADZ',
+        //     'userupdate' => 'null',
+        //     'userdelete' => 'null',
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s')
+        // );
+        SbuModel::create([
+            'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
+            'oid_subholding' => $request['oid_subholding'],
+            'sbu_name' => $request['sbu_name'],
             'crud' => 'C',
             'usercreate' => 'ADZ',
             'userupdate' => 'null',
             'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
-        );
-        // return dd($inputsbu);
-        SbuModel::create($inputsbu);
+        ]);
         return redirect('/sbu');
+
+        // //memvalidasi request yang diterima
+        // $request->validate([
+        //     'subholding' => 'required',
+        //     'oid_holding' => 'required'
+        // ]);
+
+        // //memvalidasi request yang diterima
+        // $request->validate([
+        //     'subholding' => 'required',
+        //     'oid_holding' => 'required'
+        // ]);
+
+        // //men-generate angka pada oid
+        // $count = count(SubholdingModel::all());
+        // $num = '0';
+        // if ($count >= 9) {
+        //     $num = '';
+        // }
+
+        // //membuat data baru ke database
+        // SubholdingModel::create([
+        //     'oid_subholding' => 'SH-' . $num . ($count + 1),
+        //     'subholding' => $request->subholding,
+        //     'oid_holding' => $request->oid_holding,
+        //     'crud' => 'C',
+        //     'usercreate' => 'ADZ',
+        //     'userupdate' => null,
+        //     'userdelete' => null,
+        //     'created_at' => date('Y-m-d H:i:s'),
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ]);
+
+        // //mengembalikan halaman ke /subholding
+        // return redirect('/subholding');
     }
 
     /**
