@@ -50,14 +50,15 @@ class SubholdingController extends Controller
         ]);
 
         //men-generate angka pada oid
+        $count = count(SubholdingModel::all());
         $num = '0';
-        if (count(SubholdingModel::all()) >= 9) {
+        if ($count >= 9) {
             $num = '';
         }
 
         //membuat data baru ke database
         SubholdingModel::create([
-            'oid_subholding' => 'SH-' . $num . (count(SubholdingModel::all()) + 1),
+            'oid_subholding' => 'SH-' . $num . ($count + 1),
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',
