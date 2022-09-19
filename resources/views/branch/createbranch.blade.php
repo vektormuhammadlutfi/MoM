@@ -29,7 +29,7 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="/store" method="post">
+        <form action="/branch" method="post">
           @csrf
           <div class="form-group">
             <label for="SBU">SBU Name</label>

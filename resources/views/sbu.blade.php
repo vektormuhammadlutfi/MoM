@@ -22,7 +22,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <h3 class="mb-0"><i class="fa-solid fa-list text-red"></i> Data SBU</h3>
-          <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
+          <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
         </div>
         <hr class="mt-2 mb-4">
         {{-- table --}}
@@ -48,12 +48,12 @@
                   <td class="width-min1">{{ $sbuitem->subholding }}</td>
                   <td class="width-min07">
                     <div class="d-flex">
-                      <a href="#" class="btn btn-success btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
+                      <a href="#" class="btn btn-warning btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
                     {{-- <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a> --}}
                       <form action="/sbu/{{$sbuitem->oid_sbu}}"  id="delete-post-form" method="POST">
                           @method('delete')
                           @csrf
-                          <button href="#" class="btn btn-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus SBU ?')">
+                          <button href="#" class="btn btn-outline-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus SBU ?')">
                             <i class="fa-solid fa-trash-can"></i>
                           </button>
                       </form>
@@ -106,7 +106,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-success">Create</button>
           </div>
       </form>
       

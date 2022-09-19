@@ -25,7 +25,7 @@
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #e018b5"></i> Jenis MOM</h3>
-        <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
+        <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -47,7 +47,7 @@
                   <td>{{$mom->jenis_mom}}</td>
                   <td>
                     <div class="d-flex">
-                      <a href="#" class="btn btn-success btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                      <a href="#" class="btn btn-warning btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a>
 
                       <form action="/jenismom/{{ $mom->oid_jen_mom }}" method="POST">
                         @method('delete')

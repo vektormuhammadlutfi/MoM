@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Detailmom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MomDetailController extends Controller
 {
@@ -14,7 +15,10 @@ class MomDetailController extends Controller
      */
     public function index()
     {
-        return view('momdetail.momdetail');
+        return view('momdetail.momdetail', [
+            'title' => 'Mom Detail',
+            'details' => Detailmom::getAll()
+        ]);
     }
 
     /**
@@ -46,7 +50,11 @@ class MomDetailController extends Controller
      */
     public function show(Detailmom $detailmom)
     {
-        return view('momdetail.editmomdetail');
+
+        return view('momdetail.showmomdetail', [
+            'title' => 'Mom Detail',
+            'momdetail' => $detailmom
+        ]);
     }
 
     /**
@@ -80,10 +88,13 @@ class MomDetailController extends Controller
      */
     public function destroy(Detailmom $detailmom)
     {
-        //
-    }
-    public function moreMomDetail()
-    {
-        return view('momdetail.moremomdetail');
+        dd($detailmom);
+        Detailmom::where('oid_high_issues', $detailmom->oid_high_issues)
+            ->update([
+                'crud' => 'D',
+                'userdelete' => Auth::user()->name,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+        return redirect('/momdetail');
     }
 }

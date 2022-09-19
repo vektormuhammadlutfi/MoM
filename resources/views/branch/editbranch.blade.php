@@ -29,7 +29,7 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="{{  url('/update',$DataBranchEdit->oid_branch) }}" method="post">
+        <form action="/branch/{{$DataBranchEdit->oid_branch}}" method="post">
           @method('PUT')
           @csrf
           <div class="form-group">

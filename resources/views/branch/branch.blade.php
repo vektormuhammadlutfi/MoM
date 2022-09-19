@@ -26,7 +26,7 @@
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Data Branch</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/createbranch" class="btn btn-info py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
+        <a href="/branch/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -51,11 +51,11 @@
               <td class="width-min1">{{ $branch->phone}}</td>
 
               <td style="min-width: 125px">
-                <a  href="{{url("/detailbranch/{$branch->oid_branch}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
+                <a  href="{{url("/branch/{$branch->oid_branch}")}}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
 
-                <a href="{{ url("/editbranch/{$branch->oid_branch}") }}" class="btn btn-success btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ url("/branch/{$branch->oid_branch}/edit") }}" class="btn btn-warning btn-sm py-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                <form action="{{ url("/deletebranch/{$branch->oid_branch}") }}" method="post" class="py-2 d-inline">
+                <form action="{{ url("/branch/{$branch->oid_branch}") }}" method="post" class="py-2 d-inline">
                   @method('delete')
                   @csrf
                   <button   onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></button>

@@ -8,6 +8,7 @@ use App\Models\JenisMom;
 use App\Models\Mom;
 use App\Models\SbuModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MomController extends Controller
@@ -17,6 +18,7 @@ class MomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $moms = DB::table('tb_trans_moms')
@@ -112,14 +114,14 @@ class MomController extends Controller
             'notulen' => $request->notulen,
             'attendees' => $request->attendees,
             'crud' => 'C',
-            'usercreate' => 'ADZ',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-        //mengembalikan halaman ke /subholding
+        //mengembalikan halaman ke /mom
         return redirect('/mom');
         // return dd($request->oid_sbu);
     }
@@ -132,37 +134,27 @@ class MomController extends Controller
      */
     public function show(Mom $mom)
     {
+        //hanya mengambil data mom yang berelasi dengan SBU dan Jenis Mom
         $momData = DB::table('tb_trans_moms')
             ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
             ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
             ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
-            ->rightJoin('tb_trans_mom_details', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
-            ->rightJoin('tb_trans_documentations', 'tb_trans_documentations.oid_mom', '=', 'tb_trans_moms.oid_mom')
             ->get()->first();
-        if ($momData === null) {
-            $momData = DB::table('tb_trans_moms')
-                ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
-                ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
-                ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
-                ->get()->first();
+        //mengambil data mom detail
+        $detailMom = DB::table('tb_trans_mom_details')
+            ->where('tb_trans_mom_details.oid_mom', '=', $mom->oid_mom)
+            ->where(function ($query) {
+                $query->where('tb_trans_mom_details.crud', '=', 'C')
+                    ->orWhere('tb_trans_mom_details.crud', '=', 'U');
+            })->get();
+        // ->where('tb_trans_mom_details.oid_mom', '=', $mom->oid_mom)
+        // ->whereIn('tb_trans_mom_details.crud', '=', ['C', 'U'])
+        // ->get();
 
-            //memberikan default data ketika table mom belum memiliki relasi ke table detail mom
-            $momData->oid_high_issues = '-';
-            $momData->highlight_issues = '-';
-            $momData->due_date_info = '-';
-            $momData->issue_user = '-';
-            $momData->pic = '-';
-            $momData->informasi = '-';
-            $momData->progres_minggu_lalu = '-';
-            $momData->rencana_minggu_ini = '-';
-            $momData->sts_issue = '-';
-            $momData->ket = '-';
-            $momData->gambar = '-';
-        }
-        // dd($momData);
         return view('mom.detailmom', [
             'title' => 'Mom',
-            'mom' => $momData
+            'mom' => $momData,
+            'detailMom' => $detailMom
         ]);
     }
 
@@ -179,17 +171,7 @@ class MomController extends Controller
             ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
             ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
             ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
-            ->select(
-                'tb_trans_moms.id',
-                'tb_trans_moms.oid_mom',
-                'tb_trans_moms.oid_sbu',
-                'tb_trans_moms.oid_jen_mom',
-                'tb_trans_moms.agenda',
-                'tb_trans_moms.tgl_mom',
-                'tb_trans_moms.crud',
-                'tb_mas_sbus.sbu_name',
-                'tb_mas_mom_jenis.jenis_mom',
-            )
+            ->get()
             ->first();
 
         $sbuData = SbuModel::getAll();
@@ -212,6 +194,15 @@ class MomController extends Controller
      */
     public function update(Request $request, Mom $mom)
     {
+        $request->validate([
+            'oid_sbu' => 'required',
+            'oid_jen_mom' => 'required',
+            'agenda' => 'required',
+            'tempat' => 'required',
+            'notulen' => 'required',
+            'attendees' => 'required',
+            'tgl_mom' => 'required'
+        ]);
         //generator hari
         $timestamp = strtotime($request->tgl_mom);
         $dayNum = date(
@@ -246,11 +237,13 @@ class MomController extends Controller
             'oid_sbu' => $request->oid_sbu,
             'oid_jen_mom' => $request->oid_jen_mom,
             'agenda' => $request->agenda,
+            'tempat' => $request->tempat,
+            'notulen' => $request->notulen,
+            'attendees' => $request->attendees,
             'hari' => $day,
             'tgl_mom' => $request->tgl_mom,
             'crud' => 'U',
-            'userupdate' => null,
-            'userdelete' => null,
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         // return dd($mom);
@@ -266,14 +259,25 @@ class MomController extends Controller
      */
     public function destroy(Mom $mom)
     {
-        $newMom = array(
+        $update = array(
             'crud' => 'D',
             'userupdate' => 'Update-02',
+            'userdelete' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
-        // return dd($mom);
+
+        // Update Table Mom =============================
         Mom::where('oid_mom', $mom->oid_mom)
-            ->update($newMom);
+            ->update($update);
+
+        // Update Table Mom Details =============================
+        Detailmom::where('oid_mom', $mom->oid_mom)
+            ->update($update);
+
+        // Update Table Documnetations =============================
+        Documentation::where('oid_mom', $mom->oid_mom)
+            ->update($update);
+
         return redirect('/mom');
     }
 
@@ -287,25 +291,24 @@ class MomController extends Controller
     }
     public function storeDetail(Request $request, Mom $mom)
     {
+        // dd($request->file('dokumen')->getClientOriginalName());
         $request->validate([
-            'tanggalmulai' => 'required',
             'highlight_issues' => 'required',
             'due_date_info' => 'required',
             'pic' => 'required',
             'informasi' => 'required',
             'dokumen' => 'required',
         ]);
-        // dd($request);
-        // return $request->file('dokumen')->store('dok-image');
-        //update mom
-        $updatemom = [
-            'tgl_mulai' => $request->tanggalmulai,
-            'crud' => 'U',
-            'userupdate' => null,
-            'updated_at' => date('Y-m-d H:i:s'),
-        ];
-        //update di trans moms
-        DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updatemom);
+
+        // //update mom
+        // $updatemom = [
+        //     'tgl_mulai' => $request->tanggalmulai,
+        //     'crud' => 'U',
+        //     'userupdate' => null,
+        //     'updated_at' => date('Y-m-d H:i:s'),
+        // ];
+        // //update di trans moms
+        // DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updatemom);
 
         //create detail mom
         //men-generate angka pada oid
@@ -325,7 +328,7 @@ class MomController extends Controller
             'crud' => 'C',
             'sts_issue' => 'Open',
             'ket' => '-',
-            'usercreate' => 'ADZ',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -341,6 +344,7 @@ class MomController extends Controller
         }
         //kirim data
         $nameDoc = str_replace('dok-image/', '', $request->file('dokumen')->store('dok-image'));
+        $originalName = $request->file('dokumen')->getClientOriginalName();
         // dd($dataDokumen);
         // $dataDokument = '';
         // if ($request->file('dokumen')) {
@@ -350,15 +354,15 @@ class MomController extends Controller
         Documentation::create([
             'oid_document' => 'DOC-' . $numDoc . ($countDoc + 1),
             'oid_mom' => $mom->oid_mom,
+            'dokumen' => $originalName,
             'gambar' => $nameDoc,
             'crud' => 'C',
-            'usercreate' => 'user1',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-
-        return redirect('/mom');
+        return redirect('/mom' . '/' . $mom->oid_mom);
     }
 }

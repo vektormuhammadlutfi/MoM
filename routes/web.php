@@ -3,7 +3,6 @@
 use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
-use App\Http\Controllers\HoldingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MomDetailController;
 use App\Http\Controllers\RegisterController;
@@ -11,6 +10,8 @@ use App\Http\Controllers\SbuController;
 use App\Http\Controllers\SubholdingController;
 use App\Http\Controllers\JenisMomController;
 use App\Http\Controllers\MomController;
+use App\Http\Controllers\MomdescriptionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,53 +24,46 @@ use App\Http\Controllers\MomController;
 */
 
 
-// register
-// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+//=== R E G I S T E R ===
 Route::post('/register', [RegisterController::class, 'store']);
-// login
+//=== L O G I N ===
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-// logout
+//=== L O G O U T ===
 Route::get('/logout', [LoginController::class, 'logout']);
 
+//===== A U T H E N T I C A T I O N =====
 Route::middleware([auth::class])->group(function () {
     Route::get('/register', [RegisterController::class, 'index']);
 
+    //=== D A S H B O A R D ===
     Route::get('/dashboard', [DataController::class, 'dashboard']);
 
-    //Sub Holding
+    //=== S U B   H O L D I N G ===
     Route::resource('/subholding', SubholdingController::class);
 
-    // SBU
+    //=== S B U ===
     Route::resource('/sbu', SbuController::class);
 
-    //Branch
-    Route::get('/branch', [BranchController::class, 'index']);
-    Route::get('/detailbranch/{Branch}', [BranchController::class, 'detailBranch']);
-    Route::get('/editbranch/{Branch}', [BranchController::class, 'edit']);
-    Route::get('/createbranch', [BranchController::class, 'createBranch']);
-    Route::post('/store', [BranchController::class, 'store']);
-    Route::put('/update/{Branch}', [BranchController::class, 'update']);
-    Route::put('/deletebranch/{Branch}', [BranchController::class, 'destroy']);
+    //=== B R A N C H ===
+    Route::resource('/branch', BranchController::class);
 
-    //Jenis MOM
+    //=== J E N I S   M O M ===
     Route::resource('/jenismom', JenisMomController::class);
 
-    //MOM
-    Route::get('/mom', [MomController::class, 'index']);
-    Route::get('/mom/{mom}', [MomController::class, 'show']);
-    Route::get('/createmom', [MomController::class, 'create']);
-    Route::post('/storemom', [MomController::class, 'store']);
-    Route::get('/editmom/{mom}', [MomController::class, 'edit']);
-    Route::put('/updatemom/{mom}', [MomController::class, 'update']);
-    Route::put('/deletemom/{mom}', [MomController::class, 'destroy']);
+    //=== M O M ===
+    Route::resource('/mom', MomController::class);
     Route::get('/tambahdetail/{mom}', [MomController::class, 'addDetail']);
     Route::post('/storedetail/{mom}', [MomController::class, 'storeDetail']);
 
-    //Momdetail
-    Route::get('/momdetail', [MomDetailController::class, 'index']);
-    Route::get('/createmomdetail', [MomDetailController::class, 'create']);
-    // Route::get('/editmomdetail', [MomDetailController::class, 'show']);
-    Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
+    //=== M O M   D E T A I L ===
+    Route::resource('/momdetail', MomDetailController::class, [
+        'parameters' => [
+            'momdetail' => 'detailmom'
+        ]
+    ]);
+
+    //== M O M   D E S C R I P T I O N ==
+    Route::get('/momdescription', [MomdescriptionController::class, 'index']);
 });

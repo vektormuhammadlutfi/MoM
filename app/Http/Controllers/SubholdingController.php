@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubholdingModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SubholdingController extends Controller
@@ -62,7 +63,7 @@ class SubholdingController extends Controller
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',
-            'usercreate' => 'ADZ',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -112,7 +113,7 @@ class SubholdingController extends Controller
             'subholding' => $validatedData['subholding'],
             'oid_holding' => $validatedData['oid_holding'],
             'crud' => 'U',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputSubholding);
@@ -132,7 +133,7 @@ class SubholdingController extends Controller
     {
         $newSubholding = array(
             'crud' => 'D',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($subholding);

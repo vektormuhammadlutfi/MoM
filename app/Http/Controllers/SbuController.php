@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SbuModel;
 use App\Models\Subholding;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
@@ -76,8 +77,8 @@ class SbuController extends Controller
             'oid_subholding' => $request['oid_subholding'],
             'sbu_name' => $request['sbu_name'],
             'crud' => 'C',
-            'usercreate' => 'ADZ',
-            'userupdate' => 'null',
+            'usercreate' => Auth::user()->name,
+            'userupdate' => null,
             'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
@@ -159,7 +160,7 @@ class SbuController extends Controller
             'sbu_name' => $validatedData['sbu_name'],
             'oid_subholding' => $validatedData['subholding'],
             'crud' => 'U',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);
@@ -178,7 +179,7 @@ class SbuController extends Controller
     {
         $inputsbu = array(
             'crud' => 'D',
-            'userdelete' => 'delete-02',
+            'userdelete' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);

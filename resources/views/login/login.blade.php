@@ -12,9 +12,9 @@
 
 <body>
     <div class="login">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="container px-lg-5 px-md-3 d-flex flex-column justify-content-between"
+        <div class="row justify-content-lg-start justify-content-center">
+            <div class="col-lg-5">
+                <div class="container px-lg-5 px-md-3 d-flex flex-column justify-content-between "
                     style="height: 100vh;">
                     <div class="top">
                         <div class="login-header py-5">
@@ -41,7 +41,7 @@
                                     </div> 
                                 @endif
                                 @if (session()->has('loginError'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <div class="alert alert-danger alert-dismissible fade show" style="margin-top: -1.2rem" role="alert">
                                         {{session('loginError')}}
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
@@ -89,12 +89,16 @@
                         </div>
                     </div>
                     <div class="login-footer text-center">
-                        <p class="footer">2022 © Developed By ICT Kalla Group</p>
+                        <p class="footer">2022 © Developed By KIP Batch 3 Kampus Merdeka</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 d-none d-md-block">
-                <div class="login-bg" style="background-image: url('{{URL::asset('/assets/img/bg.png')}}');"></div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div class="login-bg" style="background-image: url('{{URL::asset('/assets/img/bg.png')}}');">
+                    <div class="bg-white d-inline-block p-3 ms-5" style="border-radius: 0 0 4px 4px">
+                        <img src="{{URL::asset('./assets/img/kalla.svg')}}" width="150" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="{{ url('/updatemom',$dataMomEdit->oid_mom) }}" method="post">
+        <form action="/mom/{{$dataMomEdit->oid_mom}}" method="post">
           @method('PUT')
           @csrf
           <div class="form-group">
@@ -62,14 +62,36 @@
             @enderror
           </div>    
           <div class="form-group">
-            <label for="waktuMom">Waktu</label>
-            <input type="date" value="{{ old('tgl_mom', $dataMomEdit->tgl_mom) }}" name="tgl_mom" class="form-control @error('waktu') is-invalid @enderror" id="waktuMom">
-            @error('waktu')
+            <label for="tempatMom">Tempat</label>
+            <input type="text" value="{{ old('tempat', $dataMomEdit->tempat) }}" name="tempat" class="form-control @error('tempat') is-invalid @enderror" placeholder="masukkan Tempat" id="tempatMom">
+            @error('tempat')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>    
+          <div class="form-group">
+            <label for="notulenMom">Notulen</label>
+            <input type="text" value="{{ old('notulen', $dataMomEdit->notulen) }}" name="notulen" class="form-control @error('notulen') is-invalid @enderror" placeholder="masukkan Notulen" id="notulenMom">
+            @error('notulen')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>    
+          <div class="form-group">
+            <label for="attendeesMom">Attendees</label>
+            <input type="text" value="{{ old('attendees', $dataMomEdit->attendees) }}" name="attendees" class="form-control @error('attendees') is-invalid @enderror" placeholder="masukkan Attendees" id="attendeesMom">
+            @error('attendees')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>    
+          <div class="form-group">
+            <label for="waktuMom">Waktu</label>
+            <input type="date" value="{{ old('tgl_mom', $dataMomEdit->tgl_mom) }}" name="tgl_mom" class="form-control @error('tgl_mom') is-invalid @enderror" id="waktuMom">
+            @error('tgl_mom')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>    
+          {{-- <input hidden name="user" value="{{auth()->user()->name}}"> --}}
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-success" >Edit</button>
+            <button type="submit" class="btn btn-success" >Edit</button>
           </div>
         </form>
       </div>

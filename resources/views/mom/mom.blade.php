@@ -26,7 +26,7 @@
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i>Mom</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/createmom" class="btn btn-info py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
+        <a href="/mom/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -60,14 +60,14 @@
                         </div>
                         {{-- <hr style="margin: 8px 0"> --}}
                         <div class="dropdown-item">
-                          <a href="{{url("/editmom/{$mom->oid_mom}")}}" class="text-decoration-none text-success">
+                          <a href="{{url("/mom/{$mom->oid_mom}/edit")}}" class="text-decoration-none text-yellow">
                             <i class="fa-solid fa-pen-to-square"></i> Edit 
                           </a>
                         </div>
                         {{-- <hr style="margin: 8px 0"> --}}
                         <div class="dropdown-item">
-                          <form action="{{url("/deletemom/{$mom->oid_mom}")}}" method="POST">
-                            @method('put')
+                          <form action="{{url("/mom/{$mom->oid_mom}")}}" method="POST">
+                            @method('delete')
                             @csrf
                             <button type="submit"  class="c-btn text-decoration-none text-danger" 
                             onClick="return confirm('Yakin Ingin Menghapus MoM ?')">
@@ -78,6 +78,11 @@
                       </div>
                     </div>
                   </td>
+                  <td class="width-min07"><a href="{{url("/mom/{$mom->oid_mom}")}}">{{$mom->oid_mom}}</a></td>
+                  <td>{{$mom->sbu_name}}</td>
+                  <td>{{$mom->jenis_mom}}</td>
+                  <td>{{$mom->agenda}}</td>
+                  {{-- Mengolah data waktu --}}
                   <?php $split = array_reverse(explode('-',$mom->tgl_mom));
                         $tanggal = '';
                         for($i = 0; $i<count($split); $i++){
@@ -88,10 +93,6 @@
                           }
                         }
                   ?>
-                  <td class="width-min07">{{$mom->oid_mom}}</td>
-                  <td>{{$mom->sbu_name}}</td>
-                  <td>{{$mom->jenis_mom}}</td>
-                  <td>{{$mom->agenda}}</td>
                   <td>{{$mom->hari}}, {{$tanggal}}</td>
                   <td>(ini Status)</td>
                   {{-- <td>{{$mom->sts_issue}}</td> --}}

@@ -29,7 +29,8 @@
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="/storemom" method="post">
+        <form action="/mom" method="post">
+          @method('post')
           @csrf
           <div class="form-group">
             <label for="SBU">SBU Name</label>
@@ -90,7 +91,7 @@
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-primary" >Create</button>
+            <button type="submit" class="btn btn-success" >Create</button>
           </div>
         </form>
       </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisMom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class JenisMomController extends Controller
@@ -23,7 +24,7 @@ class JenisMomController extends Controller
 
     public function create()
     {
-       //
+        //
     }
 
     public function store(Request $request)
@@ -32,7 +33,7 @@ class JenisMomController extends Controller
             'jenis_mom' => 'required'
         ]);
         $num = 0;
-        if  (JenisMom::all()->count() >=9 ){
+        if (JenisMom::all()->count() >= 9) {
             $num = "";
         };
         $count = JenisMom::all()->count();
@@ -40,9 +41,9 @@ class JenisMomController extends Controller
             'oid_jen_mom' => 'JM' . '-' . $num . $count + 1,
             'jenis_mom' => $request->jenis_mom,
             'crud' => 'C',
-            'usercreate' => 'Administrator',
-            'userupdate' => 'Administrator',
-            'userdelete' => 'Administrator',
+            'usercreate' => Auth::user()->name,
+            'userupdate' => null,
+            'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         );
@@ -51,14 +52,15 @@ class JenisMomController extends Controller
         return redirect('/jenismom');
     }
 
-    public function update(Request $request, JenisMom $jenismom){
+    public function update(Request $request, JenisMom $jenismom)
+    {
         $request->validate([
             'jenis_mom' => 'required'
         ]);
         $inputjenismom = array(
             'jenis_mom' => $request->jenis_mom,
             'crud' => 'U',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputjenismom);
@@ -69,12 +71,12 @@ class JenisMomController extends Controller
     {
         $statusdelete = array(
             'crud' => 'D',
-            'userupdate' => 'Delete-2',
+            'userdelete' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($statusdelete);
         JenisMom::where('oid_jen_mom', $jenismom->oid_jen_mom)
-        ->update($statusdelete);
+            ->update($statusdelete);
         return redirect('/jenismom');
     }
 }
