@@ -108,7 +108,8 @@
             </li>
           </ul>
         </div>
-
+        
+        @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="100">
           <h5 class="navbar-heading text-success m-0 p-0">Common</h5>
@@ -124,7 +125,9 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div> 
+        @endif 
+        @if (Auth::user()->usergroup == 'sysdev')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="150">
           <h5 class="navbar-heading text-success mb-0 pb-0">Master</h5>
@@ -151,8 +154,8 @@
             </li>
           </ul>
         </div>
-        
-
+        @endif
+        @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="200">
           <h5 class="navbar-heading text-success mb-0 pb-0">Transaksi</h5>
@@ -174,6 +177,7 @@
             </li>
           </ul>
         </div>
+        @endif
         <hr class="my-1 mt-1">
         <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
@@ -195,28 +199,22 @@
             </li>
           </ul>
         </div>
+        @if (Auth::user()->usergroup == 'sysdev')
         <hr class="my-1 mt-1">
         <div>
           <h5 class="navbar-heading text-success mb-0 pb-0">Settings</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
-              <a class="nav-link {{$title === 'User'? 'menu-active':''}}" href="/dashboard">
+              <a class="nav-link {{$title === 'User'? 'menu-active':''}}" href="/user">
                 <i class="fa-solid fa-person-chalkboard text-green"></i>User
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard">
+              <a class="nav-link {{$title === 'group'? 'menu-active':''}}" href="/group">
                 <i class="fa-solid fa-address-card text-primary"></i>Group
-              </a>
-              <a href="/register" class="nav-link {{$title === 'register'? 'menu-active':''}}">
-                <i class="ni ni-collection  text-red"></i>Test Register
-              </a>
-              <a href="/login" class="nav-link {{$title === 'login'? 'menu-active':''}}">
-                <i class="ni ni-collection  text-red"></i>Test Login
               </a>
             </li>
           </ul>
         </div>
+        @endif
       </div>
     </div>
   </nav>

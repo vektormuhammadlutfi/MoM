@@ -80,3 +80,13 @@
     color: black !important;
     font-weight: 600;
 }
+.btn-y {
+    background-color: rgb(247, 210, 0);
+    color: white;
+}
+.btn-y:hover{
+    color: white;
+}
+.font-16 {
+    font-size: 16px;
+}

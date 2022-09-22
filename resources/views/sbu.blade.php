@@ -168,7 +168,7 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        // console.log(data);
+        console.log(data);
 
         $('#sbu_name').val(data[2].replace('&amp;','&'));
         $('#subholding').val(data[3]);

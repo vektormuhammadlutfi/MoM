@@ -10,8 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    protected $table = 'Users';
+    protected $table = 'users';
     protected $guarded = ['id'];
+    public function getRouteKeyName()
+    {
+        return 'oid_user';
+    }
     // use HasApiTokens, HasFactory, Notifiable;
 
     /**
