@@ -14,60 +14,6 @@
       <a class="p-0 text-center mt-3" href="/dashboard">
         <img src="{{URL::asset('./logo.png')}}" width="170" alt="...">
       </a>
-      <!-- User -->
-      {{-- @auth 
-        <ul class="nav align-items-center d-md-none">
-          <li class="nav-item dropdown">
-            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="ni ni-bell-55"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-
-
-          <!-- user -->
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{URL::asset('/assets/img/theme/team-1-800x800.jpg')}}">
-                </span>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My profile</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
-            </div>
-          </li>
-        </ul>
-      @endauth --}}
       <!-- Collapse -->
       <div class="collapse navbar-collapse mt-4 mb-6 pt-0" id="sidenav-collapse-main">
         <!-- Collapse header -->
@@ -99,11 +45,11 @@
         </form>
         <!-- Navigation -->
         <div data-aos="fade-right" data-aos-delay="50">
-          <h5 class="navbar-heading text-success mb-0 pb-0">Dashboard</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Dashboard</h5>
           <ul class="navbar-nav mb-0 mt-0">
             <li class="nav-item ">
               <a class="nav-link {{$title === 'Dashboard'? 'menu-active':''}}" href="./dashboard">
-                <i class="ni ni-tv-2 text-yellow"></i> Dashboard
+                <i class="ni ni-tv-2 "></i> Dashboard
               </a>
             </li>
           </ul>
@@ -112,16 +58,16 @@
         @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="100">
-          <h5 class="navbar-heading text-success m-0 p-0">Common</h5>
+          <h5 class="navbar-heading text-kalla-secondary m-0 p-0">Common</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Provinsi'? 'menu-active':''}}" href="/dashboard">
-                <i class="fa-solid fa-map-location text-info"></i>Provinsi
+                <i class="fa-solid fa-map-location "></i>Provinsi
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Kabupaten/Kota'? 'menu-active':''}}" href="/dashboard">
-                <i class="fa-solid fa-map-location text-warning"></i>Kabupaten/Kota
+                <i class="fa-solid fa-map-location "></i>Kabupaten/Kota
               </a>
             </li>
           </ul>
@@ -130,26 +76,26 @@
         @if (Auth::user()->usergroup == 'sysdev')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="150">
-          <h5 class="navbar-heading text-success mb-0 pb-0">Master</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Master</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Sub Holding'? 'menu-active':''}}" href="/subholding">
-                <i class="fa-solid fa-building" style="color: #FFB200"></i>Sub Holding
+                <i class="fa-solid fa-building" ></i>Sub Holding
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'SBU'? 'menu-active':''}}" href="/sbu">
-                <i class="fa-solid fa-building text-red"></i>SBU
+                <i class="fa-solid fa-building "></i>SBU
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Branch'? 'menu-active':''}}" href="/branch">
-                <i class="fa-sharp fa-solid fa-house-user" style="color: #5BB318"></i> Branch
+                <i class="fa-sharp fa-solid fa-house-user" ></i> Branch
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Jenis Mom'? 'menu-active':''}}" href="/jenismom">
-                <i class="fa-sharp fa-solid fa-window-restore" style="color: #e018b5"></i>Jenis Mom
+                <i class="fa-sharp fa-solid fa-window-restore" ></i>Jenis Mom
               </a>
             </li>
           </ul>
@@ -158,21 +104,21 @@
         @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-1 mt-1">
         <div data-aos="fade-right" data-aos-delay="200">
-          <h5 class="navbar-heading text-success mb-0 pb-0">Transaksi</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Transaksi</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom'? 'menu-active':''}}" href="/mom">
-                <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom
+                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Mom Detail'? 'menu-active':''}}" href="/mom">
-                <i class="fa-sharp fa-solid fa-handshake-simple" style="color: #188fb3"></i>Mom Detail
+              <a class="nav-link {{$title === 'Mom Detail'? 'menu-active':''}}" href="/momdetail">
+                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom Detail
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Mom Description'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa fa-list-alt" aria-hidden="true" style="color: #bb0000"></i>Mom Description
+              <a class="nav-link {{$title === 'Mom Description'? 'menu-active':''}}" href="/momdescription">
+                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Description
               </a>
             </li>
           </ul>
@@ -180,21 +126,21 @@
         @endif
         <hr class="my-1 mt-1">
         <div>
-          <h5 class="navbar-heading text-success mb-0 pb-0">Report</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Report</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-sharp fa-solid fa-file text-red" ></i>Mom
+                <i class="fa-sharp fa-solid fa-file " ></i>Mom
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Doc Mom'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-solid fa-floppy-disk" style="color: #005b40"></i>Doc Mom
+                <i class="fa-solid fa-floppy-disk" ></i>Doc Mom
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa fa-folder-open" aria-hidden="true" style="color: #fffb00"></i>Summary
+                <i class="fa fa-folder-open" aria-hidden="true" ></i>Summary
               </a>
             </li>
           </ul>
@@ -202,14 +148,14 @@
         @if (Auth::user()->usergroup == 'sysdev')
         <hr class="my-1 mt-1">
         <div>
-          <h5 class="navbar-heading text-success mb-0 pb-0">Settings</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Settings</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'User'? 'menu-active':''}}" href="/user">
-                <i class="fa-solid fa-person-chalkboard text-green"></i>User
+                <i class="fa-solid fa-person-chalkboard"></i>User
               </a>
               <a class="nav-link {{$title === 'group'? 'menu-active':''}}" href="/group">
-                <i class="fa-solid fa-address-card text-primary"></i>Group
+                <i class="fa-solid fa-address-card"></i>Group
               </a>
             </li>
           </ul>

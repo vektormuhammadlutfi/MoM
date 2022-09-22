@@ -22,32 +22,34 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Edit Mom Detail</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Edit Mom Detail</h3>
         <a href="/momdetail" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form>
+        <form action="/momdetail/{{$detail->oid_high_issues}}" method="post">
+          @method('put')
+          @csrf
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="high_issues">Highlight Issues</label>
+            <input type="text" name="highlight_issues" class="form-control" value="{{$detail->highlight_issues}}" id="high_issues" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="ddi">Due Date Info</label>
+            <input type="text" name="due_date_info" class="form-control" value="{{$detail->due_date_info}}" placeholder="Masukkan nama sbu" id="ddi" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="pic">PIC</label>
+            <input type="text" name="pic" class="form-control" value="{{$detail->pic}}" placeholder="Masukkan nama sbu" id="pic" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nama SBU</label>
-            <input type="text" class="form-control" placeholder="Masukkan nama sbu" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="info">Informasi</label>
+            <input type="text" name="informasi" class="form-control" value="{{$detail->informasi}}" placeholder="Masukkan nama sbu" id="info" aria-describedby="emailHelp">
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-success">Edit</button>
+            <button type="submit" class="btn btn-warning">Edit</button>
           </div>
       </form>
       </div>

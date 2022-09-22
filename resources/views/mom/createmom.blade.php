@@ -22,14 +22,15 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #181bb3"></i> Tambah Data MOM</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Tambah Data MOM</h3>
         <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
 
       <!-- detail -->
       <div class="col-lg-12 mx-auto">
-        <form action="/storemom" method="post">
+        <form action="/mom" method="post">
+          @method('post')
           @csrf
           <div class="form-group">
             <label for="SBU">SBU Name</label>
@@ -90,7 +91,7 @@
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
-            <button type="submit" class="btn py-1 btn-primary" >Create</button>
+            <button type="submit" class="btn btn-success" >Create</button>
           </div>
         </form>
       </div>

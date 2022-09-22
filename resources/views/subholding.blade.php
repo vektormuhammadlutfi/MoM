@@ -13,16 +13,12 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div data-aos="fade-up" class="card shadow-lg bg-body" style="
-    margin: -150px auto 90px auto;
-    background: hsla(0, 0%, 100%, 0.8);
-    backdrop-filter: blur(30px);
-    width: 95%">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <h3 class="mb-0"><i class="fa-solid fa-list text-red"></i> Data Sub Holding</h3>
-          <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
+          <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data Sub Holding</h3>
+          <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
         </div>
         <hr class="mt-2 mb-4">
         {{-- table --}}
@@ -48,11 +44,11 @@
                   <td class="width-min07">{{$item->holding}}</td>
                   <td class="width-min07" style="height:100%">
                     <div class="d-flex">
-                      <a href="#" class="btn btn-success btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a> 
+                      <a href="#" class="btn btn-warning btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a> 
                       <form action="/subholding/{{$item->oid_subholding}}"  id="delete-post-form" method="POST">
                         @method('delete')
                         @csrf
-                        <button href="#" class="btn btn-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus Subholding ?')">
+                        <button href="#" class="btn btn-outline-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus Subholding ?')">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </form>
@@ -106,7 +102,7 @@
           </select>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Create</button>
+          <button type="submit" class="btn btn-success">Create</button>
         </div>
       </form>
 

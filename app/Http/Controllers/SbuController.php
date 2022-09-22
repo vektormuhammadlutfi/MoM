@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SbuModel;
 use App\Models\Subholding;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
@@ -54,30 +55,24 @@ class SbuController extends Controller
             'sbu_name' => 'required',
             'oid_subholding' => 'required',
         ]);
+
+        //men-generate angka pada oid
+        $max_id = DB::table('tb_mas_sbus')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        $countSbu = count(SbuModel::all());
-        if ($countSbu >= 9) {
+        if ($newId >= 9) {
             $num = '';
         }
+        $oid = 'SBU-' . $num . $newId;
 
-        // $inputsbu = array(
-        //     'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
-        //     'oid_subholding' => $validatedData['subholding'],
-        //     'sbu_name' => $validatedData['sbu_name'],
-        //     'crud' => 'C',
-        //     'usercreate' => 'ADZ',
-        //     'userupdate' => 'null',
-        //     'userdelete' => 'null',
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s')
-        // );
+
         SbuModel::create([
-            'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
+            'oid_sbu' => $oid,
             'oid_subholding' => $request['oid_subholding'],
             'sbu_name' => $request['sbu_name'],
             'crud' => 'C',
-            'usercreate' => 'ADZ',
-            'userupdate' => 'null',
+            'usercreate' => Auth::user()->name,
+            'userupdate' => null,
             'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
@@ -159,7 +154,7 @@ class SbuController extends Controller
             'sbu_name' => $validatedData['sbu_name'],
             'oid_subholding' => $validatedData['subholding'],
             'crud' => 'U',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);
@@ -178,7 +173,7 @@ class SbuController extends Controller
     {
         $inputsbu = array(
             'crud' => 'D',
-            'userdelete' => 'delete-02',
+            'userdelete' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);

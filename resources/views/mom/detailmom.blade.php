@@ -24,122 +24,137 @@
     <div class="card-body">
 
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Detail MOM</h3>
-        <a href="/mom" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Detail MOM</h3>
+        <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
       </div>
       <hr class="mt-4 mb-4 pb-4">
-
-      <!-- detail -->
-      <div class="container">
-        <div class="d-flex justify-content-between">
-
-          <div class="container ">
-            <div class="d-flex align-items-center" style="min-height:100px">
-              <h4 class="col-4">Oid MOM</h4>
-              <p class="col-8">{{$mom->oid_mom}}</p>
-            </div>
-            <hr class="mt-0">
-          </div>
-
-          <div class="container ">
-            <div class="d-flex align-items-center" style="min-height:100px">
-              <h4 class="col-4">SBU Name</h4>
-              <p class="col-8">{{$mom->sbu_name}}</p>
-            </div>
-            <hr class="mt-0">
-          </div>
-        </div>
-
-        <div class="container mt-5">
-          <div class="row">
-            <h4 class="col">Jenis MOM</h4>
-            <p class="col">{{$mom->jenis_mom}} </p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Agenda</h4>
-            <p class="col">{{$mom->agenda}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Tempat</h4>
-            <p class="col">{{$mom->tempat}}</p>
+      <div class="row">
+        <div class="col-md-6">
+          <div style="overflow-x: auto">
+            <table style="width: 100%">
+              <tr>
+                <td class="p-2 m-0"><h4>OID MOM</h4></td>
+                <td class="p-2">{{$mom->oid_mom}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>SBU Name</h4></td>
+                <td class="p-2">{{$mom->sbu_name}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>Jenis MOM</h4></td>
+                <td class="p-2">{{$mom->jenis_mom}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>Agenda</h4></td>
+                <td class="p-2">{{$mom->agenda}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>Tempat</h4></td>
+                <td class="p-2">{{$mom->tempat}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>Notulen</h4></td>
+                <td class="p-2">{{$mom->notulen}}</td>
+              </tr>
+              <tr>
+                <td class="p-2 m-0"><h4>Attendees</h4></td>
+                <td class="p-2">{{$mom->attendees}}</td>
+              </tr>
+            </table>
           </div>
         </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Notulen</h4>
-            <p class="col">{{$mom->notulen}}</p>
+        <div class="col-md-6">
+          <div class="border p-3 rounded-3" style="border-radius: 6px">
+            <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post" enctype="multipart/form-data">
+              @method('Post')
+              @csrf
+              {{-- Tanggal Mulai --}}
+              {{-- <div class="form-group">
+                <label for="tanggalmulai">Tanggal Mulai</label>
+                <input type="date" name="tanggalmulai" class="form-control @error('tanggalmulai') is-invalid @enderror"  id="tanggalmulai">
+                @error('tanggalmulai')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div> --}}
+              {{-- Highlight Issues --}}
+              <div class="form-group">
+                <label for="highlight_issues">Highlight Issues</label>
+                <input type="text" name="highlight_issues" class="form-control @error('highlight_issues') is-invalid @enderror" placeholder="Input Highlight Issues" id="highlight_issues">
+                @error('highlight_issues')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div>
+              {{-- Due Date Info --}}
+              <div class="form-group">
+                <label for="due_date_info">Due Date Info</label>
+                <input type="text" name="due_date_info" class="form-control @error('due_date_info') is-invalid @enderror" placeholder="Input Due Date Info" id="due_date_info">
+                @error('due_date_info')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div>
+              {{-- PIC --}}
+              <div class="form-group">
+                <label for="pic">PIC</label>
+                <input type="text" name="pic" class="form-control @error('pic') is-invalid @enderror" placeholder="Input PIC" id="pic">
+                @error('pic')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div>
+              {{-- Informasi --}}
+              <div class="form-group">
+                <label for="informasi">Informasi</label>
+                <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" placeholder="Input Informasi" id="informasi">
+                @error('informasi')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div>
+              {{-- Dokumen --}}
+              <div class="form-group">
+                <label for="dokumen">Dokumen</label>
+                <input type="file" name="dokumen"  class="form-control @error('dokumen') is-invalid @enderror" placeholder="Input Dokumen" id="dokumen">
+                @error('dokumen')
+                  <div class="invalid-feedback">{{ $message }} </div>        
+                @enderror
+              </div>
+              <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-success">Tambah Detail</button>
+              </div>
+            </form>
           </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Attendees</h4>
-            <p class="col">{{$mom->attendees}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Highlight Issues</h4>
-            <p class="col">{{$mom->highlight_issues}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Due Date Info</h4>
-            <p class="col">{{$mom->due_date_info}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">PIC</h4>
-            <p class="col">{{$mom->pic}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Informasi</h4>
-            <p class="col">{{$mom->informasi}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="row">
-            <h4 class="col">Status Issues</h4>
-            <p class="col">{{$mom->sts_issue}}</p>
-          </div>
-        </div>
-        <hr class="mt-0">
-        <div class="container ">
-          <div class="m-0">
-            <h4 class="col">Dokumentasi</h4>
-            <img src="{{asset('storage/dok-image/'.$mom->gambar)}}" style="max-width:300px" alt="tidak ada foto">
-          </div>
-        </div>
-        <hr class="mt-0">
-
-        <div class="d-flex justify-content-end">
-          <a href="/tambahdetail/{{$mom->oid_mom}}" class="btn btn-info py-1 px-3 
-              {{$mom->oid_high_issues === '-'? '':'d-none'}}">
-            <i class="fa-solid fa-plus"></i> Lengkapi Detail
-          </a>
-          <a href="/editdetail/{{$mom->oid_mom}}" class="btn btn-outline-primary py-1 px-3 
-              {{$mom->oid_high_issues === '-'? 'd-none':''}}">
-            <i class="fa-solid fa-plus"></i> Edit Detail
-          </a>
         </div>
       </div>
-      <!-- end detail -->
+      <hr>
+      {{-- Table Detail --}}
+      <h3 class="mb-5" >Table Detail MOM</h3>
+      <div class="table-responsive">
+        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
+          <thead >
+              <tr>
+                  <th class="text-center" style="font-size: 13px">No</th>
+                  <th class="text-center" style="font-size: 13px">OID</th>
+                  <th class="text-center" style="font-size: 13px">Highlight Issues</th>
+                  <th class="text-center" style="font-size: 13px">Due Date Info</th>
+                  {{-- <th style="font-size: 13px">Issue User</th> --}}
+                  <th class="text-center" style="font-size: 13px">PIC</th>
+                  <th class="text-center" style="font-size: 13px">Informasi</th>
+              </tr>
+          </thead>
+          <tbody>
+              @foreach ($detailMom as $item)
+                 <tr>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td class="width-min05">{{$item->oid_high_issues}}</td>
+                    <td class="width-min07">{{$item->highlight_issues}}</td>
+                    <td class="width-min07">{{$item->due_date_info}}</td>
+                    <td class="width-min07">{{$item->pic}}</td>
+                    <td class="width-min07">{{$item->informasi}}</td>
+                </tr> 
+              @endforeach
+              
+              {{-- hh --}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

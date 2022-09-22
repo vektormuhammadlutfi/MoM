@@ -58,22 +58,6 @@
                     </div>
                   </div>
                 </div>
-                {{-- <div class="row align-items-center justify-content-between">
-                    <div class="col-lg-6 col-12">
-                        <div class="form-check">
-                            <input class="form-check-input " type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Remember Me
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 text-lg-end mt-lg-0 mt-3">
-                        <div class="d-grid d-lg-block">
-                            <button class="btn btn-success rounded-1 px-4 py-2">LOGIN</button>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="row align-items-center justify-content-end">
                   <div class="col-lg-6 col-12 text-lg-end mt-lg-0 mt-3">
                       <div class="d-grid d-lg-block">
@@ -85,8 +69,15 @@
             </div>
           </div>
           <div class="login-footer text-center">
-            <p class="footer">2022 © Developed By ICT Kalla Group</p>
+            <p class="footer">2022 © Developed By KIP Batch 3 Kampus Merdeka</p>
           </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div class="login-bg" style="background-image: url('{{URL::asset('/assets/img/bg.png')}}');">
+                    <div class="bg-white d-inline-block p-3 ms-5" style="border-radius: 0 0 4px 4px">
+                        <img src="{{URL::asset('./assets/img/kalla.svg')}}" width="150" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
       <div class="col-md-6 d-none d-md-block wr-55">

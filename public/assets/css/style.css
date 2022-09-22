@@ -1,6 +1,11 @@
+.text-kalla-secondary {
+    color: #FBAF40;
+}
+
 .width-max1 {
     max-width: 100px;
 }
+
 .width-max2 {
     max-width: 200px;
 }
@@ -67,7 +72,6 @@
     border: none;
     background-color: transparent;
 }
-
 /* .nav-item .menu-active {
     background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
     color: white !important;
@@ -75,11 +79,6 @@
     font-weight: 700;
 } */
 
-.menu-active {
-    border-left: 4px solid #5E72E4;
-    color: black !important;
-    font-weight: 600;
-}
 .btn-y {
     background-color: rgb(247, 210, 0);
     color: white;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubholdingModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SubholdingController extends Controller
@@ -50,19 +51,21 @@ class SubholdingController extends Controller
         ]);
 
         //men-generate angka pada oid
-        $count = count(SubholdingModel::all());
+        $max_id = DB::table('tb_mas_sub_holdings')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        if ($count >= 9) {
+        if ($newId >= 9) {
             $num = '';
         }
+        $oid = 'SH-' . $num . $newId;
 
         //membuat data baru ke database
         SubholdingModel::create([
-            'oid_subholding' => 'SH-' . $num . ($count + 1),
+            'oid_subholding' => $oid,
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',
-            'usercreate' => 'ADZ',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -112,7 +115,7 @@ class SubholdingController extends Controller
             'subholding' => $validatedData['subholding'],
             'oid_holding' => $validatedData['oid_holding'],
             'crud' => 'U',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputSubholding);
@@ -132,7 +135,7 @@ class SubholdingController extends Controller
     {
         $newSubholding = array(
             'crud' => 'D',
-            'userupdate' => 'Update-02',
+            'userupdate' => Auth::user()->name,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($subholding);
