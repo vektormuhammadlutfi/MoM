@@ -24,7 +24,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Mom Detail</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Mom Detail</h3>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -58,7 +58,12 @@
                       </a>
                       <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
                         <div class="dropdown-item">
-                          <a href="{{url("/momdetail/{$detail->oid_high_issues}")}}" class="text-decoration-none text-yellow">
+                          <a href="{{url("/mom/{$detail->oid_mom}")}}" class="text-decoration-none text-primary">
+                            <i class="fa-regular fa-eye"></i> Lihat MOM 
+                          </a>
+                        </div>
+                        <div class="dropdown-item">
+                          <a href="{{url("/momdetail/{$detail->oid_high_issues}/edit")}}" class="text-decoration-none text-yellow">
                             <i class="fa-solid fa-pen-to-square"></i> Edit 
                           </a>
                         </div>

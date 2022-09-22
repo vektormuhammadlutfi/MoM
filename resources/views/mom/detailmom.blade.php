@@ -24,12 +24,12 @@
     <div class="card-body">
 
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Detail MOM</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Detail MOM</h3>
         <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
       </div>
       <hr class="mt-4 mb-4 pb-4">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div style="overflow-x: auto">
             <table style="width: 100%">
               <tr>
@@ -63,7 +63,7 @@
             </table>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="border p-3 rounded-3" style="border-radius: 6px">
             <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post" enctype="multipart/form-data">
               @method('Post')
@@ -127,27 +127,27 @@
       {{-- Table Detail --}}
       <h3 class="mb-5" >Table Detail MOM</h3>
       <div class="table-responsive">
-        <table id="example" class="mt-5 table-striped table-bordered table" style="min-width: 400px">
+        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
           <thead >
               <tr>
-                  <th style="font-size: 13px">No</th>
-                  <th style="font-size: 13px">OID</th>
-                  <th style="font-size: 13px">Highlight Issues</th>
-                  <th style="font-size: 13px">Due Date Info</th>
+                  <th class="text-center" style="font-size: 13px">No</th>
+                  <th class="text-center" style="font-size: 13px">OID</th>
+                  <th class="text-center" style="font-size: 13px">Highlight Issues</th>
+                  <th class="text-center" style="font-size: 13px">Due Date Info</th>
                   {{-- <th style="font-size: 13px">Issue User</th> --}}
-                  <th style="font-size: 13px">PIC</th>
-                  <th style="font-size: 13px">Informasi</th>
+                  <th class="text-center" style="font-size: 13px">PIC</th>
+                  <th class="text-center" style="font-size: 13px">Informasi</th>
               </tr>
           </thead>
           <tbody>
               @foreach ($detailMom as $item)
                  <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$item->oid_high_issues}}</td>
-                    <td>{{$item->highlight_issues}}</td>
-                    <td>{{$item->due_date_info}}</td>
-                    <td>{{$item->pic}}</td>
-                    <td>{{$item->informasi}}</td>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td class="width-min05">{{$item->oid_high_issues}}</td>
+                    <td class="width-min07">{{$item->highlight_issues}}</td>
+                    <td class="width-min07">{{$item->due_date_info}}</td>
+                    <td class="width-min07">{{$item->pic}}</td>
+                    <td class="width-min07">{{$item->informasi}}</td>
                 </tr> 
               @endforeach
               

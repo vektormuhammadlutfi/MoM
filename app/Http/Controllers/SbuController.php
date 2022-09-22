@@ -55,25 +55,19 @@ class SbuController extends Controller
             'sbu_name' => 'required',
             'oid_subholding' => 'required',
         ]);
+
+        //men-generate angka pada oid
+        $max_id = DB::table('tb_mas_sbus')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        $countSbu = count(SbuModel::all());
-        if ($countSbu >= 9) {
+        if ($newId >= 9) {
             $num = '';
         }
+        $oid = 'SBU-' . $num . $newId;
 
-        // $inputsbu = array(
-        //     'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
-        //     'oid_subholding' => $validatedData['subholding'],
-        //     'sbu_name' => $validatedData['sbu_name'],
-        //     'crud' => 'C',
-        //     'usercreate' => 'ADZ',
-        //     'userupdate' => 'null',
-        //     'userdelete' => 'null',
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s')
-        // );
+
         SbuModel::create([
-            'oid_sbu' => 'SBU' . '-' . $num . $countSbu + 1,
+            'oid_sbu' => $oid,
             'oid_subholding' => $request['oid_subholding'],
             'sbu_name' => $request['sbu_name'],
             'crud' => 'C',

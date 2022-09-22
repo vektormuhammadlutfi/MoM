@@ -22,7 +22,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #181bb3"></i> Tambah Data MOM</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Tambah Data MOM</h3>
         <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">

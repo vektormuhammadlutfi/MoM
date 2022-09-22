@@ -51,15 +51,17 @@ class SubholdingController extends Controller
         ]);
 
         //men-generate angka pada oid
-        $count = count(SubholdingModel::all());
+        $max_id = DB::table('tb_mas_sub_holdings')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        if ($count >= 9) {
+        if ($newId >= 9) {
             $num = '';
         }
+        $oid = 'SH-' . $num . $newId;
 
         //membuat data baru ke database
         SubholdingModel::create([
-            'oid_subholding' => 'SH-' . $num . ($count + 1),
+            'oid_subholding' => $oid,
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',

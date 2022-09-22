@@ -57,13 +57,18 @@ class BranchController extends Controller
             'phone' => 'required',
             'ket' => 'required'
         ]);
-        $num = 0;
-        if (BranchModel::all()->count() >= 9) {
+
+        //men-generate angka pada oid
+        $max_id = DB::table('tb_mas_branches')->max('id');
+        $newId = (int) $max_id + 1;
+        $num = '0';
+        if ($newId >= 9) {
             $num = '';
         }
-        $count = BranchModel::all()->count();
+        $oid = 'BR-' . $num . $newId;
+
         $inputbranch = array(
-            'oid_branch' => 'BR-' . $num . $count + 1,
+            'oid_branch' => $oid,
             'branch_name' => $request->branch_name,
             'oid_sbu' => $request->sbu_name,
             'address' => $request->address,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Detailmom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MomDetailController extends Controller
 {
@@ -65,7 +66,10 @@ class MomDetailController extends Controller
      */
     public function edit(Detailmom $detailmom)
     {
-        //
+        return view('momdetail.editmomdetail', [
+            'title' => 'Mom Detail',
+            'detail' => $detailmom
+        ]);
     }
 
     /**
@@ -77,7 +81,25 @@ class MomDetailController extends Controller
      */
     public function update(Request $request, Detailmom $detailmom)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'highlight_issues' => 'required',
+            'due_date_info' => 'required',
+            'pic' => 'required',
+            'informasi' => 'required'
+        ]);
+        $updateMomDetail = [
+            'highlight_issues' => $request->highlight_issues,
+            'due_date_info' => $request->due_date_info,
+            'pic' => $request->pic,
+            'informasi' => $request->informasi,
+            'crud' => 'U',
+            'userupdate' => Auth::user()->name,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        //update
+        DB::table('tb_trans_mom_details')->where('oid_high_issues', $detailmom->oid_high_issues)->update($updateMomDetail);
+        return redirect('/momdetail');
     }
 
     /**

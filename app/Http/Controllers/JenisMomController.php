@@ -32,18 +32,24 @@ class JenisMomController extends Controller
         $request->validate([
             'jenis_mom' => 'required'
         ]);
-        $num = 0;
-        if (JenisMom::all()->count() >= 9) {
-            $num = "";
-        };
+
+        //men-generate angka pada oid
+        $max_id = DB::table('tb_mas_mom_jenis')->max('id');
+        $newId = (int) $max_id + 1;
+        $num = '0';
+        if ($newId >= 9) {
+            $num = '';
+        }
+        $oid = 'JM-' . $num . $newId;
+
         $count = JenisMom::all()->count();
         $inputjenismom = array(
-            'oid_jen_mom' => 'JM' . '-' . $num . $count + 1,
+            'oid_jen_mom' => $oid,
             'jenis_mom' => $request->jenis_mom,
             'crud' => 'C',
             'usercreate' => Auth::user()->name,
-            'userupdate' => null,
-            'userdelete' => null,
+            'userupdate' => 'null',
+            'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         );

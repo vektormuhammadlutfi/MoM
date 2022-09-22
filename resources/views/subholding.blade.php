@@ -13,15 +13,11 @@
 
 
 {{-- content utama dibawah ini yaa --}}
-<div data-aos="fade-up" class="card shadow-lg bg-body" style="
-    margin: -150px auto 90px auto;
-    background: hsla(0, 0%, 100%, 0.8);
-    backdrop-filter: blur(30px);
-    width: 95%">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between">
-          <h3 class="mb-0"><i class="fa-solid fa-list text-red"></i> Data Sub Holding</h3>
+          <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data Sub Holding</h3>
           <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
         </div>
         <hr class="mt-2 mb-4">

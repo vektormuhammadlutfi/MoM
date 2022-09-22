@@ -24,7 +24,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #e018b5"></i> Jenis MOM</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Jenis MOM</h3>
         <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
       </div>
       <hr class="mt-2 mb-4">
@@ -99,7 +99,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn" style="background-color: #e018b5; color:white">Create</button>
+            <button type="submit" class="btn btn-success">Create</button>
           </div>
       </form>
       

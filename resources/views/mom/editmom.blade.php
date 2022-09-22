@@ -22,7 +22,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Edit MoM</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Edit MoM</h3>
         <a href="/branch" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
@@ -50,7 +50,7 @@
                 <option class="dropdown-item" value="{{ $itemJM->oid_jen_mom }}" {{ ($itemJM->oid_jen_mom == $dataMomEdit->oid_jen_mom)?'selected':'' }}>{{ $itemJM->jenis_mom }}</option>
               @endforeach
             </select>
-            @error('sbu_name')
+            @error('jenis_mom')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>

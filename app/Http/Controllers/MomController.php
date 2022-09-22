@@ -70,10 +70,14 @@ class MomController extends Controller
         ]);
 
         //men-generate angka pada oid
+        $max_id = DB::table('tb_trans_moms')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        if (count(Mom::all()) >= 9) {
+        if ($newId >= 9) {
             $num = '';
         }
+        $oid = 'MOM-' . $num . $newId;
+
         //hari
         $timestamp = strtotime($request->tanggal);
         $dayNum = date('w', $timestamp);
@@ -104,7 +108,7 @@ class MomController extends Controller
 
         //membuat data baru ke database
         Mom::create([
-            'oid_mom' => 'MOM-' . $num . (count(Mom::all()) + 1),
+            'oid_mom' => $oid,
             'oid_sbu' => $request->oid_sbu,
             'oid_jen_mom' => $request->oid_jen_mom,
             'agenda' => $request->agenda,
@@ -312,14 +316,19 @@ class MomController extends Controller
 
         //create detail mom
         //men-generate angka pada oid
-        $detailMom = Detailmom::all(); //data di database detail moms
+        $max_id = DB::table('tb_trans_mom_details')->max('id');
+        $newId = (int) $max_id + 1;
         $num = '0';
-        if (count($detailMom) >= 9) {
+        if (
+            $newId >= 9
+        ) {
             $num = '';
         }
+        $oid = 'MD-' . $num . $newId;
+
         //kirim data
         Detailmom::create([
-            'oid_high_issues' => 'MD-' . $num . (count($detailMom) + 1),
+            'oid_high_issues' => $oid,
             'oid_mom' => $mom->oid_mom,
             'highlight_issues' => $request->highlight_issues,
             'due_date_info' => $request->due_date_info,
@@ -337,22 +346,22 @@ class MomController extends Controller
 
         //create documentation
         //men-generate oid documentation
-        $countDoc = count(Documentation::all());
+        $max_id = DB::table('tb_trans_documentations')->max('id');
+        $newId = (int) $max_id + 1;
         $numDoc = '0';
-        if ($countDoc >= 9) {
+        if (
+            $newId >= 9
+        ) {
             $numDoc = '';
         }
-        //kirim data
+        $oid_Doc = 'DOC-' . $numDoc . $newId;
+
+        //kirim data (file)
         $nameDoc = str_replace('dok-image/', '', $request->file('dokumen')->store('dok-image'));
         $originalName = $request->file('dokumen')->getClientOriginalName();
-        // dd($dataDokumen);
-        // $dataDokument = '';
-        // if ($request->file('dokumen')) {
-        //     $dataDokument = $request->file('dokumen')->store('dok-image');
-        // }
 
         Documentation::create([
-            'oid_document' => 'DOC-' . $numDoc . ($countDoc + 1),
+            'oid_document' => $oid_Doc,
             'oid_mom' => $mom->oid_mom,
             'dokumen' => $originalName,
             'gambar' => $nameDoc,

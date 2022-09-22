@@ -23,9 +23,14 @@ use App\Http\Controllers\MomdescriptionController;
 |
 */
 
+//Test
+Route::get('/profile', function () {
+    return view('/profile', ['title' => 'Profile']);
+});
 
 //=== R E G I S T E R ===
 Route::post('/register', [RegisterController::class, 'store']);
+
 //=== L O G I N ===
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
