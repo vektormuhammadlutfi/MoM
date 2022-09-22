@@ -67,7 +67,7 @@ class UsersController extends Controller
     	if (strlen($incrementKode) == 1) {
     		$addNol = "0";
     	}
-    	$kodeBaru = "UR-".$addNol.$incrementKode;
+    	$kodeBaru = "U-".$addNol.$incrementKode;
 
         $validateData = [
             'oid_user' => $kodeBaru,

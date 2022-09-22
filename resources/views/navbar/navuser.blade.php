@@ -33,6 +33,7 @@
       </a>
       <div class="dropdown-divider"></div>
       <form action="{{ url('/logout') }}" method="post">
+        @method('post')
         @csrf
         <button class="dropdown-item">
           <i class="ni ni-user-run"></i>

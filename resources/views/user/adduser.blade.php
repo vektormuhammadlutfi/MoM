@@ -85,6 +85,7 @@
                 </div>
               </div>
               <div class="text-center">
+                <a href="/user" class="btn btn-secondary mt-4">Back</a>
                 <button type="submit" class="btn btn-success mt-4">Create User</button>
               </div>
               {{-- <div class="text-center">

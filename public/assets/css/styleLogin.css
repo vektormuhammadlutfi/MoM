@@ -52,11 +52,20 @@
     margin-top: -4px;
     margin-left: -0.8rem;
 }
-@media screen and (min-width:900px) {
+@media (min-width: 990px) and (max-width: 1400px) {
+    .login .content-left {
+        width: 50%;
+    }
+
+    .login .content-right {
+        width: 50%;
+    }
+}
+/* @media screen and (min-width:900px) {
     .wr-45 {
         width: 45%;
     } 
     .wr-55 {
         width: 55%;
     } 
-}
+} */
