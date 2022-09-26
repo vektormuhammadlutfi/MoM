@@ -7,7 +7,13 @@
           <span class="mb-0 text-sm  font-weight-bold">Selamat Datang | {{auth()->user()->username}}</span>
         </div>
         <span class="avatar avatar-sm rounded-circle">
-          <img alt="Image placeholder" src="{{URL::asset('/assets/img/theme/team-4-800x800.jpg')}}">
+          @if (auth()->user()->profile_photo_path)
+            <div>
+              <img src="{{ asset('storage/'.auth()->user()->profile_photo_path) }}" class="rounded-circle" alt="{{ auth()->user()->username }}">
+            </div>
+          @else
+            <img src="../assets/img/default_profil.png" class="rounded-circle" alt="{{ auth()->user()->username }}">
+          @endif
         </span>
       </div>
     </a>

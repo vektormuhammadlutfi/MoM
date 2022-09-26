@@ -13,7 +13,7 @@
   <div class="card">
     <div class="card-body">
       @if (session()->has('success'))
-      <div class="alert alert-success alert-dismissible fade show mb-5 px-4" role="alert">
+      <div class="alert alert-success bg-success alert-dismissible fade show mb-5 px-4" role="alert">
       {{ session('success') }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

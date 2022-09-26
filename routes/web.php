@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function (
     Route::get('/dashboard', [DataController::class, 'dashboard'])->name('dashboard');
     // profile
     Route::get('/profile', [ProfileController::class, 'index']);
+    Route::put('/editprofile/{user}', [ProfileController::class, 'editprofile']);
+    Route::put('/changepassword', [ProfileController::class, 'changepassword']);
+    Route::put('/changeprofile', [ProfileController::class, 'changeprofile']);
 });
 
 // admin+sysdev

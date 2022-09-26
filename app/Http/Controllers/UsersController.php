@@ -46,8 +46,14 @@ class UsersController extends Controller
     }
     public function create()
     {
+        $usergroupinput = array(
+            'admin' => 'admin',
+            'report' => 'report',
+            'sysdev' => 'sysdev'
+        );
         return view('user.adduser', [
-            'title' => 'User'
+            'title' => 'User',
+            'usergroupinput' => $usergroupinput
         ]);
     }
     public function store(Request $request)
@@ -56,10 +62,12 @@ class UsersController extends Controller
             'username' => 'required|min:3|max:20|unique:users',
             'email' => 'required|email',
             'hp' => 'max:15',
+            'usergroup' => 'required',
             'password' => 'min:5|max:30|required_with:confirm_password|same:confirm_password',
             'confirm_password' => 'required'
         ]);
 
+        // return dd($a); 
         $kode = DB::table('users')->max('id');
     	$addNol = '';
     	$incrementKode = (int) $kode + 1;
@@ -74,11 +82,12 @@ class UsersController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'telp' => $request->hp,
+            'usergroup' => $request->usergroup,
             'password' => $request->password,
         ];
         $validateData['password'] = bcrypt($validateData['password']);
 
-        // return dd($validateData); 
+        
         User::create($validateData);
         return redirect('/user')->with('success', 'Register Successfull!');
     }
