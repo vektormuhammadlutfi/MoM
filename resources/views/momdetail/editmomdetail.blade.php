@@ -1,18 +1,6 @@
 @extends('layout.coreview')
 
 @section('content')
-{{-- navigasi atas(nama, search, user) --}}
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-  <div class="container-fluid">
-    <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Mom Detail | Edit</a>
-    @include('navbar.navuser')
-  </div>
-</nav>
- @include('navbar.navbg')
-
-
-
 {{-- content utama dibawah ini yaa --}}
 <div class="card" style="
   margin: -150px auto 90px auto;
@@ -32,21 +20,72 @@
         <form action="/momdetail/{{$detail->oid_high_issues}}" method="post">
           @method('put')
           @csrf
+          {{-- Hightligth Issues --}}
           <div class="form-group">
             <label for="high_issues">Highlight Issues</label>
             <input type="text" name="highlight_issues" class="form-control" value="{{$detail->highlight_issues}}" id="high_issues" aria-describedby="emailHelp">
           </div>
+          {{-- Due Date Info --}}
           <div class="form-group">
             <label for="ddi">Due Date Info</label>
             <input type="text" name="due_date_info" class="form-control" value="{{$detail->due_date_info}}" placeholder="Masukkan nama sbu" id="ddi" aria-describedby="emailHelp">
           </div>
+          {{-- PIC --}}
           <div class="form-group">
             <label for="pic">PIC</label>
             <input type="text" name="pic" class="form-control" value="{{$detail->pic}}" placeholder="Masukkan nama sbu" id="pic" aria-describedby="emailHelp">
           </div>
+          {{-- Informasi --}}
           <div class="form-group">
             <label for="info">Informasi</label>
-            <input type="text" name="informasi" class="form-control" value="{{$detail->informasi}}" placeholder="Masukkan nama sbu" id="info" aria-describedby="emailHelp">
+            <input type="text" name="informasi" class="form-control" 
+            value="{{ old('informasi', $detail->informasi) }}" id="info" aria-describedby="emailHelp">
+            @error('informasi')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>
+          {{-- Proses Minggu Lalu --}}
+          <div class="form-group">
+            <label for="progres_minggu_lalu">Proses Minggu Lalu</label>
+            <input type="text" value="{{ old('progres_minggu_lalu', $detail->progres_minggu_lalu) }}" name="progres_minggu_lalu" class="form-control @error('progres_minggu_lalu') is-invalid @enderror" id="proses_minggu_lalu">
+            @error('progres_minggu_lalu')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>
+          {{-- Rencana Minggu Ini --}}
+          <div class="form-group">
+            <label for="rencana_minggu_ini">Rencana Minggu Ini</label>
+            <input type="text" value="{{ old('rencana_minggu_ini', $detail->rencana_minggu_ini) }}" 
+                  name="rencana_minggu_ini" class="form-control @error('rencana_minggu_ini') is-invalid @enderror" 
+                  id="rencana_minggu_ini"
+            >
+            @error('rencana_minggu_ini')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>
+          {{-- Status Issue --}}
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control @error('sts_issue') is-invalid @enderror" name="sts_issue" id="status">
+                <option class="dropdown-item" value="Open" {{ ("Open" == $detail->sts_issue)?'selected':'' }}>Open</option>
+                <option class="dropdown-item" value="On Progress" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>On Progress</option>
+                <option class="dropdown-item" value="Hold" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>Hold</option>
+                <option class="dropdown-item" value="Close" {{ ("Close" == $detail->sts_issue)?'selected':'' }}>Close</option>
+            </select>
+            @error('sts_issue')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
+          </div>
+          {{-- Keterangan --}}
+          <div class="form-group">
+            <label for="ket">Keterangan</label>
+            <input type="text" value="{{ old('ket', $detail->ket) }}" 
+                  name="ket" class="form-control @error('ket') is-invalid @enderror" 
+                  id="ket"
+            >
+            @error('rencana_minggu_ini')
+              <div class="invalid-feedback">{{ $message }} </div>        
+            @enderror
           </div>
           <div class="d-flex flex-row-reverse">
             <button type="submit" class="btn btn-warning">Edit</button>

@@ -24,10 +24,11 @@ class SbuController extends Controller
             ->get();
 
         $datasubholding = DB::table('tb_mas_sub_holdings')
+            ->where('tb_mas_sub_holdings.crud', '=', 'C')
+            ->orWhere('tb_mas_sub_holdings.crud', '=', 'U')
             ->get();
         $title = 'SBU';
         return view('sbu', compact('title', 'dataSbu', 'datasubholding'));
-        // return view('sbu', ['dataSbu'=> $dataSbu, 'datasubholding' => $datasubholding]);
     }
 
 
@@ -71,48 +72,13 @@ class SbuController extends Controller
             'oid_subholding' => $request['oid_subholding'],
             'sbu_name' => $request['sbu_name'],
             'crud' => 'C',
-            'usercreate' => Auth::user()->name,
+            'usercreate' => Auth::user()->username,
             'userupdate' => null,
             'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         return redirect('/sbu');
-
-        // //memvalidasi request yang diterima
-        // $request->validate([
-        //     'subholding' => 'required',
-        //     'oid_holding' => 'required'
-        // ]);
-
-        // //memvalidasi request yang diterima
-        // $request->validate([
-        //     'subholding' => 'required',
-        //     'oid_holding' => 'required'
-        // ]);
-
-        // //men-generate angka pada oid
-        // $count = count(SubholdingModel::all());
-        // $num = '0';
-        // if ($count >= 9) {
-        //     $num = '';
-        // }
-
-        // //membuat data baru ke database
-        // SubholdingModel::create([
-        //     'oid_subholding' => 'SH-' . $num . ($count + 1),
-        //     'subholding' => $request->subholding,
-        //     'oid_holding' => $request->oid_holding,
-        //     'crud' => 'C',
-        //     'usercreate' => 'ADZ',
-        //     'userupdate' => null,
-        //     'userdelete' => null,
-        //     'created_at' => date('Y-m-d H:i:s'),
-        //     'updated_at' => date('Y-m-d H:i:s'),
-        // ]);
-
-        // //mengembalikan halaman ke /subholding
-        // return redirect('/subholding');
     }
 
     /**
@@ -154,7 +120,7 @@ class SbuController extends Controller
             'sbu_name' => $validatedData['sbu_name'],
             'oid_subholding' => $validatedData['subholding'],
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);
@@ -173,7 +139,7 @@ class SbuController extends Controller
     {
         $inputsbu = array(
             'crud' => 'D',
-            'userdelete' => Auth::user()->name,
+            'userdelete' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputsbu);

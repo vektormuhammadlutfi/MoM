@@ -16,10 +16,10 @@ class UsersController extends Controller
             'report' => 'report'
         );
         $users = DB::table('users')
-        ->where('users.usergroup', '=', 'admin')
-        ->orWhere('users.usergroup', '=', 'report')
-        ->orWhere('users.usergroup', '=', null)
-        ->get();
+            ->where('users.usergroup', '=', 'admin')
+            ->orWhere('users.usergroup', '=', 'report')
+            ->orWhere('users.usergroup', '=', null)
+            ->get();
         // dd($usergroupinput['item']);
         return view('user.user', [
             'title' => 'User',
@@ -30,14 +30,14 @@ class UsersController extends Controller
     public function detailuser(User $User)
     {
         $dataUser = DB::table('users')
-        ->where('users.oid_user', '=', $User->oid_user )
-        ->first();
+            ->where('users.oid_user', '=', $User->oid_user)
+            ->first();
         // $usergroupinput = [
         //     'admin' => 'admin',
         //     'record' => 'record',
         //     'sysdev' => 'sysdev'
         // ];
-      
+
         // return dd($dataUser);
         return view('user.detailuser', [
             'title' => 'User',
@@ -61,13 +61,13 @@ class UsersController extends Controller
         ]);
 
         $kode = DB::table('users')->max('id');
-    	$addNol = '';
-    	$incrementKode = (int) $kode + 1;
+        $addNol = '';
+        $incrementKode = (int) $kode + 1;
 
-    	if (strlen($incrementKode) == 1) {
-    		$addNol = "0";
-    	}
-    	$kodeBaru = "UR-".$addNol.$incrementKode;
+        if (strlen($incrementKode) == 1) {
+            $addNol = "0";
+        }
+        $kodeBaru = "U-" . $addNol . $incrementKode;
 
         $validateData = [
             'oid_user' => $kodeBaru,

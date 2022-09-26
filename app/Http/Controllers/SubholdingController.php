@@ -65,7 +65,7 @@ class SubholdingController extends Controller
             'subholding' => $request->subholding,
             'oid_holding' => $request->oid_holding,
             'crud' => 'C',
-            'usercreate' => Auth::user()->name,
+            'usercreate' => Auth::user()->username,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -115,7 +115,7 @@ class SubholdingController extends Controller
             'subholding' => $validatedData['subholding'],
             'oid_holding' => $validatedData['oid_holding'],
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputSubholding);
@@ -135,7 +135,7 @@ class SubholdingController extends Controller
     {
         $newSubholding = array(
             'crud' => 'D',
-            'userupdate' => Auth::user()->name,
+            'userdelete' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($subholding);

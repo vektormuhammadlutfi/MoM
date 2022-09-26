@@ -76,7 +76,7 @@ class BranchController extends Controller
             'phone' => $request->phone,
             'ket' => $request->ket,
             'crud' => 'C',
-            'usercreate' => Auth::user()->name,
+            'usercreate' => Auth::user()->username,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -184,7 +184,7 @@ class BranchController extends Controller
             'phone' => $request->phone,
             'ket' => $request->ket,
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         DB::table('tb_mas_branches')->where('oid_branch', $Branch->oid_branch)->update($updatebranch);
@@ -201,7 +201,7 @@ class BranchController extends Controller
     {
         $inputdelete = array(
             'crud' => 'D',
-            'userdelete' => Auth::user()->name,
+            'userdelete' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         BranchModel::where('oid_branch', $Branch->oid_branch)

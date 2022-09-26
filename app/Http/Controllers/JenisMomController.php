@@ -47,7 +47,7 @@ class JenisMomController extends Controller
             'oid_jen_mom' => $oid,
             'jenis_mom' => $request->jenis_mom,
             'crud' => 'C',
-            'usercreate' => Auth::user()->name,
+            'usercreate' => Auth::user()->username,
             'userupdate' => 'null',
             'userdelete' => 'null',
             'created_at' => date('Y-m-d H:i:s'),
@@ -66,7 +66,7 @@ class JenisMomController extends Controller
         $inputjenismom = array(
             'jenis_mom' => $request->jenis_mom,
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($inputjenismom);
@@ -77,7 +77,7 @@ class JenisMomController extends Controller
     {
         $statusdelete = array(
             'crud' => 'D',
-            'userdelete' => Auth::user()->name,
+            'userdelete' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
         // return dd($statusdelete);

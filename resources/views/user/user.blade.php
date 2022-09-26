@@ -1,16 +1,7 @@
 @extends('layout.coreview')
 @section('content')
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-  <div class="container-fluid">
-    <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/register">User</a>
-    @include('navbar.navuser')
-  </div>
-</nav>
- @include('navbar.navbg')
 
-<div data-aos="fade-up" class="card shadow-lg bg-body" style=" margin: -150px auto 90px auto; background: hsl(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); width: 95% ">
-  <div class="card">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
     <div class="card-body">
       @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show mb-5 px-4" role="alert">
@@ -68,8 +59,7 @@
       </div>
     </div>
   </div>
-</div>
-    
+
 {{-- content modal edit data --}}
 <div class="modal fade" id="editModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

@@ -1,26 +1,8 @@
 @extends('layout.coreview')
 
 @section('content')
-{{-- navigasi atas(nama, search, user) --}}
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-  <div class="container-fluid">
-    <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Branch | Detail Branch</a>
-    @include('navbar.navuser')
-  </div>
-</nav>
- @include('navbar.navbg')
-
-
-
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body" style="
-  margin: -150px auto 90px auto;
-  background: hsla(0, 0%, 100%, 0.8);
-  backdrop-filter: blur(30px);
-  /* max-width: 1000px; */
-  width: 95%">
-  <div class="card">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
     <div class="card-body">
         
       <div class="d-flex justify-content-between">
@@ -102,7 +84,6 @@
       </div>
       <!-- end detail -->
     </div>
-  </div>
 </div>
 
 

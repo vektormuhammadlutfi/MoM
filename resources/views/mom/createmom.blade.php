@@ -1,26 +1,9 @@
 @extends('layout.coreview')
 
 @section('content')
-{{-- navigasi atas(nama, search, user) --}}
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-  <div class="container-fluid">
-    <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">MOM</a>
-    @include('navbar.navuser')
-  </div>
-</nav>
- @include('navbar.navbg')
-
-
-
 {{-- content utama dibawah ini yaa --}}
-<div class="card" style="
-  margin: -150px auto 90px auto;
-  backdrop-filter: blur(30px);
-  max-width: 800px;
-  width: 95%">
-  <div class="card">
-    <div class="card-body">
+<div class="card shadow-lg bg-body mx-4 mt--150">
+  <div class="card-body">
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Tambah Data MOM</h3>
         <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
@@ -98,7 +81,6 @@
       <!-- end detail -->
 
     </div>
-  </div>
 </div>
 
 

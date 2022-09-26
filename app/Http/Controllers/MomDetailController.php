@@ -29,7 +29,7 @@ class MomDetailController extends Controller
      */
     public function create()
     {
-        return view('momdetail.createmomdetail');
+        // return view('momdetail.createmomdetail');
     }
 
     /**
@@ -52,10 +52,10 @@ class MomDetailController extends Controller
     public function show(Detailmom $detailmom)
     {
 
-        return view('momdetail.showmomdetail', [
-            'title' => 'Mom Detail',
-            'momdetail' => $detailmom
-        ]);
+        // return view('momdetail.showmomdetail', [
+        //     'title' => 'Mom Detail',
+        //     'momdetail' => $detailmom
+        // ]);
     }
 
     /**
@@ -86,15 +86,23 @@ class MomDetailController extends Controller
             'highlight_issues' => 'required',
             'due_date_info' => 'required',
             'pic' => 'required',
-            'informasi' => 'required'
+            'informasi' => 'required',
+            'progres_minggu_lalu' => 'required',
+            'rencana_minggu_ini' => 'required',
+            'sts_issue' => 'required',
+            'ket' => 'required',
         ]);
         $updateMomDetail = [
             'highlight_issues' => $request->highlight_issues,
             'due_date_info' => $request->due_date_info,
             'pic' => $request->pic,
             'informasi' => $request->informasi,
+            'progres_minggu_lalu' => $request->progres_minggu_lalu,
+            'rencana_minggu_ini' => $request->rencana_minggu_ini,
+            'sts_issue' => $request->sts_issue,
+            'ket' => $request->ket,
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         ];
         //update
@@ -110,11 +118,10 @@ class MomDetailController extends Controller
      */
     public function destroy(Detailmom $detailmom)
     {
-        dd($detailmom);
         Detailmom::where('oid_high_issues', $detailmom->oid_high_issues)
             ->update([
                 'crud' => 'D',
-                'userdelete' => Auth::user()->name,
+                'userdelete' => Auth::user()->username,
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
         return redirect('/momdetail');

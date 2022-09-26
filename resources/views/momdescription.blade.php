@@ -1,24 +1,9 @@
 @extends('layout.coreview')
 
 @section('content')
-{{-- navigasi atas(nama, search, user) --}}
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-  <div class="container-fluid">
-    <!-- Nama Halaman/brand -->
-    <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Mom Description</a>
-    @include('navbar.navuser')
-  </div>
-</nav>
- @include('navbar.navbg')
-
  {{-- content utama dibawah ini yaa --}}
-<div data-aos="fade-up" class="card shadow-lg bg-body" style="
-  margin: -150px auto 90px auto;
-  background: hsla(0, 0%, 100%, 0.8);
-  backdrop-filter: blur(30px);
-  width: 95%
-  ">
-  <div class="card">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
+  <div class="card border-0 shadow bg-secondary">
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MOM  Description</h3>
@@ -40,7 +25,7 @@
                   <td class="text-center" style="width: 50px">{{$loop->iteration}}</td>
                   <td>{{$description->oid_mom}}</td>
                   <td>
-                    <a target='_blank' href="storage\dok-image\{{$description->gambar}}">{{$description->dokumen}}</a>
+                    <a target='_blank' href="storage\{{$description->gambar}}">{{$description->dokumen}}</a>
                   </td>
               </tr>
             @endforeach

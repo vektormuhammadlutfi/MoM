@@ -118,7 +118,7 @@ class MomController extends Controller
             'notulen' => $request->notulen,
             'attendees' => $request->attendees,
             'crud' => 'C',
-            'usercreate' => Auth::user()->name,
+            'usercreate' => Auth::user()->username,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
@@ -151,9 +151,6 @@ class MomController extends Controller
                 $query->where('tb_trans_mom_details.crud', '=', 'C')
                     ->orWhere('tb_trans_mom_details.crud', '=', 'U');
             })->get();
-        // ->where('tb_trans_mom_details.oid_mom', '=', $mom->oid_mom)
-        // ->whereIn('tb_trans_mom_details.crud', '=', ['C', 'U'])
-        // ->get();
 
         return view('mom.detailmom', [
             'title' => 'Mom',
@@ -247,7 +244,7 @@ class MomController extends Controller
             'hari' => $day,
             'tgl_mom' => $request->tgl_mom,
             'crud' => 'U',
-            'userupdate' => Auth::user()->name,
+            'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         // return dd($mom);
@@ -266,7 +263,7 @@ class MomController extends Controller
         $update = array(
             'crud' => 'D',
             'userupdate' => 'Update-02',
-            'userdelete' => Auth::user()->name,
+            'userdelete' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         );
 
@@ -295,7 +292,6 @@ class MomController extends Controller
     }
     public function storeDetail(Request $request, Mom $mom)
     {
-        // dd($request->file('dokumen')->getClientOriginalName());
         $request->validate([
             'highlight_issues' => 'required',
             'due_date_info' => 'required',
@@ -303,16 +299,6 @@ class MomController extends Controller
             'informasi' => 'required',
             'dokumen' => 'required',
         ]);
-
-        // //update mom
-        // $updatemom = [
-        //     'tgl_mulai' => $request->tanggalmulai,
-        //     'crud' => 'U',
-        //     'userupdate' => null,
-        //     'updated_at' => date('Y-m-d H:i:s'),
-        // ];
-        // //update di trans moms
-        // DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updatemom);
 
         //create detail mom
         //men-generate angka pada oid
@@ -326,6 +312,10 @@ class MomController extends Controller
         }
         $oid = 'MD-' . $num . $newId;
 
+        //kirim file image
+        $nameDoc = $request->file('dokumen')->store('momdetail-documentation');
+        $originalName = $request->file('dokumen')->getClientOriginalName();
+
         //kirim data
         Detailmom::create([
             'oid_high_issues' => $oid,
@@ -337,31 +327,53 @@ class MomController extends Controller
             'crud' => 'C',
             'sts_issue' => 'Open',
             'ket' => '-',
-            'usercreate' => Auth::user()->name,
+            'dokumen' => $originalName,
+            'gambar' => $nameDoc,
+            'usercreate' => Auth::user()->username,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
+        return redirect('/mom' . '/' . $mom->oid_mom);
+    }
 
-        //create documentation
-        //men-generate oid documentation
+    public function addDoc(Mom $mom)
+    {
+        $momData = DB::table('tb_trans_moms')
+            ->where('tb_trans_moms.oid_mom', '=', $mom->oid_mom)
+            ->leftJoin('tb_mas_sbus', 'tb_trans_moms.oid_sbu', '=', 'tb_mas_sbus.oid_sbu')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->get()->first();
+        return view('mom.addDoc', [
+            'title' => 'Mom',
+            'mom' => $momData
+        ]);
+    }
+    public function storeDoc(Request $request, Mom $mom)
+    {
+        // dd($request);
+        $request->validate([
+            'dokumen' => 'max:1024'
+        ]);
+
+        //men-generate angka pada oid
         $max_id = DB::table('tb_trans_documentations')->max('id');
         $newId = (int) $max_id + 1;
-        $numDoc = '0';
+        $num = '0';
         if (
             $newId >= 9
         ) {
-            $numDoc = '';
+            $num = '';
         }
-        $oid_Doc = 'DOC-' . $numDoc . $newId;
-
-        //kirim data (file)
-        $nameDoc = str_replace('dok-image/', '', $request->file('dokumen')->store('dok-image'));
+        $oid = 'DOC-' . $num . $newId;
+        // dd($oid);
+        //kirim file image
+        $nameDoc = $request->file('dokumen')->store('mom-documentation');
         $originalName = $request->file('dokumen')->getClientOriginalName();
 
         Documentation::create([
-            'oid_document' => $oid_Doc,
+            'oid_document' => $oid,
             'oid_mom' => $mom->oid_mom,
             'dokumen' => $originalName,
             'gambar' => $nameDoc,
@@ -372,6 +384,6 @@ class MomController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-        return redirect('/mom' . '/' . $mom->oid_mom);
+        return redirect('/momdescription');
     }
 }

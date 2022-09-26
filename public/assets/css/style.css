@@ -1,3 +1,7 @@
+:root {
+    --success: #00A24C;
+}
+
 .text-kalla-secondary {
     color: #FBAF40;
 }
@@ -72,6 +76,7 @@
     border: none;
     background-color: transparent;
 }
+
 /* .nav-item .menu-active {
     background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
     color: white !important;
@@ -83,9 +88,16 @@
     background-color: rgb(247, 210, 0);
     color: white;
 }
-.btn-y:hover{
+
+.btn-y:hover {
     color: white;
 }
+
 .font-16 {
     font-size: 16px;
+}
+
+td::selection {
+    background-color: var(--success);
+    color: #fff;
 }

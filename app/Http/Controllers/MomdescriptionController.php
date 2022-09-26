@@ -14,7 +14,6 @@ class MomdescriptionController extends Controller
         $description = DB::table('tb_trans_documentations')
             ->where('tb_trans_documentations.crud', 'C')
             ->orWhere('tb_trans_documentations.crud', 'U')
-            // ->orderBy('tb_trans_documentations.oid_mom')
             ->get();
         // dd($description);
         return view('momdescription', [

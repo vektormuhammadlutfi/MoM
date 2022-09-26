@@ -96,7 +96,7 @@
         <div class="card-body pt-0 pt-md-4">
           <div class="mt-5">
             <h3>
-              @if (auth()->user()->firs_name !== null && auth()->user()->last_name !== null)
+              @if (auth()->user()->first_name !== null && auth()->user()->last_name !== null)
                 {{ auth()->user()->first_name  }} {{ auth()->user()->last_name  }} 
               @else
                 {{ auth()->user()->username  }} 
