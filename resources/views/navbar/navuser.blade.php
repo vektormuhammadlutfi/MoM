@@ -6,15 +6,15 @@
         <div class="media-body mr-2 d-none d-lg-block">
           <span class="mb-0 text-sm  font-weight-bold">Selamat Datang | {{auth()->user()->username}}</span>
         </div>
-        <span class="avatar avatar-sm rounded-circle">
-          @if (auth()->user()->profile_photo_path)
-            <div>
-              <img src="{{ asset('storage/'.auth()->user()->profile_photo_path) }}" class="rounded-circle" alt="{{ auth()->user()->username }}">
-            </div>
-          @else
-            <img src="../assets/img/default_profil.png" class="rounded-circle" alt="{{ auth()->user()->username }}">
-          @endif
-        </span>
+        @if (auth()->user()->profile_photo_path)
+          <span class="avatar avatar-sm rounded-circle photo-profile"
+            style="width:32px;height:32px;
+                    background-image: url('{{ asset('storage/'.auth()->user()->profile_photo_path) }}')">
+        @else
+          <span class="avatar avatar-sm rounded-circle">
+              <img src="../assets/img/default_profil.png" class="rounded-circle" alt="{{ auth()->user()->username }}">
+          </span>
+        @endif        
       </div>
     </a>
     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
