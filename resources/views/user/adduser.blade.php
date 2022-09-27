@@ -54,12 +54,24 @@
               <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-phone"></i></i></span>
                   </div>
                   <input type="number" name="hp" value="{{ old('hp') }}" id="hp" class="form-control  @error('hp') is-invalid @enderror" placeholder="Phone"/>
                   @error('hp')
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-user-group"></i></span>
+                  </div>
+                  <select class="form-control" name="usergroup" id="usergroup">
+                    @foreach ($usergroupinput as $d)
+                      <option class="dropdown-item" value="{{ $d }}" id="ug">{{ $d }}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -85,6 +97,7 @@
                 </div>
               </div>
               <div class="text-center">
+                <a href="/user" class="btn btn-secondary mt-4">Back</a>
                 <button type="submit" class="btn btn-success mt-4">Create User</button>
               </div>
               {{-- <div class="text-center">
