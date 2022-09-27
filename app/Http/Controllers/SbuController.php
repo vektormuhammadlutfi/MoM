@@ -15,6 +15,7 @@ class SbuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $dataSbu = DB::table('tb_mas_sbus')

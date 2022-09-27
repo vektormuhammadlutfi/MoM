@@ -26,6 +26,7 @@
           {{-- @foreach ($sbu as $sbuitem) --}}
           @foreach ($dataSbu as $sbuitem)
             <tr>
+              {{-- data cuman ngambil <td></td> --}}
               <td >{{ $no++ }}</td>
               <td class="width-min07">{{ $sbuitem->oid_sbu }}</td>
               <td class="width-min1">{{ $sbuitem->sbu_name }}</td>
@@ -33,14 +34,6 @@
               <td class="width-min07">
                 <div class="d-flex">
                   <a href="#" class="btn btn-warning btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
-                {{-- <a  href="#" class="btn btn-danger btn-sm py-2 delete"><i class="fa-solid fa-trash-can"></i></a> --}}
-                  {{-- <form action="/sbu/{{$sbuitem->oid_sbu}}"  id="delete-post-form" method="POST">
-                      @method('delete')
-                      @csrf
-                      <button href="#" class="btn btn-outline-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus SBU ?')">
-                        <i class="fa-solid fa-trash-can"></i>
-                      </button>
-                  </form> --}}
                   <a href="#" class="btn btn-outline-danger btn-sm py-2 delete">
                       <i class="fa-solid fa-trash-can"></i>
                   </a>
@@ -118,7 +111,8 @@
           <div class="modal-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
+                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror"
+                 placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
                 @error('sbu_name')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -126,7 +120,7 @@
             <label for="exampleFormControlSelect1">Nama Sub Holding</label>
             <select class="form-control" name="subholding" id="subholding" >
               @foreach ($datasubholding as $subholding)
-                <option class="dropdown-item" value="{{ $subholding->oid_subholding }}">{{ old('subholding', $subholding->subholding) }}</option>
+                <option class="dropdown-item" value="{{ $subholding->oid_subholding }}" >{{ old('subholding', $subholding->subholding) }}</option>
               @endforeach
             </select>
           </div>
@@ -186,7 +180,7 @@
         $('#sbu_name').val(data[2].replace('&amp;','&'));
         $('#subholding').val(data[3]);
 
-        $('#editform').attr('action', '/sbu/'+data[1]);
+        $('#editform').attr('action', '/sbu/'+data[1]);//action = '/sbu/{sbu}'
         $('#editModal').modal('show');
       });
 

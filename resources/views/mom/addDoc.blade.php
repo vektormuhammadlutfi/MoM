@@ -64,7 +64,9 @@
                       <div>
                         <img id="preview-image" style="max-width: 100%">
                       </div>
-                      <div class="text-center" id="file-name"></div>
+                      <div class="text-center mt-2" id="file-name">
+                        {{-- innrHTML --}}
+                      </div>
                     </div>
                     <form action="/storedoc/{{$mom->oid_mom}}" method="post" enctype="multipart/form-data">
                         @method('Post')
@@ -100,11 +102,12 @@
 
 @push('addon-script')
 <script type="text/javascript">
+
   let upload = document.getElementById('upload-dokumen')
   let preview =  document.getElementById('preview-image')
   let fileName =  document.getElementById('file-name')
   
-  upload.onchange = ()=>{
+  upload.onchange = () => {
     let reader = new FileReader();
     reader.readAsDataURL(upload.files[0]);
 
@@ -112,6 +115,7 @@
     reader.onload = ()=>{
       preview.setAttribute('src',reader.result);
     }
+
   }
 </script>
 

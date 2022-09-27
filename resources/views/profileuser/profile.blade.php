@@ -27,7 +27,7 @@
               @csrf
                 <div class="form-group">
                   <label class="form-control-label" for="input-username">Username</label>
-                  <input type="text" name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
+                  <input disabled type="text" name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
                   @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="form-group">
@@ -65,15 +65,17 @@
     {{-- Right Content --}}
     <div class="col-xl-4 order-lg-2 order-1 mb-5 mb-xl-0">
       <div class="card shadow p-4 right-content">
-        <div class="photo-profile text-center mt--7">
+        {{-- Photo Profile --}}
+        <div class="photo-profile text-center mt--7 ">
               @if (auth()->user()->profile_photo_path)
-                <button class="btn rounded-circle photo-profile" data-toggle="modal" data-target="#exampleModal"
+                <button class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
                   style="width:200px;height:200px;
                   background-image: url('{{ asset('storage/'.auth()->user()->profile_photo_path) }}')">
                 </button>
               @else
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <img src="../assets/img/default_profil.png" class="rounded-circle" alt="{{ auth()->user()->username }}">
+              <button title="edit photo" class="btn rounded-circle photo-profile" data-toggle="modal" data-target="#exampleModal"
+                  style="width:200px;height:200px;
+                  background-image: url('../assets/img/default_profil.png')">
                 </button>
               @endif
         </div>

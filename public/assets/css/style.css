@@ -100,3 +100,15 @@ td::selection {
     background-size: cover;
     background-position: center top;
 }
+
+.change-profile::after {
+    content: '';
+}
+
+.change-profile:hover::after {
+    content: 'UBAH FOTO PROFILE';
+    width: 100%;
+    height: 100px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+}

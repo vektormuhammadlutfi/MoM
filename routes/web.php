@@ -66,7 +66,6 @@ Route::group(['middleware' => ['auth', 'level:sysdev']], function () {
 
     // SBU
     Route::resource('/sbu', SbuController::class);
-
     //=== B R A N C H ===
     Route::resource('/branch', BranchController::class);
 
