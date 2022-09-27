@@ -77,13 +77,6 @@
     background-color: transparent;
 }
 
-/* .nav-item .menu-active {
-    background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
-    color: white !important;
-    border-radius: 5px;
-    font-weight: 700;
-} */
-
 .btn-y {
     background-color: rgb(247, 210, 0);
     color: white;
@@ -100,4 +93,10 @@
 td::selection {
     background-color: var(--success);
     color: #fff;
+}
+
+.photo-profile {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
 }

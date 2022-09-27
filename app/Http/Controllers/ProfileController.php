@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,32 +16,38 @@ class ProfileController extends Controller
     }
     public function editprofile(Request $request, User $user)
     {
-        
-        if ($request->username != auth()->user()->username) {           
+        if ($request->username != auth()->user()->username) {
             $data = [
                 'username' => 'required|min:3|max:20|unique:users',
-                'firs_name' => 'required',
+                'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'telp' => 'required',
             ];
-        }else{
+        } else {
             $data = [
                 'username' => 'required|min:3|max:20',
-                'firs_name' => 'required',
+                'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'telp' => 'required',
             ];
         }
-        $validatedata = $request->validate($data);
+        $request->validate($data);
         // return dd($validatedata);
-        User::where('oid_user', auth()->user()->oid_user)->update($validatedata);
+        User::where('oid_user', auth()->user()->oid_user)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'telp' => $request->telp,
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
         return redirect('/profile')->with('success', 'Profile has update!');
     }
 
     public function changeprofile(Request $request)
     {
+        // return $request->file('image_profile')->store('profrile-image');
         $validatedata = $request->validate([
             'profile_photo_path' => 'image|file|max:2048'
         ]);
