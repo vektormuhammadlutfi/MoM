@@ -38,19 +38,26 @@ class ProfileController extends Controller
         User::where('oid_user', auth()->user()->oid_user)->update($validatedata);
         return redirect('/profile')->with('success', 'Profile has update!');
     }
+
     public function changeprofile(Request $request)
     {
-        // dd($request);
-        // return $request->file('image_profile')->store('profrile-image');
         $validatedata = $request->validate([
             'profile_photo_path' => 'image|file|max:2048'
         ]);
         if ($request->file('profile_photo_path')) {
-            $validatedata['profile_photo_path'] = $request->file('profile_photo_path')->store('user-image');
+            if (!empty(auth()->user()->profile_photo_path)) {
+                unlink('storage/'.auth()->user()->profile_photo_path);
+            }
+                $input = $request->file('profile_photo_path')->store('user-image');
+                $validatedata['profile_photo_path'] = $input;
+            
+        }else{
+            $validatedata['profile_photo_path'] = auth()->user()->profile_photo_path;
         }
         User::where('oid_user', auth()->user()->oid_user)->update($validatedata);
         return redirect('/profile')->with('success_pass', 'Photo has update!');
     }
+
     public function changepassword(Request $request)
     {
         $request->validate([
