@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\SbuModel;
-use App\Models\Subholding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -75,7 +74,7 @@ class SbuController extends Controller
             'crud' => 'C',
             'usercreate' => Auth::user()->username,
             'userupdate' => null,
-            'userdelete' => 'null',
+            'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

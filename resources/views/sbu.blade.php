@@ -4,12 +4,13 @@
 {{-- content utama dibawah ini yaa --}}
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
   <div class="card-body">
+    {{-- Header --}}
     <div class="d-flex justify-content-between">
       <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data SBU</h3>
       <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
     </div>
     <hr class="mt-2 mb-4">
-    {{-- table --}}
+    {{-- Table --}}
     <div class="table-responsive">
       <table id="example" class="mt-5 table-striped table-bordered table-data">
         <thead >
@@ -47,7 +48,7 @@
   </div>
 </div>
 
- {{-- footer gaess --}}
+  {{-- footer gaess --}}
   <div class="container-fluid mt--7">
     <div class="row mt-5" style="min-height: 200px">
     </div>

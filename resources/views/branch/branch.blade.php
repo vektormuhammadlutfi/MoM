@@ -3,27 +3,28 @@
 @section('content')
 {{-- content utama dibawah ini yaa --}}
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data Branch</h3>
-        {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/branch/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
-      </div>
-      <hr class="mt-2 mb-4">
-      <div class="table-responsive">
-        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
-          <thead >
-              <tr>
-                  <th style="font-size: 13px">No</th>
-                  <th style="font-size: 13px">Oid Branch</th>
-                  <th style="font-size: 13px">Branch Name</th>
-                  <th style="font-size: 13px">Address</th>
-                  <th style="font-size: 13px">Phone</th>
-                  <th style="font-size: 13px">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-            @foreach ($Branches as $branch)
+  <div class="card-body">
+    {{-- Header --}}
+    <div class="d-flex justify-content-between">
+      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data Branch</h3>
+      <a href="/branch/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
+    </div>
+    <hr class="mt-2 mb-4">
+    {{-- Table --}}
+    <div class="table-responsive">
+      <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
+        <thead >
+          <tr>
+            <th style="font-size: 13px">No</th>
+            <th style="font-size: 13px">Oid Branch</th>
+            <th style="font-size: 13px">Branch Name</th>
+            <th style="font-size: 13px">Address</th>
+            <th style="font-size: 13px">Phone</th>
+            <th style="font-size: 13px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($Branches as $branch)
             <tr>
               <td>{{ $loop->iteration}}</td>
               <td class="width-min07">{{ $branch->oid_branch}}</td>
@@ -43,21 +44,20 @@
                 </a>
               </td>
             </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
-
-
-{{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
-  @include('layout.footer')
 </div>
+
+  {{-- footer gaess --}}
+  <div class="container-fluid mt--7">
+    <div class="row mt-5" style="min-height: 200px">
+    </div>
+    <!-- Footer -->
+    @include('layout.footer')
+  </div>
 
 {{-- Delete Modal --}}
 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -42,11 +42,6 @@ Route::group(['middleware' => ['auth', 'level:admin,sysdev']], function () {
     Route::get('/adddoc/{mom}', [MomController::class, 'addDoc']);
     Route::post('/storedoc/{mom}', [MomController::class, 'storeDoc']);
 
-    //Momdetail
-    // Route::get('/momdetail', [MomDetailController::class, 'index']);
-    // Route::get('/createmomdetail', [MomDetailController::class, 'create']);
-    // Route::get('/moremomdetail', [MomDetailController::class, 'moreMomDetail']);
-
     //=== M O M   D E T A I L ===
     Route::resource('/momdetail', MomDetailController::class, [
         'parameters' => [

@@ -89,7 +89,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Jenis Mom'? 'menu-active':''}}" href="/jenismom">
-                <i class="fa-sharp fa-solid fa-window-restore" ></i>Jenis Mom
+                <i class="fa-sharp fa-solid fa-window-restore" ></i>Jenis MoM
               </a>
             </li>
           </ul>
@@ -102,17 +102,17 @@
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom'? 'menu-active':''}}" href="/mom">
-                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom
+                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>MoM
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Detail'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom Detail
+                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>MoM Detail
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Description'? 'menu-active':''}}" href="/momdescription">
-                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Description
+                <i class="fa fa-list-alt" aria-hidden="true" ></i>MoM Description
               </a>
             </li>
           </ul>
@@ -124,12 +124,12 @@
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-sharp fa-solid fa-file " ></i>Mom
+                <i class="fa-sharp fa-solid fa-file " ></i>MoM
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Doc Mom'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-solid fa-floppy-disk" ></i>Doc Mom
+                <i class="fa-solid fa-floppy-disk" ></i>Documentations
               </a>
             </li>
             <li class="nav-item">
