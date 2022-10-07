@@ -42,6 +42,7 @@ class ProfileController extends Controller
         ]);
         return redirect('/profile')->with('success', 'Profile has update!');
     }
+
     public function changeprofile(Request $request)
     {
         // return $request->file('image_profile')->store('profrile-image');
@@ -60,6 +61,7 @@ class ProfileController extends Controller
         User::where('oid_user', auth()->user()->oid_user)->update($validatedata);
         return redirect('/profile')->with('success_pass', 'Photo has update!');
     }
+
     public function changepassword(Request $request)
     {
         $request->validate([
