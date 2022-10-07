@@ -4,7 +4,7 @@
     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <div class="media align-items-center">
         <div class="media-body mr-2 d-none d-lg-block">
-          <span class="mb-0 text-sm  font-weight-bold">Selamat Datang | {{auth()->user()->username}}</span>
+          <span class="mb-0 text-sm  font-weight-bold">{{auth()->user()->username}}</span>
         </div>
         @if (auth()->user()->profile_photo_path)
           <span class="avatar avatar-sm rounded-circle photo-profile"

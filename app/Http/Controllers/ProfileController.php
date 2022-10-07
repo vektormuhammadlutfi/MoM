@@ -18,7 +18,6 @@ class ProfileController extends Controller
     {
         if ($request->username != auth()->user()->username) {
             $data = [
-                'username' => 'required|min:3|max:20|unique:users',
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
@@ -26,7 +25,6 @@ class ProfileController extends Controller
             ];
         } else {
             $data = [
-                'username' => 'required|min:3|max:20',
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',

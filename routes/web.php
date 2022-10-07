@@ -14,6 +14,7 @@ use App\Http\Controllers\SubholdingController;
 use App\Http\Controllers\JenisMomController;
 use App\Http\Controllers\MomController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 
 //=== L O G I N ===
@@ -26,6 +27,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function () {
     //dashboard
     Route::get('/dashboard', [DataController::class, 'dashboard'])->name('dashboard');
+
+    // Report
+    Route::get('/momreport', [ReportController::class, 'index']);
+
     // profile
     Route::get('/profile', [ProfileController::class, 'index']);
     Route::put('/editprofile/{user}', [ProfileController::class, 'editprofile']);

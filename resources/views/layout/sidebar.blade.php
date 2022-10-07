@@ -123,7 +123,7 @@
           <h5 class="navbar-heading text-kalla-secondary mb-0">Report</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momdetail">
+              <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momreport">
                 <i class="fa-sharp fa-solid fa-file " ></i>MoM
               </a>
             </li>

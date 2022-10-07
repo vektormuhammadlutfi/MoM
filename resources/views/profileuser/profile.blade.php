@@ -25,11 +25,11 @@
             <form action="/editprofile/{{ auth()->user()->oid_user }}" method="post" >
               @method('put')
               @csrf
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label class="form-control-label" for="input-username">Username</label>
                   <input disabled type="text" name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
                   @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label class="form-control-label" for="input-first-name">First name</label>
                   <input type="text" name="firs_name" id="input-first-name" class="font-16 form-control form-control-alternative @error('firs_name') is-invalid @enderror" value="{{ auth()->user()->firs_name }}">
