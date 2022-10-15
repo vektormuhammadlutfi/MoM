@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'level:admin,sysdev']], function () {
             'momdetail' => 'detailmom'
         ]
     ]);
+    Route::get('/momdetail/{detailmom}/history', [MomDetailController::class, 'history']);
 
     //== M O M   D E S C R I P T I O N ==
     Route::get('/momdescription', [MomdescriptionController::class, 'index']);

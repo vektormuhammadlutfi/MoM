@@ -69,8 +69,8 @@
             <select class="form-control @error('sts_issue') is-invalid @enderror" name="sts_issue" id="status">
                 <option class="dropdown-item" value="Open" {{ ("Open" == $detail->sts_issue)?'selected':'' }}>Open</option>
                 <option class="dropdown-item" value="On Progress" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>On Progress</option>
-                <option class="dropdown-item" value="Hold" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>Hold</option>
-                <option class="dropdown-item" value="Close" {{ ("Close" == $detail->sts_issue)?'selected':'' }}>Close</option>
+                <option class="dropdown-item" value="Hold" {{ ("Hold" == $detail->sts_issue)?'selected':'' }}>Hold</option>
+                <option class="dropdown-item" value="Closed" {{ ("Closed" == $detail->sts_issue)?'selected':'' }}>Closed</option>
             </select>
             @error('sts_issue')
               <div class="invalid-feedback">{{ $message }} </div>        
