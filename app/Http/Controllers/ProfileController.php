@@ -10,41 +10,36 @@ class ProfileController extends Controller
 {
     public function index()
     {
+        // dd(auth()->user()->oid_user);
         return view('profileuser.profile', [
-            'title' => 'Profile'
+            'title' => 'Profile',
         ]);
     }
     public function editprofile(Request $request, User $user)
     {
-        if ($request->username != auth()->user()->username) {
+
+        if ($request->username != auth()->user()->username) {           
             $data = [
-                'username' => 'required|min:3|max:20|unique:users',
+                // 'username' => 'required|min:3|max:20|unique:users',
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'telp' => 'required',
             ];
-        } else {
+        }else{
             $data = [
-                'username' => 'required|min:3|max:20',
+                // 'username' => 'required|min:3|max:20',
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'telp' => 'required',
             ];
         }
-        $request->validate($data);
+        $validatedata = $request->validate($data);
         // return dd($validatedata);
-        User::where('oid_user', auth()->user()->oid_user)->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'telp' => $request->telp,
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
+        User::where('oid_user', auth()->user()->oid_user)->update($validatedata);
         return redirect('/profile')->with('success', 'Profile has update!');
     }
-
     public function changeprofile(Request $request)
     {
         // return $request->file('image_profile')->store('profrile-image');

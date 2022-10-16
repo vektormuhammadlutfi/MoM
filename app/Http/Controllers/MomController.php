@@ -33,8 +33,6 @@ class MomController extends Controller
         ]);
         // return dd($moms);
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -115,6 +113,7 @@ class MomController extends Controller
             'hari' => $day,
             'tgl_mom' => $request->tanggal,
             'tempat' => $request->tempat,
+            'tgl_mulai' => date('Y-m-d H:i:s'),
             'notulen' => $request->notulen,
             'attendees' => $request->attendees,
             'crud' => 'C',
@@ -296,6 +295,8 @@ class MomController extends Controller
             'highlight_issues' => 'required',
             'due_date_info' => 'required',
             'pic' => 'required',
+            'progres_ml' => 'required',
+            'rencana_mi' => 'required',
             'informasi' => 'required',
             'dokumen' => 'required',
         ]);
@@ -316,20 +317,36 @@ class MomController extends Controller
         $nameDoc = $request->file('dokumen')->store('momdetail-documentation');
         $originalName = $request->file('dokumen')->getClientOriginalName();
 
-        //kirim data
+        //insert data to table momdetail
         Detailmom::create([
             'oid_high_issues' => $oid,
             'oid_mom' => $mom->oid_mom,
             'highlight_issues' => $request->highlight_issues,
             'due_date_info' => $request->due_date_info,
+            'issue_user' => Auth::user()->username,
             'pic' => $request->pic,
             'informasi' => $request->informasi,
+            'progres_minggu_lalu' => $request->progres_ml,
+            'rencana_minggu_ini' => $request->rencana_mi,
             'crud' => 'C',
             'sts_issue' => 'Open',
             'ket' => '-',
+            // 'dokumen' => $originalName,
+            // 'gambar' => $nameDoc,
+            'usercreate' => Auth::user()->username,
+            'userupdate' => null,
+            'userdelete' => null,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        // inser tada to table docmom
+        Documentation::create([
+            'oid_document' => $oid,
+            'oid_mom' => $mom->oid_mom,
             'dokumen' => $originalName,
             'gambar' => $nameDoc,
-            'usercreate' => Auth::user()->username,
+            'crud' => 'C',
+            'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
             'created_at' => date('Y-m-d H:i:s'),

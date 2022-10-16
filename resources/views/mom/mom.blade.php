@@ -5,9 +5,9 @@
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Mom</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MoM</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/mom/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Data Baru</a>
+        <a href="/mom/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Create</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
@@ -17,11 +17,10 @@
                 <th class="text-center" style="font-size: 13px">No</th>
                   <th class="text-center" style="font-size: 13px">Action</th>
                   <th class="text-center" style="font-size: 13px">OID</th>
-                  <th class="text-center" style="font-size: 13px">Nama SBU</th>
-                  <th class="text-center" style="font-size: 13px">Jenis MOM</th>
+                  <th class="text-center" style="font-size: 13px">SBU Name</th>
+                  <th class="text-center width-min1" style="font-size: 13px">Type Of MoM</th>
                   <th class="text-center" style="font-size: 13px">Agenda</th>
-                  <th class="text-center" style="font-size: 13px">Waktu</th>
-                  <th class="text-center" style="font-size: 13px">Status</th>
+                  <th class="text-center" style="font-size: 13px">Date</th>
               </tr>
           </thead>
           <tbody>
@@ -31,12 +30,12 @@
                   <td style="max-width: 30px;" class="px-0 text-center">
                     <div class="dropdown" style="background-color: transparent">
                       <a  class="btn px-3 action-table" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <iconify-icon icon="akar-icons:more-horizontal"></iconify-icon>
+                        <iconify-icon icon="akar-icons:more-horizontal" class="text-success" style="font-size: 20px"></iconify-icon>
                       </a>
                       <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
                         <div class="dropdown-item">
                           <a  href="{{url("/adddoc/{$mom->oid_mom}")}}" class="text-decoration-none text-success" >
-                            <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Tambah Dokumentasi 
+                            <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Add Documentation
                           </a>
                         </div>
 
@@ -70,8 +69,6 @@
                         }
                   ?>
                   <td>{{$mom->hari}}, {{$tanggal}}</td>
-                  <td>(ini Status)</td>
-                  {{-- <td>{{$mom->sts_issue}}</td> --}}
                 </tr>
               @endforeach
               {{-- hh --}}
@@ -133,7 +130,7 @@
         }
         var data = table.row($tr).data();
         
-        $('#text-notif').html('Yakin Ingin Menghapus MOM dengan OID :<br>' + data[2] +' ?');
+        $('#text-notif').html('Are you sure want to delete mom data whit oid :<br>' + data[2] +' ?');
         var oid_mom = $('#text-notif a').html();
         $('#deleteform').attr('action', '/mom/'+ oid_mom);
         $('#deleteModal').modal('show');

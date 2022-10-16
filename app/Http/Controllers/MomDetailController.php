@@ -66,9 +66,17 @@ class MomDetailController extends Controller
      */
     public function edit(Detailmom $detailmom)
     {
+        $sts_input = [
+            'Open' => 'Open',
+            'On_Progress' => 'On Progress',
+            'Hold' => 'Hold',
+            'Close' => 'Close',
+        ];
+        
         return view('momdetail.editmomdetail', [
             'title' => 'Mom Detail',
-            'detail' => $detailmom
+            'detail' => $detailmom,
+            'sts_input' => $sts_input,
         ]);
     }
 
@@ -90,7 +98,7 @@ class MomDetailController extends Controller
             'progres_minggu_lalu' => 'required',
             'rencana_minggu_ini' => 'required',
             'sts_issue' => 'required',
-            'ket' => 'required',
+            'ket' => '',
         ]);
         $updateMomDetail = [
             'highlight_issues' => $request->highlight_issues,

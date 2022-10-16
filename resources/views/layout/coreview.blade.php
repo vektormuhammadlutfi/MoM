@@ -4,6 +4,7 @@
 @include('layout.head')
 
 <body class="">
+  {{-- sidebar --}}
   @include('layout.sidebar')
   <div class="main-content">
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">

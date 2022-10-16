@@ -2,82 +2,80 @@
 
 @section('content')
 {{-- content utama dibawah ini yaa --}}
-<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-auto mt--150" style="max-width: 900px; width:95%">
     <div class="card-body">
         
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Detail Branch</h3>
-        <a href="/branch" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
+        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Branch Detail</h3>
+        <a href="/branch" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-4 mb-4 pb-4">
 
       <!-- detail -->
       <div class="container">
-        <div class="d-flex justify-content-between">
-
-          <div class="container ">
+        <div class="row">
+          <div class="col-md-5">
             <div class="row">
-              <h4 class="col-4">Oid Branch</h4>
-              <p class="col-8">{{$DataBranch->oid_branch}}</p>
+              <h4 class="col-lg-4">Oid Branch</h4>
+              <p class="col-lg-8">{{$DataBranch->oid_branch}}</p>
             </div>
-            <hr class="mt-0">
           </div>
 
-          <div class="container ">
+          <div class="col-md-7">
             <div class="row">
-              <h4 class="col-4">Branch Name</h4>
-              <p class="col-8">{{$DataBranch->branch_name}}</p>
+              <h4 class="col-lg-4">Branch Name</h4>
+              <p class="col-lg-8">{{$DataBranch->branch_name}}</p>
             </div>
-            <hr class="mt-0">
           </div> 
         </div>
+        <hr class="mt-0">
 
         <div class="container mt-5">
           <div class="row">
-            <h4 class="col">Holding</h4>
-            <p class="col">{{$DataBranch->holding}} </p>
+            <h4 class="col-md-5">Holding</h4>
+            <p class="col-md-7">{{$DataBranch->holding}} </p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Sub Holding</h4>
-            <p class="col">{{$DataBranch->subholding}}</p>
+            <h4 class="col-md-5">Sub Holding</h4>
+            <p class="col-md-7">{{$DataBranch->subholding}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">SBU</h4>
-            <p class="col">{{$DataBranch->sbu_name}}</p>
+            <h4 class="col-md-5">SBU</h4>
+            <p class="col-md-7">{{$DataBranch->sbu_name}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Address</h4>
-            <p class="col">{{$DataBranch->address}}</p>
+            <h4 class="col-md-5">Address</h4>
+            <p class="col-md-7">{{$DataBranch->address}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Email</h4>
-            <p class="col">{{$DataBranch->email}}</p>
+            <h4 class="col-md-5">Email</h4>
+            <p class="col-md-7">{{$DataBranch->email}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Phone Number</h4>
-            <p class="col">{{$DataBranch->phone}}</p>
+            <h4 class="col-md-5">Phone Number</h4>
+            <p class="col-md-7">{{$DataBranch->phone}}</p>
           </div>
         </div>
         <hr class="mt-0">
         <div class="container ">
           <div class="row">
-            <h4 class="col">Description</h4>
-            <p class="col">{{$DataBranch->ket}}</p>
+            <h4 class="col-md-5">Description</h4>
+            <p class="col-md-7">{{$DataBranch->ket}}</p>
           </div>
         </div>
         <hr class="mt-0">

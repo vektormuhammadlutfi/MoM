@@ -1,4 +1,10 @@
 <footer class="footer pb-0">
+  <div class="copyright text-center mb-5 text-muted">
+    &copy; 2022 <a href="#" class="font-weight-bold ml-1">Developed By KIP Batch 3 Kampus Merdeka</a>
+  </div>
+</footer>
+
+{{-- <footer class="footer pb-0">
   <div class="row align-items-center justify-content-xl-between">
     <div class="col-xl-6">
       <div class="copyright text-center text-xl-left text-muted">
@@ -21,5 +27,5 @@
         </li>
       </ul>
     </div>
-  </div>
-</footer>
+  </div> --}}
+{{-- </footer> --}}

@@ -5,8 +5,8 @@
 <div data-aos="fade-up"  class="card shadow-lg bg-body mx-4 mt--150">
   <div class="card-body">
     <div class="d-flex justify-content-between">
-      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data Sub Holding</h3>
-      <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
+      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Sub Holding Data</h3>
+      <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Create</button>
     </div>
     <hr class="mt-2 mb-4">
     {{-- table --}}
@@ -65,27 +65,25 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="staticBackdropLabel">Tambah Data</h2>
+        <h2 class="modal-title" id="staticBackdropLabel"> Add Data</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-
       <form method="POST" action="/subholding">
         @method('post')
         @csrf
         <div class="modal-body">
           
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama Sub Holding</label>
+                <label for="exampleInputEmail1">Sub Holding Name</label>
                 <input type="text" id="inputsubholding" name="subholding" class="form-control @error('subholding') is-invalid @enderror"
-                 placeholder="Masukkan nama sub holding" id="inputsubholding" aria-describedby="emailHelp">
+                 placeholder="sub holding" id="inputsubholding" aria-describedby="emailHelp">
                 @error('subholding')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <label for="exampleFormControlSelect1">Nama Holding</label>
+            <label for="exampleFormControlSelect1">Holding Name</label>
             <select class="form-control" name="oid_holding" id="exampleFormControlSelect1">
               @foreach ($holdings as $holding)
                 <option class="dropdown-item" value="{{$holding->oid_holding}}">{{$holding->holding}}</option>
@@ -93,6 +91,7 @@
           </select>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
           <button type="submit" class="btn btn-success">Create</button>
         </div>
       </form>
@@ -117,10 +116,10 @@
         @csrf
         <div class="modal-body">
           <div class="form-group">
-              <label for="exampleInputEmail1">Nama Sub Holding</label>
-              <input type="text" name="subholding" class="form-control" placeholder="Masukkan nama Sub Holding" id="subholding" aria-describedby="emailHelp">
+              <label for="exampleInputEmail1">Sub Holding Name</label>
+              <input type="text" name="subholding" class="form-control" placeholder="sub holding" id="subholding" aria-describedby="emailHelp">
           </div>
-          <label for="exampleFormControlSelect1">Nama Holding</label>
+          <label for="exampleFormControlSelect1">Holding Name</label>
           <select class="form-control" name="oid_holding" id="holding">
             @foreach ($holdings as $holding)
               <option class="dropdown-item" value="{{$holding->oid_holding}}">{{$holding->holding}}</option>
@@ -128,8 +127,8 @@
           </select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+          <button type="submit" class="btn btn-warning">Edit</button>
         </div>
       </form>
       
@@ -143,20 +142,20 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="staticBackdropLabel">Warning</h2>
+        <h2 class="modal-title" id="staticBackdropLabel">Delete Data</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="container">
-        <div id='text-notif'>Yakin Ingin Menghapus Subholding ?</div>
         <form id="deleteform" method="POST">
           @method('delete')
           @csrf
+          <div id='text-notif' class="mb-4">Are you sure want to delete this data ?</div>
           <div class="d-flex justify-content-end my-3">
             <div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-outline-danger btn-sm py-2" id="delete">Hapus</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+              <button type="submit" class="btn btn-outline-danger" id="delete">Delete</button>
             </div>
           </div>
         </form>
@@ -191,7 +190,7 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        $('#text-notif').html('Yakin Ingin Menghapus Sub Holding ' + data[2] + ' ?');
+        $('#text-notif').html('Are you sure want to delete ' + data[2] + ' ?');
         $('#deleteform').attr('action', '/subholding/'+ data[1]);
         $('#deleteModal').modal('show');
       });

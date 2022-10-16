@@ -38,10 +38,8 @@
                 <td class="width-min1 width-max2">{{ $item->staktif }}</td>
 
                 <td style="min-width: 125px">
-                  <a  href="{{ url("/detailuser") }}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
-
+                  {{-- <a  href="{{ url("/detailuser") }}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a> --}}
                   <a href="#" class="btn btn-y btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-
                   <form action="{{ url("/user") }}" method="post" class="py-2 d-inline">
                     @method('delete')
                     @csrf

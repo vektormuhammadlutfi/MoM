@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse mt-4 mb-6 pt-0" id="sidenav-collapse-main">
         <!-- Collapse header -->
         <div class="navbar-collapse-header d-md-none">
-          <div class="row">
+          <div class="row my-3">
             <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="{{URL::asset('/assets/img/brand/blue.png')}}">
+              <a href="/dashboard">
+                <img src="{{URL::asset('/logo.png')}}">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -27,7 +27,7 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
+        {{-- <form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
             <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
             <div class="input-group-prepend">
@@ -36,7 +36,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </form> --}}
         <!-- Navigation -->
         <div >
           <h5 class="navbar-heading text-kalla-secondary mb-0">Dashboard</h5>
@@ -49,7 +49,7 @@
           </ul>
         </div>
         
-        @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
+        {{-- @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-2">
         <div>
           <h5 class="navbar-heading text-kalla-secondary m-0 p-0">Common</h5>
@@ -66,7 +66,7 @@
             </li>
           </ul>
         </div> 
-        @endif 
+        @endif  --}}
         @if (Auth::user()->usergroup == 'sysdev')
         <hr class="my-2">
         <div >
@@ -84,12 +84,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Branch'? 'menu-active':''}}" href="/branch">
-                <i class="fa-sharp fa-solid fa-house-user" ></i> Branch
+                <iconify-icon icon="charm:git-branch" style="margin-right: 18px; font-size: 17px"></iconify-icon> Branch
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Jenis Mom'? 'menu-active':''}}" href="/jenismom">
-                <i class="fa-sharp fa-solid fa-window-restore" ></i>Jenis Mom
+              <a class="nav-link {{$title === 'Type Of MoM'? 'menu-active':''}}" href="/jenismom">
+                <i class="fa-sharp fa-solid fa-window-restore" ></i>Type Of MoM
               </a>
             </li>
           </ul>
@@ -98,21 +98,21 @@
         @if (Auth::user()->usergroup == 'sysdev' || Auth::user()->usergroup == 'admin')
         <hr class="my-2">
         <div >
-          <h5 class="navbar-heading text-kalla-secondary mb-0">Transaksi</h5>
+          <h5 class="navbar-heading text-kalla-secondary mb-0">Transaction</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom'? 'menu-active':''}}" href="/mom">
-                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom
+                <iconify-icon icon="clarity:note-solid" style="margin-right: 18px; font-size: 17px"></iconify-icon> MoM
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Detail'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-sharp fa-solid fa-handshake-simple" ></i>Mom Detail
+                <iconify-icon icon="fluent:apps-list-detail-24-filled" style="margin-right: 18px; font-size: 17px"></iconify-icon> MoM Detail
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Mom Description'? 'menu-active':''}}" href="/momdescription">
-                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Description
+              <a class="nav-link {{$title === 'Mom Documentation'? 'menu-active':''}}" href="/momdescription">
+                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Documentation
               </a>
             </li>
           </ul>
@@ -123,17 +123,17 @@
           <h5 class="navbar-heading text-kalla-secondary mb-0">Report</h5>
           <ul class="navbar-nav mt-0 mb-0">
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-sharp fa-solid fa-file " ></i>Mom
+              <a class="nav-link {{$title === 'Mom Report'? 'menu-active':''}}" href="/momreport">
+                <iconify-icon icon="fluent:document-bullet-list-24-filled" style="margin-right: 18px; font-size: 18px"></iconify-icon> MoM Report
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Doc Mom'? 'menu-active':''}}" href="/momdetail">
-                <i class="fa-solid fa-floppy-disk" ></i>Doc Mom
+              <a class="nav-link {{$title === 'Documentation'? 'menu-active':''}}" href="/momreportdoc">
+                <iconify-icon icon="fluent:document-arrow-down-20-filled" style="margin-right: 18px; font-size: 18px"></iconify-icon> Documentation
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/momdetail">
+              <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/momreport">
                 <i class="fa fa-folder-open" aria-hidden="true" ></i>Summary
               </a>
             </li>

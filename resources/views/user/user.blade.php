@@ -12,9 +12,9 @@
       </div> 
     @endif
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Data User</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> User Data</h3>
         {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/user/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Add User</a>
+        <a href="/user/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Create</a>
       </div>
       <hr class="mt-2 mb-4">
       <div class="table-responsive">

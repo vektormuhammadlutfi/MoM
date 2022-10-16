@@ -5,8 +5,8 @@
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
   <div class="card-body">
     <div class="d-flex justify-content-between">
-      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Data SBU</h3>
-      <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button>
+      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> SBU Data</h3>
+      <button class="btn btn-success py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Create</button>
     </div>
     <hr class="mt-2 mb-4">
     {{-- table --}}
@@ -67,7 +67,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="staticBackdropLabel">Tambah Data</h2>
+        <h2 class="modal-title" id="staticBackdropLabel">Add Data</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -77,13 +77,13 @@
         @csrf
         <div class="modal-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="exampleInputEmail1">
+                <label for="exampleInputEmail1">SBU Name</label>
+                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="sbu name" id="exampleInputEmail1">
                 @error('sbu_name')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <label for="exampleFormControlSelect1">Nama Sub Holding</label>
+            <label for="exampleFormControlSelect1">Sub Holding Name</label>
             <select class="form-control" name="oid_subholding" id="exampleFormControlSelect1">
               @foreach ($datasubholding as $sbuitem)
               <option class="dropdown-item" value="{{ $sbuitem->oid_subholding }}">{{ $sbuitem->subholding }}</option>
@@ -91,7 +91,7 @@
             </select>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
             <button type="submit" class="btn btn-success">Create</button>
           </div>
       </form>
@@ -117,8 +117,8 @@
           @csrf
           <div class="modal-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Nama SBU</label>
-                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="Masukkan nama sbu" id="sbu_name" value="{{ old('sbu_name') }}">
+                <label for="exampleInputEmail1">SBU Name</label>
+                <input type="text" name="sbu_name" class="form-control @error('sbu_name') is-invalid @enderror" placeholder="SBU Name" id="sbu_name" value="{{ old('sbu_name') }}">
                 @error('sbu_name')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -131,8 +131,8 @@
             </select>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+            <button type="submit" class="btn btn-warning">Edit</button>
           </div>
         </form>
     </div>
@@ -150,16 +150,14 @@
         </button>
       </div>
         <div class="container">
-          <div id='text-notif'>Yakin Ingin Menghapus Data SBU ?</div>
+          <div id='text-notif' class="mb-4">Are you sure want to delete this data ?</div>
           <form action=""  id="deleteform" method="POST">
             @method('delete')
             @csrf
             <div class="d-flex justify-content-end my-3">
               <div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-outline-danger btn-sm py-2" id="delete">
-                  Hapus
-                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+                <button type="submit" class="btn btn-outline-danger" id="delete">Delete</button>
               </div>
             </div>
           </form>
@@ -197,7 +195,7 @@
         }
         var data = table.row($tr).data();
         
-        $('#text-notif').html('Yakin Ingin Menghapus Data SBU ' + data[2] +' ?');
+        $('#text-notif').html('Are you sure want to delete ' + data[2] +' ?');
         $('#deleteform').attr('action', '/sbu/'+data[1]);
         $('#deleteModal').modal('show');
       });

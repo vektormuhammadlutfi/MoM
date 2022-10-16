@@ -5,10 +5,13 @@
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
   <div class="card border-0 shadow bg-secondary">
     <div class="card-body">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between mb-4">
         <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MOM  Documentation</h3>
-        <!-- <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button> -->
+        <div>
+          <a href="/momreportdocexportpdf" class="btn btn-danger d-inline py-1 px-2">Download <i class="fa-solid fa-file-pdf fi-2"></i></a>
+        </div>
       </div>
+      
       <hr class="mt-2 mb-4">
       <div class="table-responsive">
         <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 300px">
@@ -17,6 +20,7 @@
                   <th class="text-center" style="font-size: 13px;width:50px;">No</th>
                   <th style="font-size: 13px">OID MOM</th>
                   <th style="font-size: 13px">DOCUMENT</th>
+                  <th class="width-max1 ">Action</th>
               </tr>
           </thead>
           <tbody>
@@ -27,6 +31,9 @@
                   <td>
                     <a target='_blank' href="storage\{{$description->gambar}}">{{$description->dokumen}}</a>
                   </td>
+                  <td>
+                    <a href="storage\{{$description->gambar}}" aria-valuetext="{{$description->dokumen}}" download class="btn py-1 px-2 bg-primary text-white">Download <i class="fa-solid fa-image fi-2"></i></a>
+                  </td>
               </tr>
             @endforeach
           </tbody>
@@ -35,13 +42,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 
  {{-- footer gaess --}}
 <div class="container-fluid mt--7">

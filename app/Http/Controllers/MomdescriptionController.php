@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MomdescriptionController extends Controller
 {
+    
     public function index()
     {
         $description = DB::table('tb_trans_documentations')
@@ -17,7 +18,7 @@ class MomdescriptionController extends Controller
             ->get();
         // dd($description);
         return view('momdescription', [
-            'title' => 'Mom Description',
+            'title' => 'Mom Documentation',
             'description' => $description
         ]);
     }

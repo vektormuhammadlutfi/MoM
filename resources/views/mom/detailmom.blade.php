@@ -6,8 +6,8 @@
   <div class="card-body">
 
     <div class="d-flex justify-content-between">
-      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Detail MOM</h3>
-      <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
+      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Detail MoM</h3>
+      <a href="/mom" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
     </div>
     <hr class="mt-4 mb-4 pb-4">
     <div class="row">
@@ -23,7 +23,7 @@
               <td class="p-2">{{$mom->sbu_name}}</td>
             </tr>
             <tr>
-              <td class="p-2 m-0"><h4>Jenis MOM</h4></td>
+              <td class="p-2 m-0"><h4>Type Of MoM</h4></td>
               <td class="p-2">{{$mom->jenis_mom}}</td>
             </tr>
             <tr>
@@ -31,7 +31,7 @@
               <td class="p-2">{{$mom->agenda}}</td>
             </tr>
             <tr>
-              <td class="p-2 m-0"><h4>Tempat</h4></td>
+              <td class="p-2 m-0"><h4>Place</h4></td>
               <td class="p-2">{{$mom->tempat}}</td>
             </tr>
             <tr>
@@ -50,18 +50,9 @@
           <form action="{{url("/storedetail/{$mom->oid_mom}")}}" method="post" enctype="multipart/form-data">
             @method('Post')
             @csrf
-            {{-- Tanggal Mulai --}}
-            {{-- <div class="form-group">
-              <label for="tanggalmulai">Tanggal Mulai</label>
-              <input type="date" name="tanggalmulai" class="form-control @error('tanggalmulai') is-invalid @enderror"  id="tanggalmulai">
-              @error('tanggalmulai')
-                <div class="invalid-feedback">{{ $message }} </div>        
-              @enderror
-            </div> --}}
-            {{-- Highlight Issues --}}
             <div class="form-group">
               <label for="highlight_issues">Highlight Issues</label>
-              <input type="text" name="highlight_issues" class="form-control @error('highlight_issues') is-invalid @enderror" placeholder="Input Highlight Issues" id="highlight_issues">
+              <input type="text" name="highlight_issues" value="{{ old('highlight_issues') }}" class="form-control @error('highlight_issues') is-invalid @enderror" placeholder="Input Highlight Issues" id="highlight_issues">
               @error('highlight_issues')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
@@ -69,7 +60,7 @@
             {{-- Due Date Info --}}
             <div class="form-group">
               <label for="due_date_info">Due Date Info</label>
-              <input type="text" name="due_date_info" class="form-control @error('due_date_info') is-invalid @enderror" placeholder="Input Due Date Info" id="due_date_info">
+              <input type="text" name="due_date_info" value="{{ old('due_date_info') }}" class="form-control @error('due_date_info') is-invalid @enderror" placeholder="Input Due Date Info" id="due_date_info">
               @error('due_date_info')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
@@ -77,29 +68,45 @@
             {{-- PIC --}}
             <div class="form-group">
               <label for="pic">PIC</label>
-              <input type="text" name="pic" class="form-control @error('pic') is-invalid @enderror" placeholder="Input PIC" id="pic">
+              <input type="text" name="pic" value="{{ old('pic') }}" class="form-control @error('pic') is-invalid @enderror" placeholder="Input PIC" id="pic">
               @error('pic')
+                <div class="invalid-feedback">{{ $message }} </div>        
+              @enderror
+            </div>
+            {{-- Progress Minggu Lalu --}}
+            <div class="form-group">
+              <label for="pic">Last Week's Progress</label>
+              <input type="text" name="progres_ml" value="{{ old('progres_ml') }}" class="form-control @error('progres_ml') is-invalid @enderror" placeholder="Input last week's progress" id="pic">
+              @error('progres_ml')
+                <div class="invalid-feedback">{{ $message }} </div>        
+              @enderror
+            </div>
+            {{-- Rencana Minggu Ini --}}
+            <div class="form-group">
+              <label for="pic">This Week's Plans</label>
+              <input type="text" name="rencana_mi" value="{{ old('rencana_mi') }}" class="form-control @error('rencana_mi') is-invalid @enderror" placeholder="Input this week's plans" id="pic">
+              @error('rencana_mi')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
             </div>
             {{-- Informasi --}}
             <div class="form-group">
-              <label for="informasi">Informasi</label>
-              <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" placeholder="Input Informasi" id="informasi">
+              <label for="informasi">Information</label>
+              <input type="text" name="informasi" value="{{ old('informasi') }}" class="form-control @error('informasi') is-invalid @enderror" placeholder="Input information" id="informasi">
               @error('informasi')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
             </div>
             {{-- Dokumen --}}
             <div class="form-group">
-              <label for="dokumen">Dokumen</label>
-              <input type="file" name="dokumen"  class="form-control @error('dokumen') is-invalid @enderror" placeholder="Input Dokumen" id="dokumen">
+              <label for="dokumen">Documentation</label>
+              <input type="file" name="dokumen" value="{{ old('dokumen') }}"  class="form-control @error('dokumen') is-invalid @enderror" placeholder="Input Dokumen" id="dokumen">
               @error('dokumen')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
             </div>
             <div class="d-flex flex-row-reverse">
-              <button type="submit" class="btn btn-success">Tambah Detail</button>
+              <button type="submit" class="btn btn-success">Add Details</button>
             </div>
           </form>
         </div>
@@ -118,7 +125,7 @@
                 <th class="text-center" style="font-size: 13px">Due Date Info</th>
                 {{-- <th style="font-size: 13px">Issue User</th> --}}
                 <th class="text-center" style="font-size: 13px">PIC</th>
-                <th class="text-center" style="font-size: 13px">Informasi</th>
+                <th class="text-center" style="font-size: 13px">Information</th>
             </tr>
         </thead>
         <tbody>

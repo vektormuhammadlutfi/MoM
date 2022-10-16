@@ -21,6 +21,7 @@
 
   {{-- iconify --}}
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
   <script>
     window.TrackJS &&
       TrackJS.install({

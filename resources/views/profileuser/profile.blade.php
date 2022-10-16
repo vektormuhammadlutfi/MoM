@@ -22,18 +22,50 @@
 
           <h6 class="heading-small text-muted mb-4">User information</h6>
           <div class="pl-lg-4">
-            <form action="/editprofile/{{ auth()->user()->oid_user }}" method="post" >
-              @method('put')
+
+            <form action="/editprofile" method="post">
               @csrf
+              @method('put')
+                <div class="form-group">
+                  <label class="form-control-label" for="input-first-name">First name</label>
+                  <input type="text" name="first_name" id="input-first-name" class="font-16 form-control form-control-alternative @error('first_name') is-invalid @enderror" value="{{ auth()->user()->first_name }}">
+                  @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-last-name">Last name</label>
+                  <input type="text" name="last_name" id="input-last-name" class="font-16 form-control form-control-alternative @error('last_name') is-invalid @enderror" value="{{ auth()->user()->last_name }}">
+                  @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email">Email address</label>
+                  <input type="email" name="email" id="input-email" class="font-16 form-control form-control-alternative @error('email') is-invalid @enderror" value="{{ auth()->user()->email }}">
+                  @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-phone">Phone</label>
+                  <input type="number" name="telp" id="input-phone" class="font-16 form-control form-control-alternative @error('telp') is-invalid @enderror" value="{{ auth()->user()->telp }}">
+                  @error('telp') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-last-name">User Group</label>
+                  <input type="text" name="usergroup" id="input-last-name" class="font-16 form-control form-control-alternative" value="{{ auth()->user()->usergroup }}" disabled>
+                </div>
+                <button type="submit" class="btn btn-success py-2">Save</button>
+            </form>
+
+
+            {{-- <form action="/editprofile" method="post">
+              @csrf
+              @method('put')
                 <div class="form-group">
                   <label class="form-control-label" for="input-username">Username</label>
-                  <input type="text" name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
+                  <input type="text" disabled name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
                   @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="input-first-name">First name</label>
-                  <input type="text" name="firs_name" id="input-first-name" class="font-16 form-control form-control-alternative @error('firs_name') is-invalid @enderror" value="{{ auth()->user()->firs_name }}">
-                  @error('firs_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                  <input type="text" name="first_name" id="input-first-name" class="font-16 form-control form-control-alternative @error('first_name') is-invalid @enderror" value="{{ auth()->user()->first_name }}">
+                  @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="input-last-name">Last name</label>
@@ -55,7 +87,7 @@
                   <input type="text" name="usergroup" id="input-last-name" class="font-16 form-control form-control-alternative" value="{{ auth()->user()->usergroup }}" disabled>
                 </div>
                 <button type="submit" class="btn btn-success py-2">Save</button>
-            </form>
+            </form> --}}
           </div>
         </div>
       </div>
@@ -107,7 +139,7 @@
             <form class="text-left" action="/changepassword" method="post">
               @csrf
               @method('put')
-              <h5 class="heading-small text-muted mb-3">Ganti Kata Sandi</h5>
+              <h5 class="heading-small text-muted mb-3">Change Password</h5>
               <div class="form-group">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend bg-secondary">
@@ -165,8 +197,8 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+                  <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
               </form>
 

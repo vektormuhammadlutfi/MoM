@@ -7,7 +7,6 @@
     @include('navbar.navuser')
   </div>
 </nav>
- @include('navbar.navbg')
 
 <div data-aos="fade-up" class="card shadow-lg bg-body" style=" margin: -150px auto 90px auto; background: hsl(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); width: 95%; max-width: 800px;">
   <div class="card">
@@ -15,7 +14,7 @@
         
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list" style="color: #5BB318"></i> Detail User</h3>
-        <a href="/user" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
+        <a href="/user" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-4 mb-4 pb-4">
 
@@ -31,7 +30,7 @@
         <div class="container mt-4">
           <div class="row">
             <h4 class="col">First Name</h4>
-            <p class="col">{{$detailuser->firs_name}}</p>
+            <p class="col">{{$detailuser->first_name}}</p>
           </div>
         </div>
         {{-- <hr class="mt-0"> --}}

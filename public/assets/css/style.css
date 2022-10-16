@@ -6,6 +6,9 @@
     color: #FBAF40;
 }
 
+.width-max05 {
+    max-width: 50px;
+}
 .width-max1 {
     max-width: 100px;
 }
@@ -89,7 +92,12 @@
 .font-16 {
     font-size: 16px;
 }
-
+.fi-2 {
+    font-size: 18px;
+}
+.fi-1 {
+    font-size: 35px;
+}
 td::selection {
     background-color: var(--success);
     color: #fff;
@@ -99,4 +107,36 @@ td::selection {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
+}
+.body-number {
+    font-weight: bolder;
+    font-size: 23px;
+    color: black;
+}
+.border {
+    border: 1px solid black;
+}
+.row-grid {
+    display: grid;
+    gap: 16px;
+}
+@media screen and (min-width:1200px){
+    .row-grid { 
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    } 
+}
+@media screen and (max-width:1200px){
+    .row-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    } 
+}
+@media screen and (max-width:1000px){
+    .row-grid {
+        grid-template-columns: 1fr 1fr;
+    } 
+}
+@media screen and (max-width:600px){
+    .row-grid {
+        grid-template-columns: 1fr;
+    } 
 }

@@ -2,11 +2,11 @@
 
 @section('content')
 {{-- content utama dibawah ini yaa --}}
-<div class="card shadow-lg bg-body mx-4 mt--150">
+<div class="card shadow-lg bg-body mx-auto mt--150" style="max-width: 900px; width:95%" >
   <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Tambah Data MOM</h3>
-        <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Create MoM Data</h3>
+        <a href="/mom" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
 
@@ -27,7 +27,7 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="jenisMom">Jenis Mom</label>
+            <label for="jenisMom">Type Of MoM</label>
             <select class="form-control @error('') is-invalid @enderror" name="oid_jen_mom" id="jenisMom">
               @foreach ($dataJenisMom as $itemJenisMom)
                 <option class="dropdown-item" value="{{ $itemJenisMom->oid_jen_mom }}">{{ $itemJenisMom->jenis_mom }}</option>
@@ -46,7 +46,7 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="tempat">Tempat</label>
+            <label for="tempat">Place</label>
             <input type="text" name="tempat" value="{{ old('tempat') }}" class="form-control @error('tempat') is-invalid @enderror" placeholder="Masukkan Tempat" id="tempat">
             @error('tempat')
               <div class="invalid-feedback">{{ $message }} </div>        
@@ -67,7 +67,7 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="emailbranch">Tanggal</label>
+            <label for="emailbranch">Date</label>
             <input type="date" name="tanggal" value="{{ old('tanggal') }}" class="form-control @error('tanggal') is-invalid @enderror"  id="tanggal">
             @error('tanggal')
               <div class="invalid-feedback">{{ $message }} </div>        

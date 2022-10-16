@@ -15,7 +15,8 @@
 <body>
     <div class="login">
         <div class="row justify-content-lg-start justify-content-center">
-            <div class="col-lg-5 col-md-6 content-left">
+            {{--col-lg-5 col-md-6 content-left --}}
+            <div class="col-md-6 w45">
                 <div class="container px-lg-5 px-md-3 d-flex flex-column justify-content-between "
                     style="height: 100vh;">
                     <div class="top">
@@ -95,7 +96,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-6 d-none d-lg-block content-right">
+            {{--col-lg-7 col-md-6 d-none d-lg-block content-right --}}
+            <div class="col-md-6 d-none d-lg-block w55">
                 <div class="login-bg" style="background-image: url('{{URL::asset('/assets/img/bg.png')}}');">
                     <div class="bg-white d-inline-block p-3 ms-5" style="border-radius: 0 0 4px 4px">
                         <img src="{{URL::asset('./assets/img/kalla.svg')}}" width="150" alt="">

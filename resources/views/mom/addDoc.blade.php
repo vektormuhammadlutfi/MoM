@@ -5,8 +5,8 @@
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
   <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Add Doc</h3>
-            <a href="/mom" class="btn btn-primary py-1"><i class="fa-solid fa-backward-fast"></i> Kembali</a>
+            <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Add Documentation MoM</h3>
+            <a href="/mom" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
         </div>
         <hr class="mt-4 mb-4 pb-4">
         <div class="row">
@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <td class="p-2 m-0">
-                                <h4>Jenis MOM</h4>
+                                <h4>Type Of MoM</h4>
                             </td>
                             <td class="p-2">{{$mom->jenis_mom}}</td>
                         </tr>
@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <td class="p-2 m-0">
-                                <h4>Tempat</h4>
+                                <h4>Place</h4>
                             </td>
                             <td class="p-2">{{$mom->tempat}}</td>
                         </tr>
@@ -71,7 +71,7 @@
                         @csrf
                         {{-- Dokumen --}}
                         <div class="form-group">
-                            <label for="upload-dokumen">Dokumen</label>
+                            <label for="upload-dokumen">Document</label>
                             <input type="file" name="dokumen"
                                 class="form-control @error('dokumen') is-invalid @enderror" id="upload-dokumen">
                             @error('dokumen')
@@ -79,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-success"> Tambah Dokumen</button>
+                            <button type="submit" class="btn btn-success"> Add Document</button>
                         </div>
                     </form>
                 </div>

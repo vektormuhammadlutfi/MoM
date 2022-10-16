@@ -10,7 +10,7 @@
   <div class="card">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Edit Mom Detail</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Edit MoM Detail</h3>
         <a href="/momdetail" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
@@ -37,7 +37,7 @@
           </div>
           {{-- Informasi --}}
           <div class="form-group">
-            <label for="info">Informasi</label>
+            <label for="info">Information</label>
             <input type="text" name="informasi" class="form-control" 
             value="{{ old('informasi', $detail->informasi) }}" id="info" aria-describedby="emailHelp">
             @error('informasi')
@@ -46,7 +46,7 @@
           </div>
           {{-- Proses Minggu Lalu --}}
           <div class="form-group">
-            <label for="progres_minggu_lalu">Proses Minggu Lalu</label>
+            <label for="progres_minggu_lalu">Last Week's Progress</label>
             <input type="text" value="{{ old('progres_minggu_lalu', $detail->progres_minggu_lalu) }}" name="progres_minggu_lalu" class="form-control @error('progres_minggu_lalu') is-invalid @enderror" id="proses_minggu_lalu">
             @error('progres_minggu_lalu')
               <div class="invalid-feedback">{{ $message }} </div>        
@@ -54,7 +54,7 @@
           </div>
           {{-- Rencana Minggu Ini --}}
           <div class="form-group">
-            <label for="rencana_minggu_ini">Rencana Minggu Ini</label>
+            <label for="rencana_minggu_ini">This Week's Plans</label>
             <input type="text" value="{{ old('rencana_minggu_ini', $detail->rencana_minggu_ini) }}" 
                   name="rencana_minggu_ini" class="form-control @error('rencana_minggu_ini') is-invalid @enderror" 
                   id="rencana_minggu_ini"
@@ -67,10 +67,9 @@
           <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control @error('sts_issue') is-invalid @enderror" name="sts_issue" id="status">
-                <option class="dropdown-item" value="Open" {{ ("Open" == $detail->sts_issue)?'selected':'' }}>Open</option>
-                <option class="dropdown-item" value="On Progress" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>On Progress</option>
-                <option class="dropdown-item" value="Hold" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>Hold</option>
-                <option class="dropdown-item" value="Close" {{ ("Close" == $detail->sts_issue)?'selected':'' }}>Close</option>
+              @foreach ($sts_input as $item)
+                <option class="dropdown-item" {{ ($detail->sts_issue == $item)?'selected':''}}>{{ $item }}</option>
+              @endforeach
             </select>
             @error('sts_issue')
               <div class="invalid-feedback">{{ $message }} </div>        
@@ -78,16 +77,18 @@
           </div>
           {{-- Keterangan --}}
           <div class="form-group">
-            <label for="ket">Keterangan</label>
-            <input type="text" value="{{ old('ket', $detail->ket) }}" 
+            <label for="ket">Description</label>
+            <input type="text" id="ket" name="ket" class="form-control @error('ket') is-invalid @enderror" placeholder="Type '-' if there is no description" rows="3"></input>
+            {{-- <input type="text" value="{{ old('ket', $detail->ket) }}" 
                   name="ket" class="form-control @error('ket') is-invalid @enderror" 
                   id="ket"
-            >
+            > --}}
             @error('rencana_minggu_ini')
               <div class="invalid-feedback">{{ $message }} </div>        
             @enderror
           </div>
           <div class="d-flex flex-row-reverse">
+            {{-- onclick="return confirm(', Yakin Ingin Edit ?')" --}}
             <button type="submit" class="btn btn-warning">Edit</button>
           </div>
       </form>

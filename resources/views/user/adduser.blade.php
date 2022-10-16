@@ -11,7 +11,6 @@
 
  {{-- content utama dibawah ini yaa --}}
 <div class="main-content mb-5">
-  @include('navbar.navbg')
 
   <!-- Page content -->
   <div class="container mt--8 pb-5">
