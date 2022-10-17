@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- Page content -->
-<div class="container-fluid mb-5 mt--5">
+<div class="container-fluid mb-5 mt--67">
   <div class="row profile">
     {{-- Left Content --}}
     <div class="col-xl-8 order-lg-1 order-2">
@@ -61,7 +61,7 @@
                   <label class="form-control-label" for="input-username">Username</label>
                   <input type="text" disabled name="username" id="input-username" class="font-16 form-control form-control-alternative @error('username') is-invalid @enderror" value="{{ auth()->user()->username }}">
                   @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
+                </div> 
                 <div class="form-group">
                   <label class="form-control-label" for="input-first-name">First name</label>
                   <input type="text" name="first_name" id="input-first-name" class="font-16 form-control form-control-alternative @error('first_name') is-invalid @enderror" value="{{ auth()->user()->first_name }}">
@@ -97,18 +97,22 @@
     {{-- Right Content --}}
     <div class="col-xl-4 order-lg-2 order-1 mb-5 mb-xl-0">
       <div class="card shadow p-4 right-content">
-        <div class="photo-profile text-center mt--7">
+        {{-- Photo Profile --}}
+        <div class="photo-profile text-center mt--7 ">
               @if (auth()->user()->profile_photo_path)
-                <button class="btn rounded-circle photo-profile" data-toggle="modal" data-target="#exampleModal"
+                <button class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
                   style="width:200px;height:200px;
+                  
                   background-image: url('{{ asset('storage/'.auth()->user()->profile_photo_path) }}')">
                 </button>
               @else
-                <button data-toggle="modal" data-target="#exampleModal">
-                  <img src="../assets/img/default_profil.png" class="rounded-circle" alt="{{ auth()->user()->username }}">
+              <button title="edit photo" class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
+                  style="width:200px;height:200px;
+                  background-image: url('../assets/img/default_profil.png')">
                 </button>
               @endif
         </div>
+        {{-- End Photo Profile --}}
         <div class="mt-4">
             @if (session()->has('success_pass'))
               <div class="alert alert-success bg-success alert-dismissible fade show mb-5 px-4" role="alert">

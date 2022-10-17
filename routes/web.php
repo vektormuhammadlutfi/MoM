@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MomController;
+
 use App\Http\Controllers\SbuController;
+// use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LoginController;
@@ -26,7 +29,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // report+admin+sysdev
 Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function () {
     //dashboard
+    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Report
+    // Route::get('/momreport', [ReportController::class, 'index']);
+
     // profile
     Route::get('/profile', [ProfileController::class, 'index']);
     // Route::put('/editprofile', [ProfileController::class, 'editprofile']);
@@ -100,6 +108,7 @@ Route::group(['middleware' => ['auth', 'level:admin,sysdev']], function () {
             'momdetail' => 'detailmom'
         ]
     ]);
+    Route::get('/momdetail/{detailmom}/history', [MomDetailController::class, 'history']);
 
     //== M O M   D E S C R I P T I O N ==
     Route::get('/momdescription', [MomdescriptionController::class, 'index']);
@@ -113,7 +122,6 @@ Route::group(['middleware' => ['auth', 'level:sysdev']], function () {
 
     // SBU
     Route::resource('/sbu', SbuController::class);
-
     //=== B R A N C H ===
     Route::resource('/branch', BranchController::class);
 

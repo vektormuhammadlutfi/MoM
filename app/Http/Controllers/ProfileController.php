@@ -48,12 +48,11 @@ class ProfileController extends Controller
         ]);
         if ($request->file('profile_photo_path')) {
             if (!empty(auth()->user()->profile_photo_path)) {
-                unlink('storage/'.auth()->user()->profile_photo_path);
+                unlink('storage/' . auth()->user()->profile_photo_path);
             }
-                $input = $request->file('profile_photo_path')->store('user-image');
-                $validatedata['profile_photo_path'] = $input;
-            
-        }else{
+            $input = $request->file('profile_photo_path')->store('user-image');
+            $validatedata['profile_photo_path'] = $input;
+        } else {
             $validatedata['profile_photo_path'] = auth()->user()->profile_photo_path;
         }
         User::where('oid_user', auth()->user()->oid_user)->update($validatedata);

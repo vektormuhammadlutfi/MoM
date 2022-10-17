@@ -57,21 +57,20 @@
               <td class="width-min1">{{ $branch->address}}</td>
               <td class="width-min1">{{ $branch->phone}}</td>
             </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
-
-
-{{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
-  @include('layout.footer')
 </div>
+
+  {{-- footer gaess --}}
+  <div class="container-fluid mt--7">
+    <div class="row mt-5" style="min-height: 200px">
+    </div>
+    <!-- Footer -->
+    @include('layout.footer')
+  </div>
 
 {{-- Delete Modal --}}
 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

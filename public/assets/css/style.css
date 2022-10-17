@@ -104,6 +104,7 @@ td::selection {
 }
 
 .photo-profile {
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
@@ -139,4 +140,28 @@ td::selection {
     .row-grid {
         grid-template-columns: 1fr;
     } 
+
+.change-profile {
+    overflow: hidden;
+}
+
+.change-profile::after {
+    content: '';
+    position: relative;
+    left: -20px;
+    top: -20px;
+    transition: .5s;
+}
+
+.change-profile:hover::after {
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/change_pp.svg');
+    background-color: rgba(132, 132, 132, 0.5);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 200px;
+    height: 210px;
 }

@@ -32,6 +32,12 @@ class MomController extends Controller
             'moms' => $moms
         ]);
         // return dd($moms);
+        $mom_detail = DB::table('tb_trans_mom_details')
+            ->where('tb_trans_moms.crud', 'U')
+            ->orWhere('tb_trans_moms.crud', 'C')
+            ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->get();
     }
     /**
      * Show the form for creating a new resource.

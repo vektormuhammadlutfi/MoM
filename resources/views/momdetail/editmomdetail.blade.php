@@ -70,6 +70,10 @@
               @foreach ($sts_input as $item)
                 <option class="dropdown-item" {{ ($detail->sts_issue == $item)?'selected':''}}>{{ $item }}</option>
               @endforeach
+                {{-- <option class="dropdown-item" value="Open" {{ ("Open" == $detail->sts_issue)?'selected':'' }}>Open</option>
+                <option class="dropdown-item" value="On Progress" {{ ("On Progresss" == $detail->sts_issue)?'selected':'' }}>On Progress</option>
+                <option class="dropdown-item" value="Hold" {{ ("Hold" == $detail->sts_issue)?'selected':'' }}>Hold</option>
+                <option class="dropdown-item" value="Closed" {{ ("Closed" == $detail->sts_issue)?'selected':'' }}>Closed</option> --}}
             </select>
             @error('sts_issue')
               <div class="invalid-feedback">{{ $message }} </div>        
