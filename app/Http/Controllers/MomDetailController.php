@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detailmom;
+use App\Models\HistoryMomDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,7 @@ class MomDetailController extends Controller
      */
     public function edit(Detailmom $detailmom)
     {
+        // dd($detailmom);
         return view('momdetail.editmomdetail', [
             'title' => 'Mom Detail',
             'detail' => $detailmom
@@ -81,7 +83,7 @@ class MomDetailController extends Controller
      */
     public function update(Request $request, Detailmom $detailmom)
     {
-        // dd($request);
+
         $request->validate([
             'highlight_issues' => 'required',
             'due_date_info' => 'required',
@@ -92,6 +94,7 @@ class MomDetailController extends Controller
             'sts_issue' => 'required',
             'ket' => 'required',
         ]);
+
         $updateMomDetail = [
             'highlight_issues' => $request->highlight_issues,
             'due_date_info' => $request->due_date_info,
@@ -105,8 +108,37 @@ class MomDetailController extends Controller
             'userupdate' => Auth::user()->username,
             'updated_at' => date('Y-m-d H:i:s')
         ];
-        //update
-        DB::table('tb_trans_mom_details')->where('oid_high_issues', $detailmom->oid_high_issues)->update($updateMomDetail);
+
+        // Create History if status is changed
+        if ($request->sts_issue != $detailmom->sts_issue) {
+            $max_id_history = DB::table('tb_trans_history_mom')->max('id');
+            $newId = (int) $max_id_history + 1;
+            $num = '0';
+            if (
+                $newId >= 9
+            ) {
+                $num = '';
+            }
+            $oid_history = 'HM-' . $num . $newId;
+
+            $createHistory = [
+                'oid_history_mom' => $oid_history,
+                'oid_high_issues' => $detailmom->oid_high_issues,
+                'progress_minggu_lalu' => $detailmom->progres_minggu_lalu,
+                'rencana_minggu_ini' => $detailmom->rencana_minggu_ini,
+                'sts_issue' => $detailmom->sts_issue,
+                'usercreate' => Auth::user()->username,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            HistoryMomDetail::create($createHistory);
+        }
+        //update mom detail
+        DB::table('tb_trans_mom_details')->where(
+            'oid_high_issues',
+            $detailmom->oid_high_issues
+        )->update($updateMomDetail);
+
         return redirect('/momdetail');
     }
 
@@ -125,5 +157,17 @@ class MomDetailController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
         return redirect('/momdetail');
+    }
+
+    public function history(Detailmom $detailmom)
+    {
+        $histories = DB::table('tb_trans_history_mom')
+            ->where('oid_high_issues', $detailmom->oid_high_issues)
+            ->get();
+
+        return view('momdetail.history', [
+            'title' => 'Mom Detail',
+            'histories' => $histories
+        ]);
     }
 }
