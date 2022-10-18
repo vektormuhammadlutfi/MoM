@@ -32,6 +32,11 @@
                           <iconify-icon icon="akar-icons:more-horizontal" class="text-success" style="font-size: 20px"></iconify-icon>
                         </a>
                         <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-item">
+                            <a  href="{{ url("/momdetail/{$detail->oid_high_issues}/history") }}" class="text-decoration-none text-success" >
+                              <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Detail
+                            </a>
+                          </div>
                           @if($detail->sts_issue !== 'Close')
                             <div class="dropdown-item">
                               <a href="{{url("/momdetail/{$detail->oid_high_issues}/edit")}}" class="text-decoration-none text-yellow">
