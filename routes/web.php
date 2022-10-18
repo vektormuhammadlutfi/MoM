@@ -19,6 +19,7 @@ use App\Http\Controllers\MomDetailController;
 use App\Http\Controllers\MomReportController;
 use App\Http\Controllers\SubholdingController;
 use App\Http\Controllers\MomdescriptionController;
+use App\Http\Controllers\SummaryController;
 
 //=== L O G I N ===
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -75,7 +76,6 @@ Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function (
     // // group
     // Route::resource('/group', GroupController::class);
 
-    // momreport
     // Route::get('/momreport', [MomReportController::class, 'index']);
     Route::controller(MomReportController::class)->group(function(){
         Route::get('momreport', 'index');
@@ -91,6 +91,11 @@ Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function (
     // export momreportdoc pdf
     Route::get('/momreportdocexportpdf', [MomReportController::class, 'exportMomDoc']);
     Route::get('/tesview', [MomReportController::class, 'tesvieaw']);
+
+    // summary
+    Route::get('/summary', [SummaryController::class, 'index']);
+    Route::get('/summarypdf', [SummaryController::class, 'summaryPdf']);
+    Route::get('/summaryexcel', [SummaryController::class, 'summaryExcel']);
 });
 
 // admin+sysdev

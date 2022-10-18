@@ -133,7 +133,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/momreport">
+              <a class="nav-link {{$title === 'Summary'? 'menu-active':''}}" href="/summary">
                 <i class="fa fa-folder-open" aria-hidden="true" ></i>Summary
               </a>
             </li>

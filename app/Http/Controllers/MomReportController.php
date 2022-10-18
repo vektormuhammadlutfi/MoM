@@ -31,7 +31,7 @@ class MomReportController extends Controller
     }
     public function exportExcel() 
     {
-        return Excel::download(new DetailMomExport, 'momreport.xlsx');
+        return Excel::download(new DetailMomExport, 'Momreport.xlsx');
     }
     public function exportPDF(Request $request)
     {

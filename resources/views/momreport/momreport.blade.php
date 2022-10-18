@@ -26,22 +26,6 @@
             <a href="{{ route('momreport.export') }}" class="btn btn-success py-1">Download <i class="fa-solid fa-file-excel fi-2"></i></a>
           </div>
         </form>
-        {{-- <form action="/momreportexportpdf" method="post" class="mb-0">
-          @csrf
-          @method('post')
-          <div class="form-group row" style="margin-bottom: 5px">
-            <div class="col-xl-4 col-sm-6 mb-2">
-              <input type="date" name="from_date" class="form-control form-control-sm" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}" placeholder="Input tanggal awal">
-            </div>
-            <div class="col-xl-4 col-sm-6 mb-2">
-              <input type="date" name="to_date" class="form-control form-control-sm" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}" placeholder="Input tanggal akhir">
-            </div>
-            <div class="col-xl-4 mb-2 d-flex justify-content-center">
-              <button  class="btn btn-danger py-1">Download <i class="fa-solid fa-file-pdf fi-2"></i></button>
-              <a href="{{ route('momreport.export') }}" class="btn btn-success py-1">Download <i class="fa-solid fa-file-excel fi-2"></i></a>
-            </div>
-           </div>
-        </form> --}}
       </div>
       <hr class="mt-2 mb-3" >
       <div class="table-responsive">
