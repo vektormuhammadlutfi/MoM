@@ -42,7 +42,7 @@
           <h5 class="navbar-heading text-kalla-secondary mb-0">Dashboard</h5>
           <ul class="navbar-nav mb-0 mt-0">
             <li class="nav-item ">
-              <a class="nav-link {{$title === 'Dashboard'? 'menu-active':''}}" href="./dashboard">
+              <a class="nav-link {{$title === 'Dashboard'? 'menu-active':''}}" href="/dashboard">
                 <i class="ni ni-tv-2 "></i> Dashboard
               </a>
             </li>

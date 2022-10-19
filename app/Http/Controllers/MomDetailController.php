@@ -131,7 +131,7 @@ class MomDetailController extends Controller
 
             $createHistory = [
                 'oid_history_mom' => $oid_history,
-                'oid_high_issues' => $detailmom->oid_high_issues,
+                'oid_high_issues' =>  $detailmom->oid_high_issues,
                 'progress_minggu_lalu' => $detailmom->progres_minggu_lalu,
                 'rencana_minggu_ini' => $detailmom->rencana_minggu_ini,
                 'sts_issue' => $detailmom->sts_issue,
@@ -139,13 +139,13 @@ class MomDetailController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ];
-            // dd($createHistory);
             HistoryMomDetail::create($createHistory);
         }
-        // dd()
         //update mom detail
-        DB::table('tb_trans_mom_details')->where('oid_high_issues', $detailmom->oid_high_issues)
-        ->update($updateMomDetail);
+        DB::table('tb_trans_mom_details')->where(
+            'oid_high_issues',
+            $detailmom->oid_high_issues
+        )->update($updateMomDetail);
 
         return redirect('/momdetail');
     }
@@ -170,6 +170,7 @@ class MomDetailController extends Controller
     public function history(Detailmom $detailmom)
     {
         $histories = DB::table('tb_trans_history_mom')
+            ->select('*', DB::raw("DATE_FORMAT(created_at,'%d %M %Y') as created_at"))
             ->where('oid_high_issues', $detailmom->oid_high_issues)
             ->get();
 

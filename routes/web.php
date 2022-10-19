@@ -29,9 +29,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // report+admin+sysdev
 Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function () {
-    //dashboard
     
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    // status in dashboard
+    Route::get('/dashboard/weekly', [DashboardController::class, 'weekly_status']);
+    Route::get('/dashboard/monthly', [DashboardController::class, 'monthly_status']);
+    Route::get('/dashboard/kuartal', [DashboardController::class, 'kuartal_status']);
+    Route::get('/dashboard/yearly', [DashboardController::class, 'yearly_status']);
 
     // Report
     // Route::get('/momreport', [ReportController::class, 'index']);

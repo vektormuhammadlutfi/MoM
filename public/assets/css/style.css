@@ -140,7 +140,7 @@ td::selection {
     .row-grid {
         grid-template-columns: 1fr;
     } 
-
+}
 .change-profile {
     overflow: hidden;
 }
@@ -152,16 +152,21 @@ td::selection {
     top: -20px;
     transition: .5s;
 }
-
 .change-profile:hover::after {
     content: '';
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url('../img/change_pp.svg');
-    background-color: rgba(132, 132, 132, 0.5);
+    background-color: rgba(132,132,132,0.5);
     background-repeat: no-repeat;
     background-position: center;
     width: 200px;
     height: 210px;
+}
+.hov-card:hover {
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.75);
+}
+.a-card-grid {
+    display: block;
 }

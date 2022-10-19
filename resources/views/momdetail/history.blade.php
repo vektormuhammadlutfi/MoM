@@ -16,16 +16,36 @@
                 <th class="text-center" style="font-size: 13px">User Update</th>
                 <th class="text-center" style="font-size: 13px">Progres Minggu Lalu</th>
                 <th class="text-center" style="font-size: 13px">Rencana Minggu Ini</th>
+                <th class="text-center" style="font-size: 13px">Status Old</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($histories as $history)
                 <tr>
                     <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="width-min07">{{$history->created_at}}</td>
-                    <td class="width-min07">{{$history->usercreate}}</td>
+                    <td class="width-min07 text-center">{{$history->created_at}}</td>
+                    <td class="width-min07 text-center">{{$history->usercreate}}</td>
                     <td>{{$history->progress_minggu_lalu}}</td>
                     <td>{{$history->rencana_minggu_ini}}</td>
+                    <td>
+                      <?php $colorStatus = 'btn-info';
+                      switch($history->sts_issue){
+                          case('Open'):
+                              $colorStatus = "btn-success rounded";
+                              break;
+                          case('On Progress'):
+                              $colorStatus = "btn-warning rounded";
+                              break;
+                          case('Hold'):
+                              $colorStatus = "btn-danger rounded";
+                              break;
+                          case('Closed'):
+                              $colorStatus = "btn-secondary rounded";
+                              break;
+                            }
+                      ?>
+                      <div class="{{$colorStatus}} text-center status-rounded ">{{$history->sts_issue}}</div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
