@@ -14,7 +14,8 @@ class SummaryExport implements FromCollection, WithHeadings
     public function collection()
     {
       $data_summary = DB::table('tb_trans_mom_details')
-        ->select('pic', DB::raw('count(*) as total'), 
+        ->select('pic',
+          DB::raw('count(*) as total'), 
           DB::raw('count(case when sts_issue = "Open" then 1 end) as open'),
           DB::raw('count(case when sts_issue = "On Progres" then 1 end) as on_progress'),
           DB::raw('count(case when sts_issue = "Hold" then 1 end) as hold'),
@@ -22,10 +23,6 @@ class SummaryExport implements FromCollection, WithHeadings
         )
         ->groupBy('pic')
         ->get();
-      $total_issues = DB::table('tb_trans_mom_details')
-            ->select('oid_high_issues', DB::raw('count(*) as total'))
-            ->groupBy('oid_high_issues')
-            ->get()->count();
       return $data_summary;
     }
     public function headings(): array

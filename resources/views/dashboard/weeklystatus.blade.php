@@ -15,14 +15,15 @@
           <div style="overflow-x: auto">
             <table style="width: 100%" class="mx-auto">
               <div class="card">
-                <div data-aos="fade-up" id="piechart" class="border-0 mx-auto" style="width: 100%; height:400px"></div>
+                <div data-aos="fade-up" id="piechart" class="border-0 mx-auto" style="width: 100%; height:400px;"></div>
               </div>
             </table>
           </div>
         </div>
         <div class="col-lg-7 col-md-12">
           <div class="table-responsive">
-            <h4 class="mb-3 h1"><span class="badge badge-success">Open</span></h1>
+            {{-- label --}}
+            <h4 class="mb-3 h2" id="title-tabel"></h1>
             <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
               <thead >
                   <tr>
@@ -33,17 +34,8 @@
                       <th class="text-center width-min1" style="font-size: 13px">DUE DATE INFO</th>
                   </tr>
               </thead>
-              <tbody>
-                  @foreach ($mom_weekly_open as $open)
-                    <tr>
-                      <td class="text-center">{{ $loop->iteration }}</td>
-                      <td>{{ $open->oid_high_issues }}</a></td>
-                      <td>{{ $open->highlight_issues }}</td>
-                      <td>{{ $open->pic }}</td>
-                      <td>{{ $open->due_date_info }}</td>
-                    </tr>
-                  @endforeach
-                  {{-- hh --}}
+              <tbody id="tbody">
+                  
               </tbody>
             </table>
           </div>
@@ -93,10 +85,10 @@
 
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Meeting Progress'],
-        ['Open', open],
         ['On Progress', onprogress],
+        ['Close', closed],
         ['Hold',  hold],
-        ['Close', closed]
+        ['Open', open]
     ]);
 
     var options = {
@@ -108,9 +100,66 @@
     chart.draw(data, options);
 
     google.visualization.events.addListener(chart, 'select', selectHandler);
+      
+    let datas = {!! $mom_weekly !!};
+    let dataOpen = datas.filter((data) => data.sts_issue == 'Open');
+    let tbody = document.getElementById('tbody');
+    var title = document.getElementById('title-tabel');
+    let no = 1;
+    tbody.innerHTML = `${dataOpen.map((dataitem) =>
+      `
+      <tr>
+        <td class="text-center">${no++}</td>
+        <td>${dataitem.oid_high_issues}</td>
+        <td>${dataitem.highlight_issues}</td>
+        <td>${dataitem.pic}</td>
+        <td>${dataitem.due_date_info}</td>
+      </tr>
+      `
+    ).join("")}`;
+    title.innerHTML= `<span class="badge badge-success">Open</span>`;
+    console.log(datas);
+    console.log(dataOpen);
 
     function selectHandler() {
-      alert('table_div');
+      // Show data based on clicked area in chart
+      var selectedItem = chart.getSelection()[0];
+          if (selectedItem) {
+            var DataCategory = data.getValue(selectedItem.row, 0);
+            var filterData = datas.filter((data) => data.sts_issue == DataCategory);
+
+            if (DataCategory == 'Open') {
+              var item = filterData;
+              title.innerHTML= `<span class="badge badge-success">Open</span>`;
+              no = 1;
+            }else if(DataCategory == 'On Progress'){
+              var item = filterData;
+              title.innerHTML= `<span class="badge badge-primary">On Progress</span>`; 
+              no = 1;               
+            }else if(DataCategory == 'Hold'){
+              var item = filterData;
+              title.innerHTML= `<span class="badge badge-warning">Hold</span>`; 
+              no = 1;               
+            }else if(DataCategory == 'Close'){
+              var item = filterData;     
+              title.innerHTML= `<span class="badge badge-danger ">Close</span>`;
+              no = 1;           
+            }
+            tbody.innerHTML = `${item.map((dataitem) =>
+              `
+              <tr>
+                <td class="text-center">${no++}</td>
+                <td>${dataitem.oid_high_issues}</td>
+                <td>${dataitem.highlight_issues}</td>
+                <td>${dataitem.pic}</td>
+                <td>${dataitem.due_date_info}</td>
+              </tr>
+              `
+            ).join("")}`;
+            console.log(datas);
+            console.log(item);
+          }
+
     }
   }
 </script>

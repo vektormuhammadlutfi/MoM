@@ -5,7 +5,7 @@
 {{-- content utama dibawah ini yaa --}}
 <div data-aos="fade-up" class="header bg-body mt--150 px-4">
 
-  <div class="row-grid mb-3">
+  <div class="row-grid mb-4">
     @foreach($jenismom as $item)
       <div class="card">
         <a href="/dashboard/weekly">
@@ -77,20 +77,17 @@
       </div>
     @endforeach
   </div>
-  <div class="row">
-    <div class="col-lg-6 col-md-6 mb-xl-0">
+  <div class="row-grid-chart">
       <!-- pie chart -->
       <div class="card">
         <div class="card-header">
           <h2 class="mb-0"></i>All PDCA</h2>
         </div>
-        <div class="card body">
-          <div data-aos="fade-up" id="piechart" class="border-0" style="width: 500px; height: 490px;"></div>
+        <div class="card-body text-center">
+          <div data-aos="fade-up" id="piechart" class="border-0 mx-auto" style="height: 100%;"></div>
         </div>
       </div>
-    </div>
-    <!-- bar old -->
-    <div data-aos="fade-up" class="col-xl-6 col-mg-12">
+      <!-- bar old -->
       <div class="card">
         <div class="card-header bg-transparent">
             <div class="row align-items-center">
@@ -102,21 +99,15 @@
         <div class="card-body">
             <div class="chart">
             <!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
-            <div id="barchart_material" style="width: 100%; height: 100%;"></div>
+            <div id="barchart_material" style="height: 100%;"></div>
             </div>
         </div>
       </div>
-    </div>
   </div>
-</div>
-
-{{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
+  {{-- footer gaess --}}
   @include('layout.footer')
 </div>
+
 @endsection
 <script src="./assets/js/plugins/chart.js/dist/Chart.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
@@ -174,28 +165,28 @@
 
         @foreach($totalstatus as $status)
           @if($status->jenis_mom == 'End Year Meeting 2022')
-          yearopen = <?php echo $status->open; ?>;
-          yearonprogress = <?php echo $status->on_progress; ?>;
-          yearhold = <?php echo $status->hold; ?>;
-          yearclose = <?php echo $status->close; ?>;
+            yearopen = <?php echo $status->open; ?>;
+            yearonprogress = <?php echo $status->on_progress; ?>;
+            yearhold = <?php echo $status->hold; ?>;
+            yearclose = <?php echo $status->close; ?>;
           @endif          
           @if($status->jenis_mom == 'Kuartal Meeting')
-          kuartalopen = <?php echo $status->open; ?>;
-          kuartalonprogress = <?php echo $status->on_progress; ?>;
-          kuartalhold = <?php echo $status->hold; ?>;
-          kuartalclose = <?php echo $status->close; ?>;
+            kuartalopen = <?php echo $status->open; ?>;
+            kuartalonprogress = <?php echo $status->on_progress; ?>;
+            kuartalhold = <?php echo $status->hold; ?>;
+            kuartalclose = <?php echo $status->close; ?>;
           @endif          
           @if($status->jenis_mom == 'PDCA Month KGsd')
-          monthopen = <?php echo $status->open; ?>;
-          monthonprogress = <?php echo $status->on_progress; ?>;
-          monthhold = <?php echo $status->hold; ?>;
-          monthclose = <?php echo $status->close; ?>;
+            monthopen = <?php echo $status->open; ?>;
+            monthonprogress = <?php echo $status->on_progress; ?>;
+            monthhold = <?php echo $status->hold; ?>;
+            monthclose = <?php echo $status->close; ?>;
           @endif          
           @if($status->jenis_mom == 'Weekly BoD')
-          weekopen = <?php echo $status->open; ?>;
-          weekonprogress = <?php echo $status->on_progress; ?>;
-          weekhold = <?php echo $status->hold; ?>;
-          weekclose = <?php echo $status->close; ?>;
+            weekopen = <?php echo $status->open; ?>;
+            weekonprogress = <?php echo $status->on_progress; ?>;
+            weekhold = <?php echo $status->hold; ?>;
+            weekclose = <?php echo $status->close; ?>;
           @endif          
         @endforeach
 

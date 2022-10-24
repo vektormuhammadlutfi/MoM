@@ -2,17 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MomController;
-
 use App\Http\Controllers\SbuController;
-// use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\ReportController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HoldingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JenisMomController;
 use App\Http\Controllers\MomDetailController;
@@ -48,39 +43,6 @@ Route::group(['middleware' => ['auth', 'level:report,admin,sysdev']], function (
     Route::put('/editprofile', [ProfileController::class, 'editprofile']);
     Route::put('/changepassword', [ProfileController::class, 'changepassword']);
     Route::put('/changeprofile', [ProfileController::class, 'changeprofile']);
-
-    // Route::resource('/mom', MomController::class);
-    // Route::get('/tambahdetail/{mom}', [MomController::class, 'addDetail']);
-    // Route::post('/storedetail/{mom}', [MomController::class, 'storeDetail']);
-    // Route::get('/adddoc/{mom}', [MomController::class, 'addDoc']);
-    // Route::post('/storedoc/{mom}', [MomController::class, 'storeDoc']);
-    // Route::resource('/momdetail', MomDetailController::class, [
-    //     'parameters' => [
-    //         'momdetail' => 'detailmom'
-    //     ]
-    // ]);
-
-    // //== M O M   D E S C R I P T I O N ==
-    // Route::get('/momdescription', [MomdescriptionController::class, 'index']);
-
-    // //Sub Holding
-    // Route::resource('/subholding', SubholdingController::class);
-
-    // // SBU
-    // Route::resource('/sbu', SbuController::class);
-
-    // //=== B R A N C H ===
-    // Route::resource('/branch', BranchController::class);
-
-    // //=== J E N I S   M O M ===
-    // Route::resource('/jenismom', JenisMomController::class);
-
-    // // User
-    // Route::resource('/user', UsersController::class);
-    // Route::get('/detailuser/{user}', [UsersController::class, 'detailuser']);
-
-    // // group
-    // Route::resource('/group', GroupController::class);
 
     // Route::get('/momreport', [MomReportController::class, 'index']);
     Route::controller(MomReportController::class)->group(function(){

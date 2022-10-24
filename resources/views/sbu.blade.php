@@ -169,31 +169,31 @@
   $(document).ready(function () {
     var table = $('#example').DataTable();
     table.on('click', '.edit', function(){
-        $tr = $(this).closest('tr');
-        if($($tr).hasClass('child')) {
-            $tr = $tr.prev('.parent');
-        }
-        var data = table.row($tr).data();
+      $tr = $(this).closest('tr');
+      if($($tr).hasClass('child')) {
+          $tr = $tr.prev('.parent');
+      }
+      var data = table.row($tr).data();
+      console.log(data);
+      $('#sbu_name').val(data[2].replace('&amp;','&'));
+      $('#subholding').val(data[3]);
 
-        $('#sbu_name').val(data[2].replace('&amp;','&'));
-        $('#subholding').val(data[3]);
-
-        $('#editform').attr('action', '/sbu/'+data[1]);//action = '/sbu/{sbu}'
-        $('#editModal').modal('show');
-      });
-
-      table.on('click', '.delete', function(){
-        $tr = $(this).closest('tr');
-        if($($tr).hasClass('child')) {
-            $tr = $tr.prev('.parent');
-        }
-        var data = table.row($tr).data();
-        
-        $('#text-notif').html('Are you sure want to delete ' + data[2] +' ?');
-        $('#deleteform').attr('action', '/sbu/'+data[1]);
-        $('#deleteModal').modal('show');
-      });
+      $('#editform').attr('action', '/sbu/'+data[1]);//action = '/sbu/{sbu}'
+      $('#editModal').modal('show');
     });
+
+    table.on('click', '.delete', function(){
+      $tr = $(this).closest('tr');
+      if($($tr).hasClass('child')) {
+          $tr = $tr.prev('.parent');
+      }
+      var data = table.row($tr).data();
+      
+      $('#text-notif').html('Are you sure want to delete ' + data[2] +' ?');
+      $('#deleteform').attr('action', '/sbu/'+data[1]);
+      $('#deleteModal').modal('show');
+    });
+  });
     
 </script>
 

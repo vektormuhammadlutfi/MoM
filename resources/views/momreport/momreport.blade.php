@@ -22,8 +22,8 @@
             {{-- <input type="date" name="to_date" class="form-control form-control-sm" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}" placeholder="Input tanggal akhir"> --}}
           </div>
           <div class="form-group mr-sm-4 mb-3">
-            <button  class="btn btn-danger py-1">Download <i class="fa-solid fa-file-pdf fi-2"></i></button>
             <a href="{{ route('momreport.export') }}" class="btn btn-success py-1">Download <i class="fa-solid fa-file-excel fi-2"></i></a>
+            <button  class="btn text-white py-1" style="background-color: #5e72e4">Download <i class="fa-solid fa-file-pdf fi-2"></i></button>
           </div>
         </form>
       </div>

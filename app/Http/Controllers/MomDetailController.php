@@ -17,9 +17,12 @@ class MomDetailController extends Controller
      */
     public function index()
     {
+        $details = Detailmom::where('tb_trans_mom_details.crud', 'C')
+        ->orWhere('tb_trans_mom_details.crud', 'U')
+        ->get();
         return view('momdetail.momdetail', [
             'title' => 'Mom Detail',
-            'details' => Detailmom::getAll()
+            'details' => $details
         ]);
     }
 

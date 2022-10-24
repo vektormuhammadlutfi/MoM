@@ -12,10 +12,10 @@
         <thead >
             <tr>
                 <th class="text-center" style="font-size: 13px">No</th>
-                <th class="text-center" style="font-size: 13px">Tanggal</th>
+                <th class="text-center" style="font-size: 13px">Date</th>
                 <th class="text-center" style="font-size: 13px">User Update</th>
-                <th class="text-center" style="font-size: 13px">Progres Minggu Lalu</th>
-                <th class="text-center" style="font-size: 13px">Rencana Minggu Ini</th>
+                <th class="text-center" style="font-size: 13px">Last Week's Progress</th>
+                <th class="text-center" style="font-size: 13px">This Week's Plans</th>
                 <th class="text-center" style="font-size: 13px">Status Old</th>
             </tr>
         </thead>

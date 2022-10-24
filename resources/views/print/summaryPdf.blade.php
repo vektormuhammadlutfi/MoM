@@ -58,61 +58,57 @@ body {
         <td class="width-min07 text-center">{{ $item->close }}</td>
       </tr>
       @endforeach
-      
+      {{-- inialisasi nilai ke variabel --}}
+      <?php 
+        $total_sts_open = 0;
+        $total_sts_hold = 0;
+        $total_sts_onprogress = 0;
+        $total_sts_close = 0;
+
+        $persen_sts_open = 0;
+        $persen_sts_hold = 0;
+        $persen_sts_onprogress = 0;
+        $persen_sts_close = 0;
+        
+        foreach ($issues as $item) {
+          if ($item->sts_issue == 'Open'){
+            $total_sts_open = $item->Total_sts;
+            $persen_sts_open =  round(($item->Total_sts / $total_issues)* 100, 2);
+          }
+          if ($item->sts_issue == 'On Progress'){
+            $total_sts_hold = $item->Total_sts;
+            $persen_sts_hold =  round(($item->Total_sts / $total_issues)* 100, 2);
+          }
+          if ($item->sts_issue == 'Hold'){
+            $total_sts_onprogress = $item->Total_sts;
+            $persen_sts_onprogress =  round(($item->Total_sts / $total_issues)* 100, 2);
+          }
+          if ($item->sts_issue == 'Close'){
+            $total_sts_close = $item->Total_sts;
+            $persen_sts_close =  round(($item->Total_sts / $total_issues)* 100, 2);
+          }
+        }
+      ?>
       <tr>
         <td class="text-center" colspan="2" rowspan="2">Total</td>
         <td class="text-center" rowspan="2">{{ $total_issues }}</td> 
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Open')
-            <td class="text-center">{{ $item->Total_sts }}</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'On Progress')
-            <td class="text-center">{{ $item->Total_sts }}</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Hold')
-            <td class="text-center">{{ $item->Total_sts }}</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Close')
-            <td class="text-center">{{ $item->Total_sts }}</td>  
-          @endif
-        @endforeach        
-      
+        <td class="text-center">{{ $total_sts_open }}</td>      
+        <td class="text-center">{{ $total_sts_hold }}</td>      
+        <td class="text-center">{{ $total_sts_onprogress }}</td>      
+        <td class="text-center">{{ $total_sts_close }}</td>      
       </tr>
       
       <tr>
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Open')
-            <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'On Progress')
-            <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Hold')
-            <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-          @endif
-        @endforeach
-        @foreach ($issues as $item)
-          @if ($item->sts_issue == 'Close')
-            <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-          @endif
-        @endforeach
-        {{-- <td class="text-center">Total</td>
-        <td class="text-center">Total</td>
-        <td class="text-center">Total</td>
-        <td class="text-center">Total</td> --}}
+        <td class="text-center">{{ $persen_sts_open }}%</td>
+        <td class="text-center">{{ $persen_sts_hold }}%</td>
+        <td class="text-center">{{ $persen_sts_onprogress }}%</td>
+        <td class="text-center">{{ $persen_sts_close }}%</td>
       </tr>
     </tbody>
   </table>
-
+  <script>
+    let datas = {!! $data_summary !!}
+    console.log({!! $data_summary !!});
+  </script>
 </body>
 </html>

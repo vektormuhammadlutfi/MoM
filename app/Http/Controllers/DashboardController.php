@@ -10,17 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $tahun= 2022;
-        // $jenismom = DB::table('tb_trans_moms')
-        //     ->select(DB::raw('YEAR(tgl_mom) as Tahun'))
-        //     ->selectRaw("count(case when oid_jen_mom = 'JM-001' then 1 end) as Year")
-        //     ->selectRaw("count(case when oid_jen_mom = 'JM-003' then 1 end) as Kuarta")
-        //     ->selectRaw("count(case when oid_jen_mom = 'JM-004' then 1 end) as Monthly")
-        //     ->selectRaw("count(case when oid_jen_mom = 'JM-002' then 1 end) as Weekly")
-        //     ->selectRaw("count(*) as Total")
-        //     ->whereYear('tgl_mom', $tahun)
-        //     ->groupBy('Tahun')
-        //     ->get();
         $tahun= 2022;
         $jenismom = DB::table('tb_trans_moms')
             ->Leftjoin('tb_trans_mom_details','tb_trans_moms.oid_mom','=','tb_trans_mom_details.oid_mom')
@@ -69,17 +58,17 @@ class DashboardController extends Controller
             ->groupBy('sts_issue')
             ->get();
             // dd($weekly_status);
-        $mom_weekly_open = DB::table('tb_trans_mom_details')
-        ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
-        ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+        $mom_weekly = DB::table('tb_trans_mom_details')
+            ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->select('oid_high_issues', 'pic', 'highlight_issues', 'sts_issue', 'due_date_info')
             ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-002')
-            ->where('tb_trans_mom_details.sts_issue', 'Open')
             ->get();
-            // dd($mom_weekly_open);
-        return view ('dashboard.weeklystatus', [
+        // dd($mom_weekly);
+        return view('dashboard.weeklystatus', [
             'title' => 'dashboard',
             'weekly_status' => $weekly_status,
-            'mom_weekly_open' => $mom_weekly_open
+            'mom_weekly' => $mom_weekly
         ]);
     }
     public function monthly_status(){
@@ -91,10 +80,19 @@ class DashboardController extends Controller
             ->select('sts_issue', DB::raw('count(*) as total_issues'))
             ->groupBy('sts_issue')
             ->get();
+                 // dd($weekly_status);
+        $mom_monthly = DB::table('tb_trans_mom_details')
+            ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->select('oid_high_issues', 'pic', 'highlight_issues', 'sts_issue', 'due_date_info')
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-004')
+            ->get();
+        // dd($mom_monthly);
        
         return view ('dashboard.monthlystatus', [
             'title' => 'dashboard',
-            'monthly_status' => $monthly_status
+            'monthly_status' => $monthly_status,
+            'mom_monthly' => $mom_monthly
         ]);
     }
     public function kuartal_status(){
@@ -106,10 +104,18 @@ class DashboardController extends Controller
             ->select('sts_issue', DB::raw('count(*) as total_issues'))
             ->groupBy('sts_issue')
             ->get();
+        $mom_kuartal = DB::table('tb_trans_mom_details')
+            ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->select('oid_high_issues', 'pic', 'highlight_issues', 'sts_issue', 'due_date_info')
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-003')
+            ->get();
+        // dd($mom_kuartal);
        
         return view ('dashboard.kuartalstatus', [
             'title' => 'dashboard',
-            'kuartal_status' => $kuartal_status
+            'kuartal_status' => $kuartal_status,
+            'mom_kuartal' => $mom_kuartal
         ]);
     }
     public function yearly_status(){
@@ -121,10 +127,18 @@ class DashboardController extends Controller
             ->select('sts_issue', DB::raw('count(*) as total_issues'))
             ->groupBy('sts_issue')
             ->get();
+        $mom_yearly = DB::table('tb_trans_mom_details')
+            ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
+            ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
+            ->select('oid_high_issues', 'pic', 'highlight_issues', 'sts_issue', 'due_date_info')
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-001')
+            ->get();
+        // dd($mom_yearly);
        
         return view ('dashboard.yearlystatus', [
             'title' => 'dashboard',
-            'yearly_status' => $yearly_status
+            'yearly_status' => $yearly_status,
+            'mom_yearly' => $mom_yearly
         ]);
     }
 }

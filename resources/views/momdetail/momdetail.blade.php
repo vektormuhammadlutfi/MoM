@@ -122,9 +122,9 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        
+        console.log(data);
         $('#text-notif').html('Are you sure want to delete detail mom with highlight issues ' + data[3] +' ?');
-        $('#deleteform').attr('action', '/momdetail/'+data[1]);
+        $('#deleteform').attr('action', '/momdetail/'+data[2]);
         $('#deleteModal').modal('show');
       });
     });

@@ -100,26 +100,6 @@ class BranchController extends Controller
             ->rightJoin('tb_mas_sbus', 'tb_mas_sbus.oid_sbu', '=', 'tb_mas_branches.oid_sbu')
             ->rightJoin('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
             ->rightJoin('tb_mas_holdings', 'tb_mas_holdings.oid_holding', '=', 'tb_mas_sub_holdings.oid_holding')
-            ->select(
-                'tb_mas_branches.id',
-                'tb_mas_branches.usercreate',
-                'tb_mas_branches.userupdate',
-                'tb_mas_branches.userdelete',
-                'tb_mas_branches.created_at',
-                'tb_mas_branches.updated_at',
-                'tb_mas_branches.address',
-                'tb_mas_branches.email',
-                'tb_mas_branches.phone',
-                'tb_mas_branches.branch_name',
-                'tb_mas_branches.oid_branch',
-                'tb_mas_branches.ket',
-                'tb_mas_sub_holdings.oid_subholding',
-                'tb_mas_sub_holdings.subholding',
-                'tb_mas_sbus.oid_sbu',
-                'tb_mas_sbus.sbu_name',
-                'tb_mas_holdings.oid_holding',
-                'tb_mas_holdings.holding'
-            )
             ->first();
 
         $title = 'Branch';
@@ -137,23 +117,7 @@ class BranchController extends Controller
         $DataBranchEdit = DB::table('tb_mas_branches')
             ->where('tb_mas_branches.oid_branch', '=', $Branch->oid_branch)
             ->rightJoin('tb_mas_sbus', 'tb_mas_sbus.oid_sbu', '=', 'tb_mas_branches.oid_sbu')
-            ->select(
-                'tb_mas_branches.id',
-                'tb_mas_branches.oid_branch',
-                'tb_mas_branches.branch_name',
-                'tb_mas_branches.usercreate',
-                'tb_mas_branches.userupdate',
-                'tb_mas_branches.userdelete',
-                'tb_mas_branches.created_at',
-                'tb_mas_branches.updated_at',
-                'tb_mas_branches.address',
-                'tb_mas_branches.email',
-                'tb_mas_branches.phone',
-                'tb_mas_branches.ket',
-                'tb_mas_branches.crud',
-                'tb_mas_sbus.oid_sbu',
-                'tb_mas_sbus.sbu_name',
-            )->first();
+            ->first();
         $SbuData = DB::table('tb_mas_sbus')->get();
         $title = 'Branch';
         return view('branch.editbranch', compact('title', 'DataBranchEdit', 'SbuData'));

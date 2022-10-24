@@ -8,7 +8,8 @@
       <div class="d-flex justify-content-between mb-4">
         <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MOM  Documentation</h3>
         <div>
-          <a href="/momreportdocexportpdf" class="btn btn-danger d-inline py-1 px-2">Download <i class="fa-solid fa-file-pdf fi-2"></i></a>
+          {{-- <a href="/momreportdocexportpdf" class="btn btn-danger d-inline py-1 px-2">Download <i class="fa-solid fa-file-pdf fi-2"></i></a> --}}
+          <a href="{{ url('/momreportdocexportpdf') }}" class="btn py-1 text-white" style="background-color: #5e72e4">Download <i class="fa-solid fa-file-pdf fi-2"></i></a>
         </div>
       </div>
       
@@ -32,7 +33,8 @@
                     <a target='_blank' href="storage\{{$description->gambar}}">{{$description->dokumen}}</a>
                   </td>
                   <td>
-                    <a href="storage\{{$description->gambar}}" aria-valuetext="{{$description->dokumen}}" download class="btn py-1 px-2 bg-primary text-white">Download <i class="fa-solid fa-image fi-2"></i></a>
+                    {{-- <a href="storage\{{$description->gambar}}" aria-valuetext="{{$description->dokumen}}" download class="btn py-1 px-2 bg-primary text-white"><i class="fa-sharp fa-solid fa-images"></i></a> --}}
+                    <a href="storage\{{$description->gambar}}" aria-valuetext="{{$description->dokumen}}" download class="py-0 text-primary" style="font-size: 30px"><i class="fa-sharp fa-solid fa-images"></i></a>
                   </td>
               </tr>
             @endforeach

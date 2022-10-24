@@ -2,14 +2,16 @@
 
 @section('content')
 {{-- content utama dibawah ini yaa --}}
-<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
+<div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150 mb-5" >
   <div class="card-body">
     {{-- Header --}}
     <div class="d-flex justify-content-between mb-3">
       <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Summary</h3>
       <div class="">
-        <a href="{{ url('/summarypdf') }}" class="btn btn-danger py-1">Download <i class="fa-solid fa-file-pdf fi-2"></i></a>
         <a href="{{ url('/summaryexcel') }}" class="btn btn-success py-1">Download <i class="fa-solid fa-file-excel fi-2"></i></a>
+        <a href="{{ url('/summarypdf') }}" class="btn py-1 text-white" style="background-color: #5e72e4">Download <i class="fa-solid fa-file-pdf fi-2"></i></a>
+        {{-- <a href="{{ url('/summarypdf') }}" class="text-danger py-0 mr-2" style="font-size: 38px"><i class="fa-sharp fa-solid fa-file-pdf"></i></a>
+        <a href="{{ url('/summaryexcel') }}" class="text-success py-0" style="font-size: 38px"><i class="fa-sharp fa-solid fa-file-excel"></i></a> --}}
       </div>
     </div>
     <hr class="mt-2 mb-4">
@@ -43,55 +45,55 @@
             @endforeach
           </tbody>
           <tbody>
+          <?php 
+            $total_sts_open = 0;
+            $total_sts_hold = 0;
+            $total_sts_onprogress = 0;
+            $total_sts_close = 0;
+
+            $persen_sts_open = 0;
+            $persen_sts_hold = 0;
+            $persen_sts_onprogress = 0;
+            $persen_sts_close = 0;
+            
+            foreach ($issues as $item) {
+              if ($item->sts_issue == 'Open'){
+                $total_sts_open = $item->Total_sts;
+                $persen_sts_open =  round(($item->Total_sts / $total_issues)* 100, 2);
+              }
+              if ($item->sts_issue == 'On Progress'){
+                $total_sts_hold = $item->Total_sts;
+                $persen_sts_hold =  round(($item->Total_sts / $total_issues)* 100, 2);
+              }
+              if ($item->sts_issue == 'Hold'){
+                $total_sts_onprogress = $item->Total_sts;
+                $persen_sts_onprogress =  round(($item->Total_sts / $total_issues)* 100, 2);
+              }
+              if ($item->sts_issue == 'Close'){
+                $total_sts_close = $item->Total_sts;
+                $persen_sts_close =  round(($item->Total_sts / $total_issues)* 100, 2);
+              }
+            }
+          ?>
             <tr>
-              <td class="" colspan="2" rowspan="2">Total</td>
-              <td class="" rowspan="2">{{ $total_issues }}</td> 
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Open')
-                  <td class="">{{ $item->Total_sts }}</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'On Progress')
-                  <td class="">{{ $item->Total_sts }}</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Hold')
-                  <td class="">{{ $item->Total_sts }}</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Close')
-                  <td class="">{{ $item->Total_sts }}</td>  
-                @endif
-              @endforeach        
+              <td colspan="2" rowspan="2">Total</td>
+              <td rowspan="2">{{ $total_issues }}</td>
+              <td>{{ $total_sts_open }}</td> 
+              <td>{{ $total_sts_hold }}</td>
+              <td>{{ $total_sts_onprogress }}</td>
+              <td>{{ $total_sts_close }}</td>
             </tr>
             <tr>
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Open')
-                  <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'On Progress')
-                  <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Hold')
-                  <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-                @endif
-              @endforeach
-              @foreach ($issues as $item)
-                @if ($item->sts_issue == 'Close')
-                  <td class="text-center">{{ round(($item->Total_sts / $total_issues)* 100, 2) }}%</td>
-                @endif
-              @endforeach
+              <td>{{ $persen_sts_open }}%</td>
+              <td>{{ $persen_sts_hold }}%</td>
+              <td>{{ $persen_sts_onprogress }}%</td>
+              <td>{{ $persen_sts_close }}%</td>
             </tr>
           </tbody>
         </table>
       </div>
   </div>
+  {{-- footer gaess --}}
 </div>
+@include('layout.footer')
 @endsection
