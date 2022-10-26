@@ -440,8 +440,6 @@
         {
             "name": "dompdf/dompdf",
             "version": "v2.0.1",
-<<<<<<< HEAD
-=======
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
@@ -504,7 +502,6 @@
         {
             "name": "dragonmantank/cron-expression",
             "version": "v3.3.1",
->>>>>>> origin/master
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
@@ -1999,7 +1996,6 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "maatwebsite/excel",
             "version": "3.1.42",
             "source": {
@@ -2259,8 +2255,6 @@
             "time": "2021-07-01T19:01:15+00:00"
         },
         {
-=======
->>>>>>> origin/master
             "name": "masterminds/html5",
             "version": "2.7.6",
             "source": {
@@ -2955,7 +2949,6 @@
             "time": "2022-09-06T12:16:56+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "phpoffice/phpspreadsheet",
             "version": "1.25.2",
             "source": {
@@ -3061,8 +3054,6 @@
             "time": "2022-09-25T17:21:01+00:00"
         },
         {
-=======
->>>>>>> origin/master
             "name": "phpoption/phpoption",
             "version": "1.9.0",
             "source": {
