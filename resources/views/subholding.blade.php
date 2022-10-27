@@ -33,13 +33,6 @@
               <td class="width-min07" style="height:100%">
                 <div class="d-flex">
                   <a href="#" class="btn btn-warning btn-sm py-2 edit"><i class="fa-solid fa-pen-to-square"></i></a> 
-                  {{-- <form action="/subholding/{{$item->oid_subholding}}"  id="delete-post-form" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button href="#" class="btn btn-outline-danger btn-sm py-2" id="delete" onclick="return confirm('Yakin Ingin Menghapus Subholding ?')">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                  </form> --}}
                   <a href="#" class="btn btn-outline-danger btn-sm py-2 delete">
                     <i class="fa-solid fa-trash-can"></i>
                   </a>
@@ -52,14 +45,9 @@
     </div>
   </div>
 </div>
+{{-- footer gaess --}}
+@include('layout.footer')
 
- {{-- footer gaess --}}
-  <div class="container-fluid mt--7">
-    <div class="row mt-5" style="min-height: 200px">
-    </div>
-    <!-- Footer -->
-    @include('layout.footer')
-  </div>
   {{-- content modal create data --}}
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

@@ -32,11 +32,6 @@ class UsersController extends Controller
         $dataUser = DB::table('users')
             ->where('users.oid_user', '=', $User->oid_user)
             ->first();
-        // $usergroupinput = [
-        //     'admin' => 'admin',
-        //     'record' => 'record',
-        //     'sysdev' => 'sysdev'
-        // ];
 
         // return dd($dataUser);
         return view('user.detailuser', [
@@ -103,7 +98,6 @@ class UsersController extends Controller
     }
     public function destroy(User $user)
     {
-        // DB::table('users')->where('oid_user', $user->oid_user)->delete();
         $user->delete();
         return redirect('/user');
     }

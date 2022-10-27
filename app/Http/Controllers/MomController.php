@@ -55,12 +55,6 @@ class MomController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //memvalidasi request yang diterima
@@ -134,13 +128,7 @@ class MomController extends Controller
         return redirect('/mom');
         // return dd($request->oid_sbu);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Mom $mom
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Mom $mom)
     {
         //hanya mengambil data mom yang berelasi dengan SBU dan Jenis Mom
@@ -163,13 +151,7 @@ class MomController extends Controller
             'detailMom' => $detailMom
         ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Mom $mom
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Mom $mom)
     {
         $momdata
@@ -188,16 +170,8 @@ class MomController extends Controller
             'sbuData' => $sbuData,
             'jenisMom' => $jenisMom
         ]);
-        // return dd($momdata);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Mom $mom
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Mom $mom)
     {
         $request->validate([
@@ -256,13 +230,7 @@ class MomController extends Controller
         DB::table('tb_trans_moms')->where('oid_mom', $mom->oid_mom)->update($updateMom);
         return redirect('/mom');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Mom $mom
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Mom $mom)
     {
         $update = array(

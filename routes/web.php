@@ -18,7 +18,7 @@ use App\Http\Controllers\SummaryController;
 
 //=== L O G I N ===
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logindashboardmom', [LoginController::class, 'authenticate']);
 //=== L O G O U T ===
 Route::post('/logout', [LoginController::class, 'logout']);
 

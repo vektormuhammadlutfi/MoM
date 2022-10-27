@@ -53,6 +53,7 @@
       </div>
     </div>
 </div>
-    
+{{-- footer gaess --}}
+@include('layout.footer')
 
 @endsection

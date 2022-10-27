@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function index()
     {
         // dd(auth()->user()->oid_user);
-        return view('profileuser.profile', [
+        return view('profile', [
             'title' => 'Profile',
         ]);
     }
@@ -46,9 +46,12 @@ class ProfileController extends Controller
         $validatedata = $request->validate([
             'profile_photo_path' => 'image|file|max:2048'
         ]);
+
         if ($request->file('profile_photo_path')) {
             if (!empty(auth()->user()->profile_photo_path)) {
-                unlink('storage/' . auth()->user()->profile_photo_path);
+                if('storage/' . auth()->user()->profile_photo_path == null){
+                    unlink('storage/' . auth()->user()->profile_photo_path);
+                }
             }
             $input = $request->file('profile_photo_path')->store('user-image');
             $validatedata['profile_photo_path'] = $input;

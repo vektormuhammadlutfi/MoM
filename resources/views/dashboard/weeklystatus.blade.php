@@ -10,6 +10,14 @@
         <a href="/dashboard" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="my-3">
+      {{-- dropdown filter year --}}
+      <div class="row-grid mb-3">
+        <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterYearData()">
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
       <div class="row">
         <div class="col-lg-5 col-md-12">
           <div style="overflow-x: auto">
@@ -56,53 +64,51 @@
 
 <!-- pie chart settings -->
 <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  let currentYear = new Date().getFullYear();
 
-    function drawChart() {
-      let onprogress = 0;
-      let open = 0;
-      let hold = 0;
-      let closed = 0;
-        @foreach($weekly_status as $weekly)
-          @if($weekly->sts_issue == 'On Progress')
-            onprogress = <?php echo $weekly->total_issues; ?>;
-          @endif
+  function drawChart() {
+    let onprogress = 0; let open = 0; let hold = 0; let close = 0;
+    let weeklyStatus = {!! $weekly_status !!}
+    let valueFilter = weeklyStatus.filter((datafilter) => datafilter.Tahun == currentYear);
+    console.table(valueFilter)
 
-          @if($weekly->sts_issue == 'Open')
-            open = <?php echo $weekly->total_issues; ?>;
-          @endif
-
-          @if($weekly->sts_issue == 'Close')
-            closed = <?php echo $weekly->total_issues; ?>;
-          @endif
-          
-          @if($weekly->sts_issue == 'Hold')
-            hold = <?php echo $weekly->total_issues; ?>;
-          @endif
-          
-        @endforeach
+    valueFilter.map((data) => {
+      if(data.sts_issue == 'Open'){
+        open = data.total_issues
+      }
+      if(data.sts_issue == 'On Progress'){
+        onprogress = data.total_issues
+      }
+      if(data.sts_issue == 'Hold'){
+        hold = data.total_issues
+      }
+      if(data.sts_issue == 'Close'){
+        close = data.total_issues
+      }
+    })
+    console.log(onprogress, open, hold, close)
 
     var data = google.visualization.arrayToDataTable([
-        ['Task', 'Meeting Progress'],
-        ['On Progress', onprogress],
-        ['Close', closed],
-        ['Hold',  hold],
-        ['Open', open]
+      ['Task', 'Meeting Progress'],
+      ['On Progress', onprogress],
+      ['Close', close],
+      ['Hold',  hold],
+      ['Open', open]
     ]);
 
     var options = {
         title: ''
     };
-
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
     chart.draw(data, options);
 
+    // for click google pie chart
     google.visualization.events.addListener(chart, 'select', selectHandler);
       
     let datas = {!! $mom_weekly !!};
-    let dataOpen = datas.filter((data) => data.sts_issue == 'Open');
+    let dataOpen = datas.filter((data) => data.sts_issue == 'Open' && data.Tahun == currentYear);
     let tbody = document.getElementById('tbody');
     var title = document.getElementById('title-tabel');
     let no = 1;
@@ -124,42 +130,148 @@
     function selectHandler() {
       // Show data based on clicked area in chart
       var selectedItem = chart.getSelection()[0];
-          if (selectedItem) {
-            var DataCategory = data.getValue(selectedItem.row, 0);
-            var filterData = datas.filter((data) => data.sts_issue == DataCategory);
+      if (selectedItem) {
+        var DataCategory = data.getValue(selectedItem.row, 0);
+        var filterData = datas.filter((data) => data.sts_issue == DataCategory && data.Tahun == currentYear);
 
-            if (DataCategory == 'Open') {
-              var item = filterData;
-              title.innerHTML= `<span class="badge badge-success">Open</span>`;
-              no = 1;
-            }else if(DataCategory == 'On Progress'){
-              var item = filterData;
-              title.innerHTML= `<span class="badge badge-primary">On Progress</span>`; 
-              no = 1;               
-            }else if(DataCategory == 'Hold'){
-              var item = filterData;
-              title.innerHTML= `<span class="badge badge-warning">Hold</span>`; 
-              no = 1;               
-            }else if(DataCategory == 'Close'){
-              var item = filterData;     
-              title.innerHTML= `<span class="badge badge-danger ">Close</span>`;
-              no = 1;           
-            }
-            tbody.innerHTML = `${item.map((dataitem) =>
-              `
-              <tr>
-                <td class="text-center">${no++}</td>
-                <td>${dataitem.oid_high_issues}</td>
-                <td>${dataitem.highlight_issues}</td>
-                <td>${dataitem.pic}</td>
-                <td>${dataitem.due_date_info}</td>
-              </tr>
-              `
-            ).join("")}`;
-            console.log(datas);
-            console.log(item);
-          }
-
+        if (DataCategory == 'Open') {
+          var item = filterData;
+          title.innerHTML= `<span class="badge badge-success">Open</span>`;
+          no = 1;
+        }else if(DataCategory == 'On Progress'){
+          var item = filterData;
+          title.innerHTML= `<span class="badge badge-primary">On Progress</span>`; 
+          no = 1;               
+        }else if(DataCategory == 'Hold'){
+          var item = filterData;
+          title.innerHTML= `<span class="badge badge-warning">Hold</span>`; 
+          no = 1;               
+        }else if(DataCategory == 'Close'){
+          var item = filterData;     
+          title.innerHTML= `<span class="badge badge-danger ">Close</span>`;
+          no = 1;           
+        }
+        tbody.innerHTML = `${item.map((dataitem) =>
+          `
+          <tr>
+            <td class="text-center">${no++}</td>
+            <td>${dataitem.oid_high_issues}</td>
+            <td>${dataitem.highlight_issues}</td>
+            <td>${dataitem.pic}</td>
+            <td>${dataitem.due_date_info}</td>
+          </tr>
+          `
+        ).join("")}`;
+        console.log(datas);
+        console.log(item);
+      }
     }
   }
+
+  function filterYearData() {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    currentYear = document.getElementById("filterYear").value;    
+    // alert(`onchage bisa ${currentYear}`) 
+    function drawChart() {
+      let onprogress = 0; let open = 0; let hold = 0; let close = 0;
+      let weeklyStatus = {!! $weekly_status !!}
+      let valueFilter = weeklyStatus.filter((datafilter) => datafilter.Tahun == currentYear);
+      console.table(valueFilter)
+
+      valueFilter.map((data) => {
+        if(data.sts_issue == 'Open'){
+          open = data.total_issues
+        }
+        if(data.sts_issue == 'On Progress'){
+          onprogress = data.total_issues
+        }
+        if(data.sts_issue == 'Hold'){
+          hold = data.total_issues
+        }
+        if(data.sts_issue == 'Close'){
+          close = data.total_issues
+        }
+      })
+      console.log(onprogress, open, hold, close)
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Meeting Progress'],
+        ['On Progress', onprogress],
+        ['Close', close],
+        ['Hold',  hold],
+        ['Open', open]
+      ]);
+
+      var options = {
+          title: ''
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+
+      // for click google pie chart
+      google.visualization.events.addListener(chart, 'select', selectHandler);
+        
+      let datas = {!! $mom_weekly !!};
+      let dataOpen = datas.filter((data) => data.sts_issue == 'Open' && data.Tahun == currentYear);
+      let tbody = document.getElementById('tbody');
+      var title = document.getElementById('title-tabel');
+      let no = 1;
+      tbody.innerHTML = `${dataOpen.map((dataitem) =>
+        `
+        <tr>
+          <td class="text-center">${no++}</td>
+          <td>${dataitem.oid_high_issues}</td>
+          <td>${dataitem.highlight_issues}</td>
+          <td>${dataitem.pic}</td>
+          <td>${dataitem.due_date_info}</td>
+        </tr>
+        `
+      ).join("")}`;
+      title.innerHTML= `<span class="badge badge-success">Open</span>`;
+      console.log(datas);
+      console.log(dataOpen);
+
+      function selectHandler() {
+        // Show data based on clicked area in chart
+        var selectedItem = chart.getSelection()[0];
+        if (selectedItem) {
+          var DataCategory = data.getValue(selectedItem.row, 0);
+          var filterData = datas.filter((data) => data.sts_issue == DataCategory && data.Tahun == currentYear);
+
+          if (DataCategory == 'Open') {
+            var item = filterData;
+            title.innerHTML= `<span class="badge badge-success">Open</span>`;
+            no = 1;
+          }else if(DataCategory == 'On Progress'){
+            var item = filterData;
+            title.innerHTML= `<span class="badge badge-primary">On Progress</span>`; 
+            no = 1;               
+          }else if(DataCategory == 'Hold'){
+            var item = filterData;
+            title.innerHTML= `<span class="badge badge-warning">Hold</span>`; 
+            no = 1;               
+          }else if(DataCategory == 'Close'){
+            var item = filterData;     
+            title.innerHTML= `<span class="badge badge-danger ">Close</span>`;
+            no = 1;           
+          }
+          tbody.innerHTML = `${item.map((dataitem) =>
+            `
+            <tr>
+              <td class="text-center">${no++}</td>
+              <td>${dataitem.oid_high_issues}</td>
+              <td>${dataitem.highlight_issues}</td>
+              <td>${dataitem.pic}</td>
+              <td>${dataitem.due_date_info}</td>
+            </tr>
+            `
+          ).join("")}`;
+          console.log(datas);
+          console.log(item);
+        }
+      }
+    } 
+  }
+
 </script>

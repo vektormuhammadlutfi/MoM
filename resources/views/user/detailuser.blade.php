@@ -4,11 +4,11 @@
   <div class="container-fluid">
     <!-- Nama Halaman/brand -->
     <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/register">User | Detail</a>
-    @include('navbar.navuser')
+    @include('layout.navuser')
   </div>
 </nav>
 
-<div data-aos="fade-up" class="card shadow-lg bg-body" style=" margin: -150px auto 90px auto; background: hsl(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); width: 95%; max-width: 800px;">
+<div data-aos="fade-up" class="card shadow-lg bg-body" style=" margin: -150px auto 50px auto; background: hsl(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); width: 95%; max-width: 800px;">
   <div class="card">
     <div class="card-body">
         
@@ -67,5 +67,6 @@
     </div>
   </div>
 </div>
-    
+{{-- footer gaess --}}
+@include('layout.footer')
 @endsection

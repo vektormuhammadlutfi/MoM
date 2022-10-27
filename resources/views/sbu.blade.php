@@ -47,14 +47,8 @@
     </div>
   </div>
 </div>
-
-  {{-- footer gaess --}}
-  <div class="container-fluid mt--7">
-    <div class="row mt-5" style="min-height: 200px">
-    </div>
-    <!-- Footer -->
-    @include('layout.footer')
-  </div>
+{{-- footer gaess --}}
+@include('layout.footer')
 
   {{-- content modal create data --}}
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

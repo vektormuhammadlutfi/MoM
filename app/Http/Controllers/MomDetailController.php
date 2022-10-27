@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detailmom;
-use App\Models\HistoryMomDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Documentation;
+use App\Models\HistoryMomDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MomDetailController extends Controller
 {
@@ -161,12 +162,20 @@ class MomDetailController extends Controller
      */
     public function destroy(Detailmom $detailmom)
     {
+        $update = array(
+            'crud' => 'D',
+            'userdelete' => Auth::user()->username,
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        // Update Table Mom ===========================
         Detailmom::where('oid_high_issues', $detailmom->oid_high_issues)
-            ->update([
-                'crud' => 'D',
-                'userdelete' => Auth::user()->username,
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
+            ->update($update);
+
+        // Update Table Documnetations ===========================
+        // Documentation::where('oid_mom', $detailmom->oid_mom)
+        //     ->update($update);
+
         return redirect('/momdetail');
     }
 

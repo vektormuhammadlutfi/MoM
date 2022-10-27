@@ -34,7 +34,7 @@
                         <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
                           <div class="dropdown-item">
                             <a  href="{{ url("/momdetail/{$detail->oid_high_issues}/history") }}" class="text-decoration-none text-success" >
-                              <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Detail
+                              <iconify-icon icon="icon-park-twotone:history-query" style="font-size: 16px;"></iconify-icon> History
                             </a>
                           </div>
                           @if($detail->sts_issue !== 'Close')
@@ -71,15 +71,8 @@
     </div>
   </div>
 </div>
-
-
 {{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
-  @include('layout.footer')
-</div>
+@include('layout.footer')
 
 {{-- Delete Modal --}}
 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class BranchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $Branches = DB::table('tb_mas_branches')
@@ -25,12 +20,7 @@ class BranchController extends Controller
         $title = 'Branch';
         return view('branch.branch', compact('title', 'Branches'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $dataSbu = DB::table('tb_mas_sbus')
@@ -40,13 +30,7 @@ class BranchController extends Controller
         $title = 'Branch';
         return view('branch.createbranch', compact('title', 'dataSbu'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -86,13 +70,7 @@ class BranchController extends Controller
         BranchModel::create($inputbranch);
         return redirect('/branch');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BranchModel  $branchModel
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(BranchModel $Branch)
     {
         $DataBranch = DB::table('tb_mas_branches')
@@ -105,13 +83,7 @@ class BranchController extends Controller
         $title = 'Branch';
         return view('branch.detailbranch', compact('title', 'DataBranch'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BranchModel  $branchModel
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(BranchModel $Branch)
     {
         $DataBranchEdit = DB::table('tb_mas_branches')
@@ -122,14 +94,7 @@ class BranchController extends Controller
         $title = 'Branch';
         return view('branch.editbranch', compact('title', 'DataBranchEdit', 'SbuData'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BranchModel  $branchModel
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, BranchModel $Branch)
     {
         $request->validate([
@@ -155,12 +120,6 @@ class BranchController extends Controller
         return redirect('/branch');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BranchModel  $branchModel
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(BranchModel $Branch)
     {
         $inputdelete = array(

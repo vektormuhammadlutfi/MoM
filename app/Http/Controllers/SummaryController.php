@@ -58,16 +58,6 @@ class SummaryController extends Controller
             )
             ->groupBy('pic')
             ->get();
-
-            // $data_summary = DB::table('tb_trans_mom_details')
-            // ->select('pic', DB::raw('count(*) as total'), 
-            //     DB::raw('count(case when sts_issue = "Open" then 1 end) as open'),
-            //     DB::raw('count(case when sts_issue = "On Progress" then 1 end) as on_progress'),
-            //     DB::raw('count(case when sts_issue = "Hold" then 1 end) as hold'),
-            //     DB::raw('count(case when sts_issue = "Close" then 1 end) as close'),
-            // )
-            // ->groupBy('pic')
-            // ->get();
         
         $total_issues = DB::table('tb_trans_mom_details')
             ->where('tb_trans_mom_details.crud', 'C')
@@ -85,7 +75,6 @@ class SummaryController extends Controller
 
         // dd($data_summary);
         // return view('print.summaryPdf', compact('data_summary', 'total_issues', 'issues'));
-
         $html = view('print.summaryPdf', compact('data_summary', 'total_issues', 'issues'));
         $pdf = new Dompdf();
         $pdf->loadHTML($html);

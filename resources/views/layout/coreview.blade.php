@@ -11,10 +11,10 @@
       <div class="container-fluid">
         <!-- Nama Halaman/brand -->
         <a class="h2 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">{{$title}}</a>
-        @include('navbar.navuser')
+        @include('layout.navuser')
       </div>
     </nav>
-    @include('navbar.navbg')
+    @include('layout.navbg')
     @yield('content')
   </div>
     <!--   Core   -->

@@ -63,18 +63,18 @@
       <div class="card shadow p-4 right-content">
         {{-- Photo Profile --}}
         <div class="photo-profile text-center mt--7 ">
-              @if (auth()->user()->profile_photo_path)
-                <button class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
-                  style="width:200px;height:200px;
-                  
-                  background-image: url('{{ asset('storage/'.auth()->user()->profile_photo_path) }}')">
-                </button>
-              @else
-              <button title="edit photo" class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
-                  style="width:200px;height:200px;
-                  background-image: url('../assets/img/default_profil.png')">
-                </button>
-              @endif
+          @if (auth()->user()->profile_photo_path)
+            <button class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
+              style="width:200px;height:200px;
+              
+              background-image: url('{{ asset('storage/'.auth()->user()->profile_photo_path) }}')">
+            </button>
+          @else
+          <button title="edit photo" class="btn rounded-circle photo-profile change-profile" data-toggle="modal" data-target="#exampleModal"
+              style="width:200px;height:200px;
+              background-image: url('../assets/img/default_profil.png')">
+            </button>
+          @endif
         </div>
         {{-- End Photo Profile --}}
         <div class="mt-4">
@@ -139,38 +139,38 @@
     {{-- End Right Content --}}
   </div>
 </div>
-
-
+{{-- footer gaess --}}
+@include('layout.footer')
 <!-- Modal Edit Photo Profile-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Edit Photo Profile</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              
-              <form action="/changeprofile" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                  @csrf
-                  @method('put')
-                  <div class="form-group">
-                    <label for="exampleFormControlFile1">Select Photo</label>
-                    <input type="file" name="profile_photo_path" class="form-control form-control-file @error('profile_photo_path') is-invalid @enderror" id="exampleFormControlFile1">
-                    @error('profile_photo_path')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
-                  <button type="submit" class="btn btn-success">Save changes</button>
-                </div>
-              </form>
-
-            </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Edit Photo Profile</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form action="/changeprofile" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          @csrf
+          @method('put')
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Select Photo</label>
+            <input type="file" name="profile_photo_path" class="form-control form-control-file @error('profile_photo_path') is-invalid @enderror" id="exampleFormControlFile1">
+            @error('profile_photo_path')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cencel</button>
+          <button type="submit" class="btn btn-success">Save changes</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
 @endsection

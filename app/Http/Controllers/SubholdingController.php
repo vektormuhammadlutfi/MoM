@@ -26,21 +26,7 @@ class SubholdingController extends Controller
         $title = "Sub Holding";
         return view('subholding', compact('title', 'subholding', 'holdings'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
 
@@ -75,35 +61,7 @@ class SubholdingController extends Controller
         //mengembalikan halaman ke /subholding
         return redirect('/subholding');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Subholding  $subholding
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SubholdingModel $subholding)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Subholding  $subholding
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SubholdingModel $subholding)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subholding  $subholding
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, SubholdingModel $subholding)
     {
         $validatedData = $request->validate([
@@ -125,12 +83,6 @@ class SubholdingController extends Controller
         // return dd($inputSubholding);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Subholding  $subholding
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(SubholdingModel $subholding)
     {
         $newSubholding = array(

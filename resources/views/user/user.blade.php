@@ -22,12 +22,12 @@
           <thead >
               <tr>
                   <th style="font-size: 13px">No</th>
+                  <th style="font-size: 13px">Action</th>
                   <th style="font-size: 13px">Oid User</th>
                   <th style="font-size: 13px">User Name</th>
                   <th style="font-size: 13px">Email</th>
                   <th style="font-size: 13px">Phone</th>
                   <th style="font-size: 13px">User Group</th>
-                  <th style="font-size: 13px">Action</th>
               </tr>
           </thead>
           <tbody>
@@ -35,23 +35,40 @@
             @foreach ($users as $item)
               <tr>
                 <td>{{ ++$no }}</td>
+                <td style="min-width: 125px" class="px-0 text-center">
+                  <div class="dropdown" style="background-color: transparent">
+                    <a  class="btn px-3 action-table" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <iconify-icon icon="akar-icons:more-horizontal" class="text-success" style="font-size: 20px"></iconify-icon>
+                    </a>
+                    <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-item">
+                        <a href="{{ url("/detailuser/{$item->oid_user}") }}" class="text-decoration-none text-success" >
+                          <iconify-icon icon="pajamas:details-block" style="font-size: 16px;"></iconify-icon> Detail
+                        </a>
+                      </div>
+
+                      <div class="dropdown-item">
+                        <a href="#" id="edit" class="text-decoration-none text-yellow">
+                          <i class="fa-solid fa-pen-to-square"></i> Edit 
+                        </a>
+                      </div>
+
+                      <div class="dropdown-item">
+                        <form action="{{ url("/user/{$item->oid_user}") }}" method="post" class="py-2 d-inline">
+                          @method('delete')
+                          @csrf
+                          <button type="submit"  onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn c-btn text-decoration-none text-danger delete" style="box-shadow: none;"><i class="fa-solid fa-trash-can"></i> Hapus</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 <td class="width-min07">{{ $item->oid_user }}</td>
                 <td class="width-min07">{{ $item->username }}</td>
                 <td class="width-min1 width-max2">{{ $item->email }}</td>
                 <td class="width-min1">{{ $item->telp }}</td>
                 <td class="width-min7">{{ $item->usergroup }}</td>
 
-                <td style="min-width: 125px">
-                  <a  href="{{ url("/detailuser/{$item->oid_user}") }}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a>
-
-                  <a href="#" class="btn btn-y btn-sm py-2" id="edit"><i class="fa-solid fa-pen-to-square"></i></a>
-
-                  <form action="{{ url("/user/{$item->oid_user}") }}" method="post" class="py-2 d-inline">
-                    @method('delete')
-                    @csrf
-                    <button   onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></button>
-                  </form>
-                </td>                
+                                
               </tr>
             @endforeach
           </tbody>
@@ -100,7 +117,8 @@
     </div>
   </div>
 </div>
-{{-- end create --}}
+{{-- footer gaess --}}
+@include('layout.footer')
 
 @endsection
 @push('addon-script')
@@ -114,7 +132,7 @@
       }
       var data = table.row($tr).data();
       console.log(data);
-      $('#usgr').val(data[5]);
+      $('#usgr').val(data[3]);
       $('#username').val(data[2]);
 
       $('#editform').attr('action', '/user/'+data[1]);

@@ -75,17 +75,14 @@
       </a>
     </div>
   </div>
-
-  {{-- <form action="" class="mb-3" onsubmit="filterYearData()"> --}}
-    <div class="row-grid mb-3">
-      <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterAllData()">
-        <option value="2022">2022</option>
-        <option value="2021">2021</option>
-        <option value="2019">2019</option>
-      </select>
-      {{-- <button type="submit" class="btn btn-primary py-1" onclick="filterYearData()">Filter</button> --}}
-    </div>
-  {{-- </form> --}}
+  {{-- dropdown filter year --}}
+  <div class="mt-4 mb-3 row-grid">
+    <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterAllData()">
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2019">2019</option>
+    </select>
+  </div>
   <div class="row-grid-chart">
       <!-- pie chart -->
       <div class="card">
@@ -113,9 +110,9 @@
         </div>
       </div>
   </div>
-  {{-- footer gaess --}}
-  @include('layout.footer')
 </div>
+{{-- footer gaess --}}
+@include('layout.footer')
 
 @endsection
 
@@ -124,9 +121,9 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+{{-- script google pie chart --}}
 <script type="text/javascript"> 
-  // function card 
+  // function card mom jenis 
   const jenMom = () => {
     jenisMoms.filter((datafilter) => datafilter.Tahun == valueYear).map((dataloop) => {
       document.getElementById("weekly").innerText = `${dataloop.Weekly}`;
@@ -135,8 +132,9 @@
       document.getElementById("yearly").innerText = `${dataloop.Yearly}`;
     })
   }
+
   google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+  google.charts.setOnLoadCallback(drawChart); 
   var valueYear = new Date().getFullYear();
   var jenisMoms = {!! $jenismom !!};
   var weekly = 0; var monthly = 0; var kuartal = 0; var yearly = 0;
@@ -203,6 +201,7 @@
     }
   }
 </script>
+{{-- script google grafik bar --}}
 <script type="text/javascript">
   google.charts.load('current', {'packages':['bar']});
   google.charts.setOnLoadCallback(drawChart);
@@ -221,18 +220,10 @@
     let jen_kuartal = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-003');
     let jen_month = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-004');
 
-    jen_year.map((e) => {
-      yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;
-    });
-    jen_week.map((e) => {
-      weekopen = e.open; weekonprogress = e.on_progress; weekhold = e.hold; weekclose = e.close;
-    });
-    jen_kuartal.map((e) => {
-      kuartalopen = e.open; kuartalonprogress = e.on_progress; kuartalhold = e.hold; kuartalclose = e.close;
-    });
-    jen_month.map((e) => {
-      monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close;
-    });
+    jen_year.map((e) => { yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;});
+    jen_week.map((e) => { weekopen = e.open; weekonprogress = e.on_progress; weekhold = e.hold; weekclose = e.close;});
+    jen_kuartal.map((e) => { kuartalopen = e.open; kuartalonprogress = e.on_progress; kuartalhold = e.hold; kuartalclose = e.close;});
+    jen_month.map((e) => { monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close; });
 
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Weekly BoD', 'PDCA Month KG', 'Kuartal Meeting','End Year Meeting'],
@@ -272,18 +263,11 @@
       let jen_kuartal = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-003');
       let jen_month = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-004');
 
-      jen_year.map((e) => {
-        yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;
-      });
-      jen_week.map((e) => {
-        weekopen = e.open; weekonprogress = e.on_progress; weekhold = e.hold; weekclose = e.close;
-      });
-      jen_kuartal.map((e) => {
-        kuartalopen = e.open; kuartalonprogress = e.on_progress; kuartalhold = e.hold; kuartalclose = e.close;
-      });
-      jen_month.map((e) => {
-        monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close;
-      });
+      // ganti nilai default 0 menjadi nilai dari data array jika ada data
+      jen_year.map((e) => { yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;});
+      jen_week.map((e) => { weekopen = e.open; weekonprogress = e.on_progress; weekhold = e.hold; weekclose = e.close;});
+      jen_kuartal.map((e) => { kuartalopen = e.open; kuartalonprogress = e.on_progress; kuartalhold = e.hold; kuartalclose = e.close;});
+      jen_month.map((e) => { monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close; });
 
       var data = google.visualization.arrayToDataTable([
         ['Status', 'Weekly BoD', 'PDCA Month KG', 'Kuartal Meeting','End Year Meeting'],

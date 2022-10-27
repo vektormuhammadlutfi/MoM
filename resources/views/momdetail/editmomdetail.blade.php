@@ -11,7 +11,7 @@
     <div class="card-body">
       <div class="d-flex justify-content-between">
         <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> Edit MoM Detail</h3>
-        <a href="/momdetail" class="btn btn-success py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
+        <a href="/momdetail" class="btn btn-secondary py-1"><i class="fa-solid fa-backward-fast"></i> Back</a>
       </div>
       <hr class="mt-3 mb-4 pb-4">
 
@@ -103,13 +103,6 @@
     </div>
   </div>
 </div>
-
-
 {{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
-  @include('layout.footer')
-</div>
+@include('layout.footer')
 @endsection

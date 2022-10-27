@@ -3,88 +3,82 @@
 @section('content')
 {{-- content utama dibawah ini yaa --}}
 <div data-aos="fade-up" class="card shadow-lg bg-body mx-4 mt--150">
-    <div class="card-body">
-      <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MoM</h3>
-        {{-- <i class="fa-solid fa-list text-success"></i>  --}}
-        <a href="/mom/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Create</a>
-      </div>
-      <hr class="mt-2 mb-4">
-      <div class="table-responsive">
-        <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
-          <thead >
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MoM</h3>
+      {{-- <i class="fa-solid fa-list text-success"></i>  --}}
+      <a href="/mom/create" class="btn btn-success py-1"><i class="fa-solid fa-plus"></i> Create</a>
+    </div>
+    <hr class="mt-2 mb-4">
+    <div class="table-responsive">
+      <table id="example" class="mt-5 table-striped table-bordered table-data" style="min-width: 400px">
+        <thead >
+            <tr>
+              <th class="text-center" style="font-size: 13px">No</th>
+                <th class="text-center" style="font-size: 13px">Action</th>
+                <th class="text-center" style="font-size: 13px">OID</th>
+                <th class="text-center" style="font-size: 13px">SBU Name</th>
+                <th class="text-center width-min1" style="font-size: 13px">Type Of MoM</th>
+                <th class="text-center" style="font-size: 13px">Agenda</th>
+                <th class="text-center" style="font-size: 13px">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($moms as $mom)
               <tr>
-                <th class="text-center" style="font-size: 13px">No</th>
-                  <th class="text-center" style="font-size: 13px">Action</th>
-                  <th class="text-center" style="font-size: 13px">OID</th>
-                  <th class="text-center" style="font-size: 13px">SBU Name</th>
-                  <th class="text-center width-min1" style="font-size: 13px">Type Of MoM</th>
-                  <th class="text-center" style="font-size: 13px">Agenda</th>
-                  <th class="text-center" style="font-size: 13px">Date</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($moms as $mom)
-                <tr>
-                  <td class="text-center">{{$loop->iteration}}</td>
-                  <td style="max-width: 30px;" class="px-0 text-center">
-                    <div class="dropdown" style="background-color: transparent">
-                      <a  class="btn px-3 action-table" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <iconify-icon icon="akar-icons:more-horizontal" class="text-success" style="font-size: 20px"></iconify-icon>
-                      </a>
-                      <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-item">
-                          <a  href="{{url("/adddoc/{$mom->oid_mom}")}}" class="text-decoration-none text-success" >
-                            <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Add Documentation
-                          </a>
-                        </div>
+                <td class="text-center">{{$loop->iteration}}</td>
+                <td style="max-width: 30px;" class="px-0 text-center">
+                  <div class="dropdown" style="background-color: transparent">
+                    <a  class="btn px-3 action-table" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <iconify-icon icon="akar-icons:more-horizontal" class="text-success" style="font-size: 20px"></iconify-icon>
+                    </a>
+                    <div class="dropdown-menu px-3" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-item">
+                        <a  href="{{url("/adddoc/{$mom->oid_mom}")}}" class="text-decoration-none text-success" >
+                          <iconify-icon icon="fluent:document-add-48-regular" width="20"></iconify-icon> Add Documentation
+                        </a>
+                      </div>
 
-                        <div class="dropdown-item">
-                          <a href="{{url("/mom/{$mom->oid_mom}/edit")}}" class="text-decoration-none text-yellow">
-                            <i class="fa-solid fa-pen-to-square"></i> Edit 
-                          </a>
-                        </div>
+                      <div class="dropdown-item">
+                        <a href="{{url("/mom/{$mom->oid_mom}/edit")}}" class="text-decoration-none text-yellow">
+                          <i class="fa-solid fa-pen-to-square"></i> Edit 
+                        </a>
+                      </div>
 
-                        <div class="dropdown-item">
-                          <a href="#" class="c-btn text-decoration-none text-danger delete">
-                            <i class="fa-solid fa-trash-can"></i> Hapus
-                          </a>
-                        </div>
+                      <div class="dropdown-item">
+                        <a href="#" class="c-btn text-decoration-none text-danger delete">
+                          <i class="fa-solid fa-trash-can"></i> Hapus
+                        </a>
                       </div>
                     </div>
-                  </td>
-                  <td class="width-min07"><a href="{{url("/mom/{$mom->oid_mom}")}}">{{$mom->oid_mom}}</a></td>
-                  <td>{{$mom->sbu_name}}</td>
-                  <td>{{$mom->jenis_mom}}</td>
-                  <td>{{$mom->agenda}}</td>
-                  {{-- Mengolah data waktu --}}
-                  <?php $split = array_reverse(explode('-',$mom->tgl_mom));
-                        $tanggal = '';
-                        for($i = 0; $i<count($split); $i++){
-                          if($i==0){
-                            $tanggal .= $split[$i];
-                          }else{
-                            $tanggal .= '/' . $split[$i];
-                          }
+                  </div>
+                </td>
+                <td class="width-min07"><a href="{{url("/mom/{$mom->oid_mom}")}}">{{$mom->oid_mom}}</a></td>
+                <td>{{$mom->sbu_name}}</td>
+                <td>{{$mom->jenis_mom}}</td>
+                <td>{{$mom->agenda}}</td>
+                {{-- Mengolah data waktu --}}
+                <?php $split = array_reverse(explode('-',$mom->tgl_mom));
+                      $tanggal = '';
+                      for($i = 0; $i<count($split); $i++){
+                        if($i==0){
+                          $tanggal .= $split[$i];
+                        }else{
+                          $tanggal .= '/' . $split[$i];
                         }
-                  ?>
-                  <td>{{$mom->hari}}, {{$tanggal}}</td>
-                </tr>
-              @endforeach
-              {{-- hh --}}
-          </tbody>
-        </table>
-      </div>
+                      }
+                ?>
+                <td>{{$mom->hari}}, {{$tanggal}}</td>
+              </tr>
+            @endforeach
+            {{-- hh --}}
+        </tbody>
+      </table>
     </div>
   </div>
-
-{{-- footer gaess --}}
-<div class="container-fluid mt--7">
-  <div class="row mt-5" style="min-height: 200px">
-  </div>
-  <!-- Footer -->
-  @include('layout.footer')
 </div>
+{{-- footer gaess --}}
+@include('layout.footer')
 
 {{-- Delete Modal --}}
 <div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
