@@ -80,7 +80,7 @@ class DashboardController extends Controller
             ->select('sts_issue', DB::raw('count(*) as total_issues'))
             ->groupBy('sts_issue')
             ->get();
-            // dd($weekly_status);
+            dd($weekly_status);
         $mom_weekly = DB::table('tb_trans_mom_details')
             ->leftJoin('tb_trans_moms', 'tb_trans_mom_details.oid_mom', '=', 'tb_trans_moms.oid_mom')
             ->leftJoin('tb_mas_mom_jenis', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
@@ -110,7 +110,6 @@ class DashboardController extends Controller
             ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-004')
             ->get();
         // dd($mom_monthly);
-       
         return view ('dashboard.monthlystatus', [
             'title' => 'dashboard',
             'monthly_status' => $monthly_status,

@@ -5,7 +5,7 @@
 {{-- content utama dibawah ini yaa --}}
 <div data-aos="fade-up" class="header bg-body mt--150 px-4">
 
-  <div class="row-grid mb-4">
+  <div class="row-grid mb-3">
     <div class="card">
       <a href="/dashboard/weekly">
         <div class="card-body p-3 hov-card">
@@ -75,6 +75,17 @@
       </a>
     </div>
   </div>
+
+  {{-- <form action="" class="mb-3" onsubmit="filterYearData()"> --}}
+    <div class="row-grid mb-3">
+      <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterAllData()">
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2019">2019</option>
+      </select>
+      {{-- <button type="submit" class="btn btn-primary py-1" onclick="filterYearData()">Filter</button> --}}
+    </div>
+  {{-- </form> --}}
   <div class="row-grid-chart">
       <!-- pie chart -->
       <div class="card">
@@ -114,31 +125,30 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-{{-- script card jenis mom --}}
-<script>
-  var jenisMoms = {!! $jenismom !!}
-  jenisMoms.filter((datafilter) => datafilter.Tahun == 2022).map((dataloop) => {
-    document.getElementById("weekly").innerText = `${dataloop.Weekly}`;
-    document.getElementById("monthly").innerText = `${dataloop.Monthly}`;
-    document.getElementById("kuartal").innerText = `${dataloop.Kuartal}`;
-    document.getElementById("yearly").innerText = `${dataloop.Yearly}`;
-  })
-</script>
-
-<!-- pie chart settings -->
-<script type="text/javascript">
+<script type="text/javascript"> 
+  // function card 
+  const jenMom = () => {
+    jenisMoms.filter((datafilter) => datafilter.Tahun == valueYear).map((dataloop) => {
+      document.getElementById("weekly").innerText = `${dataloop.Weekly}`;
+      document.getElementById("monthly").innerText = `${dataloop.Monthly}`;
+      document.getElementById("kuartal").innerText = `${dataloop.Kuartal}`;
+      document.getElementById("yearly").innerText = `${dataloop.Yearly}`;
+    })
+  }
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
+  var valueYear = new Date().getFullYear();
+  var jenisMoms = {!! $jenismom !!};
+  var weekly = 0; var monthly = 0; var kuartal = 0; var yearly = 0;
 
   function drawChart() {
-    var jenisMoms = {!! $jenismom !!};
-    var weekly = 0; var monthly = 0; var kuartal = 0; var yearly = 0
-    jenisMoms.filter((data) => data.Tahun == 2022).map((dataloop) => {
+    jenisMoms.filter((data) => data.Tahun == valueYear).map((dataloop) => {
       weekly = dataloop.Weekly;
       monthly = dataloop.Monthly;
       kuartal = dataloop.Kuartal;
       yearly = dataloop.Yearly;
     });
+    console.log(valueYear);
     // console.log(weekly, monthly, kuartal, yearly);
     var data = google.visualization.arrayToDataTable([
       ['Task', 'Meeting Progress'],
@@ -155,25 +165,61 @@
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
   }
-</script>
+  // function card jenis mom
+  jenMom();
+  // pie chart settings
+  function filterYearData() {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart); 
+    valueYear = document.getElementById("filterYear").value;
 
-// bar chart settings
+    // function card jenis mom
+    jenMom();
+    // pie chart
+    function drawChart() {
+
+      jenisMoms.filter((data) => data.Tahun == valueYear).map((dataloop) => {
+        weekly = dataloop.Weekly;
+        monthly = dataloop.Monthly;
+        kuartal = dataloop.Kuartal;
+        yearly = dataloop.Yearly;
+      });
+      console.log(valueYear);
+      // console.log(weekly, monthly, kuartal, yearly);
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Meeting Progress'],
+        ['Weekly BoD',     weekly],
+        ['PDCA Month',      monthly],
+        ['Kuartal Meeting',  kuartal],
+        ['End Year Meeting', yearly]
+      ]);
+
+      var options = {
+          title: ''
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+  }
+</script>
 <script type="text/javascript">
   google.charts.load('current', {'packages':['bar']});
   google.charts.setOnLoadCallback(drawChart);
+  var totalStatus = {!! $totalStatus !!};  
+  var valueYear = new Date().getFullYear();
 
   function drawChart() {
     // variabel default total status jenmom 
-    let yearopen = 0; let yearonprogress = 0; let yearhold = 0; let yearclose = 0;
-    let weekopen = 0; let weekonprogress = 0; let weekhold = 0; let weekclose = 0;
-    let kuartalopen = 0; let kuartalonprogress = 0; let kuartalhold = 0; let kuartalclose = 0;
-    let monthopen = 0; let monthonprogress = 0; let monthhold = 0; let monthclose = 0;
-
-    var totalStatus = {!! $totalStatus !!};
-    var jen_year = totalStatus.filter((e) => e.Tahun == 2022 && e.oid_jen_mom == 'JM-001');
-    var jen_week = totalStatus.filter((e) => e.Tahun == 2022 && e.oid_jen_mom == 'JM-002');
-    var jen_kuartal = totalStatus.filter((e) => e.Tahun == 2022 && e.oid_jen_mom == 'JM-003');
-    var jen_month = totalStatus.filter((e) => e.Tahun == 2022 && e.oid_jen_mom == 'JM-004');
+  let yearopen = 0; let yearonprogress = 0; let yearhold = 0; let yearclose = 0;
+  let weekopen = 0; let weekonprogress = 0; let weekhold = 0; let weekclose = 0;
+  let kuartalopen = 0; let kuartalonprogress = 0; let kuartalhold = 0; let kuartalclose = 0;
+  let monthopen = 0; let monthonprogress = 0; let monthhold = 0; let monthclose = 0;
+    // filter year and jen_mom
+    let jen_year = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-001');
+    let jen_week = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-002');
+    let jen_kuartal = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-003');
+    let jen_month = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-004');
 
     jen_year.map((e) => {
       yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;
@@ -187,11 +233,6 @@
     jen_month.map((e) => {
       monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close;
     });
-     
-    console.log(`nilai onpress : ${weekonprogress}`)
-    console.log(`nilai open : ${weekopen}`)
-    console.log(`nilai close : ${weekclose}`)
-    console.log(`nilai hold : ${weekhold}`)
 
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Weekly BoD', 'PDCA Month KG', 'Kuartal Meeting','End Year Meeting'],
@@ -211,6 +252,65 @@
     var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
+  }
+  function filterStatusData() {
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+    valueYear = document.getElementById("filterYear").value;
+    console.table(totalStatus);
+  
+    function drawChart() {
+       // variabel default total status jenmom 
+      let yearopen = 0; let yearonprogress = 0; let yearhold = 0; let yearclose = 0;
+      let weekopen = 0; let weekonprogress = 0; let weekhold = 0; let weekclose = 0;
+      let kuartalopen = 0; let kuartalonprogress = 0; let kuartalhold = 0; let kuartalclose = 0;
+      let monthopen = 0; let monthonprogress = 0; let monthhold = 0; let monthclose = 0;
+
+      // filter year and jen_mom
+      let jen_year = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-001');
+      let jen_week = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-002');
+      let jen_kuartal = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-003');
+      let jen_month = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-004');
+
+      jen_year.map((e) => {
+        yearopen = e.open; yearonprogress = e.on_progress; yearhold = e.hold; yearclose = e.close;
+      });
+      jen_week.map((e) => {
+        weekopen = e.open; weekonprogress = e.on_progress; weekhold = e.hold; weekclose = e.close;
+      });
+      jen_kuartal.map((e) => {
+        kuartalopen = e.open; kuartalonprogress = e.on_progress; kuartalhold = e.hold; kuartalclose = e.close;
+      });
+      jen_month.map((e) => {
+        monthopen = e.open; monthonprogress = e.on_progress; monthhold = e.hold; monthclose = e.close;
+      });
+
+      var data = google.visualization.arrayToDataTable([
+        ['Status', 'Weekly BoD', 'PDCA Month KG', 'Kuartal Meeting','End Year Meeting'],
+        ['Open', weekopen , monthopen, kuartalopen, yearopen],
+        ['Hold', weekhold , monthhold, kuartalhold, yearhold],
+        ['On Progress', weekonprogress , monthonprogress, kuartalonprogress, yearonprogress],
+        ['Close', weekclose , monthclose, kuartalclose, yearclose]
+      ]);
+
+      var options = {
+        chart: {
+          title: '',
+        },
+        bars: 'vertical' // Required for Material Bar Charts.
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+  }
+</script>
+<script>
+  //function filter all
+  const filterAllData = () => {
+    filterYearData();
+    filterStatusData();
   }
 </script>
 @endpush

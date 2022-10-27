@@ -309,15 +309,22 @@ class MomController extends Controller
 
         //create detail mom
         //men-generate angka pada oid
-        $max_id = DB::table('tb_trans_mom_details')->max('id');
-        $newId = (int) $max_id + 1;
+        $max_id_detail = DB::table('tb_trans_mom_details')->max('id');
+        $newIdDetail = (int) $max_id_detail + 1;
         $num = '0';
-        if (
-            $newId >= 9
-        ) {
+        if ($newIdDetail >= 9){
             $num = '';
         }
-        $oid = 'MD-' . $num . $newId;
+        $oid_detail = 'MD-' . $num . $newIdDetail;
+
+        $max_id_doc = Documentation::max('id');
+        $newIdDoc = (int) $max_id_doc + 1;
+        if($newIdDoc >= 9){
+            $num = '';
+        };
+        $oid_doc = 'DOC-' . $num . $newIdDoc;
+
+
 
         //kirim file image
         $nameDoc = $request->file('dokumen')->store('momdetail-documentation');
@@ -325,7 +332,7 @@ class MomController extends Controller
 
         //insert data to table momdetail
         Detailmom::create([
-            'oid_high_issues' => $oid,
+            'oid_high_issues' => $oid_detail,
             'oid_mom' => $mom->oid_mom,
             'highlight_issues' => $request->highlight_issues,
             'due_date_info' => $request->due_date_info,
@@ -347,7 +354,7 @@ class MomController extends Controller
         ]);
         // inser tada to table docmom
         Documentation::create([
-            'oid_document' => $oid,
+            'oid_document' => $oid_doc,
             'oid_mom' => $mom->oid_mom,
             'dokumen' => $originalName,
             'gambar' => $nameDoc,
