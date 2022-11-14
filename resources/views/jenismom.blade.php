@@ -168,7 +168,7 @@
         
         $('#oid_will_delete').val(data[1]);
         
-        $('#text-notif').html('Yakin Ingin Menghapus Jenis MoM : <br> ' + data[2] +' ?');
+        $('#text-notif').html('Are you sure want to delete : <br> ' + data[2] +' ?');
         $('#deleteform').attr('action', '/jenismom/'+data[1]);
         $('#deleteModal').modal('show');
       });

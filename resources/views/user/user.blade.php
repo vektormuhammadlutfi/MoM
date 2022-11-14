@@ -57,7 +57,7 @@
                         <form action="{{ url("/user/{$item->oid_user}") }}" method="post" class="py-2 d-inline">
                           @method('delete')
                           @csrf
-                          <button type="submit"  onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn c-btn text-decoration-none text-danger delete" style="box-shadow: none;"><i class="fa-solid fa-trash-can"></i> Hapus</button>
+                          <button type="submit"  onClick="return confirm('are you sure want to delete user data ?')" class="btn c-btn text-decoration-none text-danger delete" style="box-shadow: none;"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </form>
                       </div>
                     </div>

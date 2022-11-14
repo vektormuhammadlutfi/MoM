@@ -25,7 +25,7 @@
                   <th style="font-size: 13px">User Group</th>
                   <th style="font-size: 13px">Menu Name</th>
                   <th style="font-size: 13px">Status Active</th>
-                  <th style="font-size: 13px">Action</th>
+                  <th style="font-size: 13px" class="width-max05">Action</th>
               </tr>
           </thead>
           <tbody>
@@ -35,7 +35,7 @@
                 <td>{{ ++$no }}</td>
                 <td class="width-min07">{{ $item->usergroup }}</td>
                 <td class="width-min07">{{ $item->menuname }}</td>
-                <td class="width-min1 width-max2">{{ $item->staktif }}</td>
+                <td class="width-max2">{{ $item->staktif }}</td>
 
                 <td style="min-width: 125px">
                   {{-- <a  href="{{ url("/detailuser") }}" class="btn btn-primary btn-sm py-2" ><i class="fa-regular fa-eye"></i></a> --}}
@@ -43,7 +43,7 @@
                   <form action="{{ url("/user") }}" method="post" class="py-2 d-inline">
                     @method('delete')
                     @csrf
-                    <button   onClick="return confirm('Yakin Ingin Menghapus Data ?')" class="btn btn-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></button>
+                    <button   onClick="return confirm('Are you sure want to delete this data ?')" class="btn btn-outline-danger btn-sm py-2"><i class="fa-solid fa-trash-can"></i></button>
                   </form>
                 </td>                
               </tr>

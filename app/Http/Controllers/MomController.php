@@ -6,6 +6,7 @@ use App\Models\Detailmom;
 use App\Models\Documentation;
 use App\Models\JenisMom;
 use App\Models\Mom;
+use App\Models\MomDetailDoc;
 use App\Models\SbuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -285,12 +286,12 @@ class MomController extends Controller
         }
         $oid_detail = 'MD-' . $num . $newIdDetail;
 
-        $max_id_doc = Documentation::max('id');
-        $newIdDoc = (int) $max_id_doc + 1;
-        if($newIdDoc >= 9){
+        $max_id_doc = MomDetailDoc::max('id');
+        $newIdDocDetail = (int) $max_id_doc + 1;
+        if($newIdDocDetail >= 9){
             $num = '';
         };
-        $oid_doc = 'DOC-' . $num . $newIdDoc;
+        $oid_doc_details = 'MDD-' . $num . $newIdDocDetail;
 
 
 
@@ -321,17 +322,15 @@ class MomController extends Controller
             'updated_at' => date('Y-m-d H:i:s')
         ]);
         // inser tada to table docmom
-        Documentation::create([
-            'oid_document' => $oid_doc,
-            'oid_mom' => $mom->oid_mom,
-            'dokumen' => $originalName,
+        MomDetailDoc::create([
+            'oid_doc_detail' => $oid_doc_details,
+            'oid_high_issues' => $oid_detail,
+            'document' => $originalName,
             'gambar' => $nameDoc,
             'crud' => 'C',
             'usercreate' => Auth::user()->name,
             'userupdate' => null,
             'userdelete' => null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
         ]);
         return redirect('/mom' . '/' . $mom->oid_mom);
     }

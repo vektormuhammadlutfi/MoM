@@ -9,20 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class SbuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
-        $dataSbu = DB::table('tb_mas_sbus')
-            ->Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
+        $dataSbu = SbuModel::Join('tb_mas_sub_holdings', 'tb_mas_sub_holdings.oid_subholding', '=', 'tb_mas_sbus.oid_subholding')
             ->where('tb_mas_sbus.crud', '=', 'C')
             ->orWhere('tb_mas_sbus.crud', '=', 'U')
             ->get();
-
+        // dd($dataSbu);
         $datasubholding = DB::table('tb_mas_sub_holdings')
             ->where('tb_mas_sub_holdings.crud', '=', 'C')
             ->orWhere('tb_mas_sub_holdings.crud', '=', 'U')
@@ -30,24 +23,7 @@ class SbuController extends Controller
         $title = 'SBU';
         return view('sbu', compact('title', 'dataSbu', 'datasubholding'));
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         // return dd($request);
@@ -80,35 +56,7 @@ class SbuController extends Controller
         ]);
         return redirect('/sbu');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\SbuModel $sbu
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SbuModel $sbu)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\SbuModel $sbu
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SbuModel $sbu)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\SbuModel $sbu
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, SbuModel $sbu)
     {
         $validatedData = $request->validate([
@@ -128,13 +76,7 @@ class SbuController extends Controller
             ->update($inputsbu);
         return redirect('/sbu');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\SbuModel $sbu
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(SbuModel $sbu)
     {
         $inputsbu = array(

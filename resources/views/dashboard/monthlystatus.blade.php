@@ -11,13 +11,23 @@
       </div>
       <hr class="my-3">
       {{-- dropdown filter year --}}
-      <div class="row-grid mb-3">
-        <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterYearData()">
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2019">2019</option>
-        </select>
-      </div>
+      @if (count($list_years) >= 2)
+        <div class="row-grid mb-3">
+          <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterYearData()">
+            @foreach ($list_years as $year)
+              <option  value="{{$year->Tahun}}" {{ ($year->Tahun == $current_year) ? 'selected' : '' }}>{{$year->Tahun}}</option>
+            @endforeach
+          </select>
+        </div>
+      @else
+        <div class="row-grid mb-3">
+          <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterYearData()">
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+          </select>
+        </div>
+      @endif
+      
       <div class="row">
         <div class="col-lg-5 col-md-12">
           <div style="overflow-x: auto">

@@ -36,7 +36,9 @@ class DashboardController extends Controller
             )
             ->groupBy('Tahun')
             ->get();
-
+        // dd($jenismom);
+        $list_year = $jenismom[count($jenismom)-1]->Tahun;
+        // dd($list_year);
         $totalStatus = DB::table('tb_mas_mom_jenis')
             ->join('tb_trans_moms', 'tb_trans_moms.oid_jen_mom', '=', 'tb_mas_mom_jenis.oid_jen_mom')
             ->join('tb_trans_mom_details', 'tb_trans_mom_details.oid_mom', '=','tb_trans_moms.oid_mom',)
@@ -69,7 +71,8 @@ class DashboardController extends Controller
         return view('dashboard.dashboard', [
             'title' => 'Dashboard',
             'jenismom'=> $jenismom,
-            'totalStatus' => $totalStatus
+            'totalStatus' => $totalStatus,
+            'list_year' => $list_year,
         ]);
     }
     public function weekly_status(){
@@ -97,6 +100,30 @@ class DashboardController extends Controller
             ->groupBy('sts_issue')
             ->get();
             // dd($weekly_status);
+        $list_years = DB::table('tb_mas_mom_jenis')
+            ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
+            ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom','=','tb_trans_mom_details.oid_mom')
+            ->where(function($query){
+                $query->where('tb_trans_mom_details.crud', 'C')
+                ->orWhere('tb_trans_mom_details.crud', 'U')
+                ->where(function($query){
+                    $query->where('tb_trans_moms.crud', 'C')
+                    ->orWhere('tb_trans_moms.crud', 'U');
+                });
+            })
+            ->where(function($query){
+                $query->where('tb_mas_mom_jenis.crud', 'U')
+                ->orWhere('tb_mas_mom_jenis.crud', 'C'); 
+            })
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-002')
+            ->select(
+                DB::raw('YEAR(tb_trans_mom_details.created_at) as Tahun')
+            )
+            ->groupBy('Tahun')
+            ->get();
+        // dd($list_years);
+        $current_year = $list_years[count($list_years)-1]->Tahun;
+        // dd($list_year);
         $mom_weekly = DB::table('tb_mas_mom_jenis')
             ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
             ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom', '=', 'tb_trans_mom_details.oid_mom')
@@ -123,7 +150,9 @@ class DashboardController extends Controller
         return view('dashboard.weeklystatus', [
             'title' => 'dashboard',
             'weekly_status' => $weekly_status,
-            'mom_weekly' => $mom_weekly
+            'mom_weekly' => $mom_weekly,
+            'current_year' => $current_year,
+            'list_years' => $list_years,
         ]);
     }
 
@@ -152,6 +181,30 @@ class DashboardController extends Controller
             ->groupBy('sts_issue')
             ->get();
             // dd($monthly_status);
+        $list_years = DB::table('tb_mas_mom_jenis')
+            ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
+            ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom','=','tb_trans_mom_details.oid_mom')
+            ->where(function($query){
+                $query->where('tb_trans_mom_details.crud', 'C')
+                ->orWhere('tb_trans_mom_details.crud', 'U')
+                ->where(function($query){
+                    $query->where('tb_trans_moms.crud', 'C')
+                    ->orWhere('tb_trans_moms.crud', 'U');
+                });
+            })
+            ->where(function($query){
+                $query->where('tb_mas_mom_jenis.crud', 'U')
+                ->orWhere('tb_mas_mom_jenis.crud', 'C'); 
+            })
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-004')
+            ->select(
+                DB::raw('YEAR(tb_trans_mom_details.created_at) as Tahun')
+            )
+            ->groupBy('Tahun')
+            ->get();
+        // dd($list_years);
+        $current_year = $list_years[count($list_years)-1]->Tahun;
+        // dd($list_year);
         $mom_monthly = DB::table('tb_mas_mom_jenis')
             ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
             ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom', '=', 'tb_trans_mom_details.oid_mom')
@@ -178,7 +231,9 @@ class DashboardController extends Controller
         return view ('dashboard.monthlystatus', [
             'title' => 'dashboard',
             'monthly_status' => $monthly_status,
-            'mom_monthly' => $mom_monthly
+            'mom_monthly' => $mom_monthly,
+            'current_year' => $current_year,
+            'list_years' => $list_years,
         ]);
     }
     public function kuartal_status(){
@@ -206,6 +261,30 @@ class DashboardController extends Controller
             ->groupBy('sts_issue')
             ->get();
             // dd($kuartal_status);
+        $list_years = DB::table('tb_mas_mom_jenis')
+            ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
+            ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom','=','tb_trans_mom_details.oid_mom')
+            ->where(function($query){
+                $query->where('tb_trans_mom_details.crud', 'C')
+                ->orWhere('tb_trans_mom_details.crud', 'U')
+                ->where(function($query){
+                    $query->where('tb_trans_moms.crud', 'C')
+                    ->orWhere('tb_trans_moms.crud', 'U');
+                });
+            })
+            ->where(function($query){
+                $query->where('tb_mas_mom_jenis.crud', 'U')
+                ->orWhere('tb_mas_mom_jenis.crud', 'C'); 
+            })
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-003')
+            ->select(
+                DB::raw('YEAR(tb_trans_mom_details.created_at) as Tahun')
+            )
+            ->groupBy('Tahun')
+            ->get();
+        // dd($list_years);
+        $current_year = $list_years[count($list_years)-1]->Tahun;
+        // dd($list_year);
         $mom_kuartal = DB::table('tb_mas_mom_jenis')
             ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
             ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom', '=', 'tb_trans_mom_details.oid_mom')
@@ -233,7 +312,9 @@ class DashboardController extends Controller
         return view ('dashboard.kuartalstatus', [
             'title' => 'dashboard',
             'kuartal_status' => $kuartal_status,
-            'mom_kuartal' => $mom_kuartal
+            'mom_kuartal' => $mom_kuartal,
+            'current_year' => $current_year,
+            'list_years' => $list_years,
         ]);
     }
     public function yearly_status(){
@@ -260,6 +341,30 @@ class DashboardController extends Controller
             ->groupBy('Tahun')
             ->groupBy('sts_issue')
             ->get();
+        $list_years = DB::table('tb_mas_mom_jenis')
+            ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
+            ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom','=','tb_trans_mom_details.oid_mom')
+            ->where(function($query){
+                $query->where('tb_trans_mom_details.crud', 'C')
+                ->orWhere('tb_trans_mom_details.crud', 'U')
+                ->where(function($query){
+                    $query->where('tb_trans_moms.crud', 'C')
+                    ->orWhere('tb_trans_moms.crud', 'U');
+                });
+            })
+            ->where(function($query){
+                $query->where('tb_mas_mom_jenis.crud', 'U')
+                ->orWhere('tb_mas_mom_jenis.crud', 'C'); 
+            })
+            ->where('tb_mas_mom_jenis.oid_jen_mom', 'JM-001')
+            ->select(
+                DB::raw('YEAR(tb_trans_mom_details.created_at) as Tahun')
+            )
+            ->groupBy('Tahun')
+            ->get();
+        // dd($list_years);
+        $current_year = $list_years[count($list_years)-1]->Tahun;
+        // dd($list_year);
         $mom_yearly = DB::table('tb_mas_mom_jenis')
             ->join('tb_trans_moms', 'tb_mas_mom_jenis.oid_jen_mom', '=', 'tb_trans_moms.oid_jen_mom')
             ->join('tb_trans_mom_details', 'tb_trans_moms.oid_mom', '=', 'tb_trans_mom_details.oid_mom')
@@ -287,7 +392,9 @@ class DashboardController extends Controller
         return view ('dashboard.yearlystatus', [
             'title' => 'dashboard',
             'yearly_status' => $yearly_status,
-            'mom_yearly' => $mom_yearly
+            'mom_yearly' => $mom_yearly,
+            'current_year' => $current_year,
+            'list_years' => $list_years,
         ]);
     }
 }

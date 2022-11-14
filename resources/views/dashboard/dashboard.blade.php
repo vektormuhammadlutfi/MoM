@@ -76,13 +76,22 @@
     </div>
   </div>
   {{-- dropdown filter year --}}
-  <div class="mt-4 mb-3 row-grid">
+  @if (count($jenismom) >= 2)
+  <div class="row-grid mb-3">
     <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterAllData()">
-      <option value="2022">2022</option>
-      <option value="2021">2021</option>
-      <option value="2019">2019</option>
+      @foreach ($jenismom as $year)
+        <option  value="{{$year->Tahun}}" {{ ($year->Tahun == $list_year) ? 'selected' : '' }}>{{$year->Tahun}}</option>
+      @endforeach
     </select>
   </div>
+  @else
+    <div class="row-grid mb-3">
+      <select id="filterYear" class="form-control form-control-sm" style="font-size: 15px;" onchange="filterYearData()">
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+      </select>
+    </div>
+  @endif
   <div class="row-grid-chart">
       <!-- pie chart -->
       <div class="card">
@@ -210,10 +219,10 @@
 
   function drawChart() {
     // variabel default total status jenmom 
-  let yearopen = 0; let yearonprogress = 0; let yearhold = 0; let yearclose = 0;
-  let weekopen = 0; let weekonprogress = 0; let weekhold = 0; let weekclose = 0;
-  let kuartalopen = 0; let kuartalonprogress = 0; let kuartalhold = 0; let kuartalclose = 0;
-  let monthopen = 0; let monthonprogress = 0; let monthhold = 0; let monthclose = 0;
+    let yearopen = 0; let yearonprogress = 0; let yearhold = 0; let yearclose = 0;
+    let weekopen = 0; let weekonprogress = 0; let weekhold = 0; let weekclose = 0;
+    let kuartalopen = 0; let kuartalonprogress = 0; let kuartalhold = 0; let kuartalclose = 0;
+    let monthopen = 0; let monthonprogress = 0; let monthhold = 0; let monthclose = 0;
     // filter year and jen_mom
     let jen_year = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-001');
     let jen_week = totalStatus.filter((e) => e.Tahun == valueYear && e.oid_jen_mom == 'JM-002');

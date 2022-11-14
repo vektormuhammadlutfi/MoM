@@ -77,7 +77,7 @@
         </button>
       </div>
         <div class="container">
-          <div id='text-notif' class="mb-4">Are you sure want to delete this data ?</div>
+          <div id='text-notif' class="mb-4"></div>
           <form  id="deleteform" method="POST">
             @method('delete')
             @csrf
@@ -85,7 +85,7 @@
               <div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-outline-danger" id="delete">
-                  Hapus
+                  Delete
                 </button>
               </div>
             </div>
@@ -108,11 +108,11 @@
             $tr = $tr.prev('.parent');
         }
         var data = table.row($tr).data();
-        
+        console.log(data);
         $('#oid_will_delete').val(data[1]);
         
-        $('#text-notif').html('Are you sure want to delete branch' + data[2] +' ?');
-        $('#deleteform').attr('action', '/branch/'+data[1]);
+        $('#text-notif').html('Are you sure want to delete branch : ' + data[2] +' ?');
+        $('#deleteform').attr('action', '/branch/'+data[2]);
         $('#deleteModal').modal('show');
       });
     });

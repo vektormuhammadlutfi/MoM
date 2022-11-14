@@ -100,7 +100,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {{$title === 'Mom Documentation'? 'menu-active':''}}" href="/momdescription">
-                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Documentation
+                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Doc
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{$title === 'Mom Detail Documentation'? 'menu-active':''}}" href="/momdetaildocumentation">
+                <i class="fa fa-list-alt" aria-hidden="true" ></i>Mom Detail Doc
               </a>
             </li>
           </ul>

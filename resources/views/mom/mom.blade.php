@@ -47,7 +47,7 @@
 
                       <div class="dropdown-item">
                         <a href="#" class="c-btn text-decoration-none text-danger delete">
-                          <i class="fa-solid fa-trash-can"></i> Hapus
+                          <i class="fa-solid fa-trash-can"></i> Delete
                         </a>
                       </div>
                     </div>

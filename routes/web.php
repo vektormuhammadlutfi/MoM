@@ -14,6 +14,7 @@ use App\Http\Controllers\MomDetailController;
 use App\Http\Controllers\MomReportController;
 use App\Http\Controllers\SubholdingController;
 use App\Http\Controllers\MomdescriptionController;
+use App\Http\Controllers\MomDetailDocController;
 use App\Http\Controllers\SummaryController;
 
 //=== L O G I N ===
@@ -81,10 +82,12 @@ Route::group(['middleware' => ['auth', 'level:admin,sysdev']], function () {
             'momdetail' => 'detailmom'
         ]
     ]);
-    Route::get('/momdetail/{detailmom}/history', [MomDetailController::class, 'history']);
+    Route::get('/momdetail/history/{detailmom}', [MomDetailController::class, 'history']);
 
     //== M O M   D E S C R I P T I O N ==
     Route::get('/momdescription', [MomdescriptionController::class, 'index']);
+    //== MOM DETAIL DOCUMENTATION====
+    Route::get('/momdetaildocumentation', [MomDetailDocController::class, 'index']);
 });
 
 // sysdev

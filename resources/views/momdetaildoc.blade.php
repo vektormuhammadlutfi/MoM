@@ -6,7 +6,7 @@
   <div class="card border-0 shadow bg-secondary">
     <div class="card-body">
       <div class="d-flex justify-content-between">
-        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MoM  Documentation</h3>
+        <h3 class="mb-0"><i class="fa-solid fa-list text-success"></i> MoM Detail Documentation</h3>
         <!-- <button class="btn btn-info py-1" type="button" data-toggle="modal" data-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Data Baru</button> -->
       </div>
       <hr class="mt-2 mb-4">
@@ -15,17 +15,17 @@
           <thead >
               <tr>
                   <th class="text-center" style="font-size: 13px;width:50px;">No</th>
-                  <th style="font-size: 13px">OID MOM</th>
+                  <th style="font-size: 13px">OID HIGHLIGHT ISSUES</th>
                   <th style="font-size: 13px">DOCUMENT</th>
               </tr>
           </thead>
           <tbody>
-            @foreach($description as $description)
+            @foreach($doc_detail_mom as $item)
                 <tr>
                   <td class="text-center" style="width: 50px">{{$loop->iteration}}</td>
-                  <td>{{$description->oid_mom}}</td>
+                  <td>{{$item->oid_high_issues}}</td>
                   <td>
-                    <a target='_blank' href="storage\{{$description->gambar}}">{{$description->dokumen}}</a>
+                    <a target='_blank' href="storage\{{$item->gambar}}">{{$item->document}}</a>
                   </td>
               </tr>
             @endforeach
