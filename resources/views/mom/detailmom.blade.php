@@ -68,23 +68,23 @@
             {{-- PIC --}}
             <div class="form-group">
               <label for="pic">PIC</label>
-              <input type="text" name="pic" value="{{ old('pic') }}" class="form-control @error('pic') is-invalid @enderror" placeholder="Input PIC" id="pic">
+              <input type="text" id="pic" name="pic" value="{{ old('pic') }}" class="form-control @error('pic') is-invalid @enderror" placeholder="Input PIC">
               @error('pic')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
             </div>
             {{-- Progress Minggu Lalu --}}
             <div class="form-group">
-              <label for="pic">Last Week's Progress</label>
-              <input type="text" name="progres_ml" value="{{ old('progres_ml') }}" class="form-control @error('progres_ml') is-invalid @enderror" placeholder="Input last week's progress" id="pic">
+              <label for="progres_ml">Last Week's Progress</label>
+              <textarea name="progres_ml" id="progres_ml" cols="30" rows="3" class="form-control mb-3 @error('progres_ml') is-invalid @enderror" value="{{ old('progres_ml') }}"  placeholder="Input last week's progress"></textarea>
               @error('progres_ml')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
             </div>
             {{-- Rencana Minggu Ini --}}
             <div class="form-group">
-              <label for="pic">This Week's Plans</label>
-              <input type="text" name="rencana_mi" value="{{ old('rencana_mi') }}" class="form-control @error('rencana_mi') is-invalid @enderror" placeholder="Input this week's plans" id="pic">
+              <label for="rencana_mi">This Week's Plans</label>
+              <textarea name="rencana_mi" id="rencana_mi" cols="30" rows="3" class="form-control mb-3 @error('rencana_mi') is-invalid @enderror" value="{{ old('rencana_mi') }}"  placeholder="Input this week's plans"></textarea>
               @error('rencana_mi')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
@@ -92,7 +92,7 @@
             {{-- Informasi --}}
             <div class="form-group">
               <label for="informasi">Information</label>
-              <input type="text" name="informasi" value="{{ old('informasi') }}" class="form-control @error('informasi') is-invalid @enderror" placeholder="Input information" id="informasi">
+              <textarea name="informasi" id="informasi" cols="30" rows="3" class="form-control mb-3 @error('informasi') is-invalid @enderror" value="{{ old('informasi') }}"  placeholder="Input information"></textarea>
               @error('informasi')
                 <div class="invalid-feedback">{{ $message }} </div>        
               @enderror
